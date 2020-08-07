@@ -1,0 +1,12 @@
+# @format
+
+plugins:
+  fixme:
+    enabled: true
+  editorconfig:
+    enabled: true
+exclude_patterns:
+  - '**/*.ttf'
+  - '**/*.otf'
+  - '**/*.svg'
+  - '**/*.ico'

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "checkJs": true,
+    "moduleResolution": "node"
+  },
+  "include": ["./**/*.js", "*.js", ".*.js"]
+}
