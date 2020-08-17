@@ -1,6 +1,9 @@
 /** @format */
 
-/* import { IncomingMessage, ServerResponse } from 'http'
+import createRoutesForSitemap, {
+  TSitemapRoute
+} from '@util/createRoutesForSitemap'
+import { IncomingMessage, ServerResponse } from 'http'
 import { SitemapStream, streamToPromise } from 'sitemap'
 
 export default async function sitemapFunc(
@@ -9,19 +12,31 @@ export default async function sitemapFunc(
 ) {
   res.setHeader('Content-Type', 'text/xml')
   try {
-    const stories = await fetchContentFromAPI() // call the backend and fetch all stories
+    const createdRoutesForSitemap = await createRoutesForSitemap() // call the backend and fetch all stories
+
+    const host = req?.headers?.host || 'not found'
 
     const smStream = new SitemapStream({
-      hostname: `https://${req.headers.host}`
+      hostname: `https://${host}`
     })
-    for (const story of stories) {
-      smStream.write({
-        url: story.full_slug,
-        lastmod: story.published_at
+
+    createdRoutesForSitemap.map((routesArray) =>
+      Object.keys(routesArray).map((routeName) => {
+        const route: TSitemapRoute = routesArray[routeName]
+        console.log(route)
+
+        return smStream.write({
+          url: route.slug.current,
+          // eslint-disable-next-line no-underscore-dangle
+          lastmod: route.page._editedAt! || new Date()
+        })
       })
-    }
+    )
+
     smStream.end()
+
     const sitemap = await streamToPromise(smStream).then((sm) => sm.toString())
+
     res.write(sitemap)
     res.end()
   } catch (e) {
@@ -30,6 +45,3 @@ export default async function sitemapFunc(
     res.end()
   }
 }
- */
-
-export {}
