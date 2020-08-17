@@ -16,4 +16,4 @@ const sitemapRoutes = `
   }
 `
 
-module.exports = sitemapRoutes
+export default sitemapRoutes
