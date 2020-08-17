@@ -2,6 +2,10 @@
 
 # TRUE Framework
 
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/MathiasKandelborg/TRUE?style=for-the-badge)](https://codeclimate.com/github/MathiasKandelborg/TRUE/maintainability)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=for-the-badge)](https://github.com/semantic-release/semantic-release)
+
 **THIS IS A DRAFT** - Come contribute and share your thoughts (make this a link)
 
 ## TRUE Framework === The Really Unique & Exciting Framework

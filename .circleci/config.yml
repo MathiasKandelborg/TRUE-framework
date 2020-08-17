@@ -1,3 +1,5 @@
+# @format
+
 version: 2.1
 jobs:
   build:
@@ -5,5 +7,9 @@ jobs:
       - image: 'circleci/node:latest'
     steps:
       - checkout
-      - run: yarn
-      - run: npx semantic-release
+      - run:
+          name: install
+          command: yarn
+      - run:
+          name: release
+          command: yarn run semantic-release || true

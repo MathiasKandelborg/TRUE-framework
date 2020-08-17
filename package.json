@@ -3,8 +3,12 @@
   "author": "Mathias Kandelborg",
   "name": "true-framework",
   "description": "TRUE Framework === The Really Unique & Exciting Framework (for the web)",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "license": "Unlicense",
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/MathiasKandelborg/TRUE.git"
+  },
   "workspaces": [
     "true-cms"
   ],
@@ -13,7 +17,8 @@
     "build": "next build",
     "start": "next start",
     "commit": "git-cz",
-    "c": "git-cz"
+    "c": "git-cz",
+    "semantic-release": "semantic-release"
   },
   "config": {
     "commitizen": {
