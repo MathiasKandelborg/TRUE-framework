@@ -30,7 +30,7 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
         // @ts-ignore
         component={MenuLink}
         scroll={false}
-        shallow
+        /* shallow */
         routes={routes}
         href={route}
         as={as}
