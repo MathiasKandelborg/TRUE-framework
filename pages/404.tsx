@@ -7,7 +7,7 @@ import { AllPagesProps } from 'AllPagesProps'
 
 const Page404: React.FC<AllPagesProps> = () => {
   return (
-    <PageAnimation>
+    <PageAnimation layoutID="layout">
       <Typography>404 - Page Not Found :{lpar}</Typography>
     </PageAnimation>
   )
