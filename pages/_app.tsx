@@ -3,7 +3,7 @@
 import { Layout } from '@components/UI'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
-import { common } from '@util/settings'
+import { common, CONSTANTS } from '@util/settings'
 import store from '@util/shared/createStore'
 import MainTheme from '@util/themes/MainTheme'
 import { StoreProvider } from 'easy-peasy'
@@ -48,9 +48,12 @@ function MyApp(props: IAppProps) {
     ? router.asPath.split('/').join('/')
     : router.asPath
 
-  const canonicalRoute = `${
+  const hostname =
     (config && config.url) || process.env.NEXT_PUBLIC_PROJECT_URL!
-  }${strippedAsPathRoute}`
+
+  const canonicalRoute = CONSTANTS.DEV
+    ? `https://localhost:3000${strippedAsPathRoute}`
+    : `https://${hostname}:3000${strippedAsPathRoute}`
 
   return (
     <>
