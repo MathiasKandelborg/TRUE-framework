@@ -1,8 +1,6 @@
 /** @format */
 
-import createRoutesForSitemap, {
-  TSitemapRoute
-} from '@util/createRoutesForSitemap'
+import createRoutesForSitemap from '@util/createRoutesForSitemap'
 import { IncomingMessage, ServerResponse } from 'http'
 import { SitemapStream, streamToPromise } from 'sitemap'
 
@@ -14,21 +12,18 @@ export default async function sitemapFunc(
   try {
     const createdRoutesForSitemap = await createRoutesForSitemap() // call the backend and fetch all stories
 
-    const host = req?.headers?.host || 'not found'
-
     const smStream = new SitemapStream({
-      hostname: `https://${host}`
+      hostname: `https://${req?.headers?.host || 'not found'}`
     })
 
     createdRoutesForSitemap.map((routesArray) =>
       Object.keys(routesArray).map((routeName) => {
-        const route: TSitemapRoute = routesArray[routeName]
-        console.log(route)
+        const route = routesArray[routeName]
 
         return smStream.write({
           url: route.slug.current,
           // eslint-disable-next-line no-underscore-dangle
-          lastmod: route.page._editedAt! || new Date()
+          lastmod: route.page._updatedAt! || route.page._createdAt!
         })
       })
     )

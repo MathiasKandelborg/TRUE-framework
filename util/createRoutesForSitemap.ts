@@ -8,11 +8,13 @@ import { common } from './settings'
 export interface TSitemapQueryRoute {
   _id: string
   _type: string
+  _updatedAt?: string | Date
+  _createdAt?: string | Date
   page: {
     _id?: string
     title: string
-    _createdAt?: string
-    _editedAt?: string
+    _createdAt?: string | Date
+    _updatedAt?: string | Date
   }
   slug: {
     _type?: string
@@ -36,14 +38,14 @@ const createStaticRoutesForSitemap = (
       [`${route.route}`]: {
         page: {
           title: route.as,
-          _editedAt: Date(),
-          _createdAt: Date()
+          _updatedAt: '2020-08-18T00:13:55.000Z',
+          _createdAt: '2020-08-18T00:13:55.000Z'
         },
         slug: {
           current: route.route
         },
-        _editedAt: Date(),
-        _createdAt: Date(),
+        _updatedAt: '2020-08-18T00:13:55.000Z',
+        _createdAt: '2020-08-18T00:13:55.000Z',
         includeInSitemap: true,
         disallowRobot: true
       }
@@ -57,36 +59,32 @@ const createRoutesForSitemap = async () => {
   const staticRoutes = createStaticRoutesForSitemap(common.staticRoutes)
   const sanityRoutes: Array<TSitemapQueryRoutes> = await client
     .fetch(sitemapRoutes)
-    .then((res: { routes: Array<TSitemapQueryRoute> }) => {
-      const { routes } = res
-
-      const fRoutes = routes
-        .filter((r) => r.slug.current)
-        .map((ro) => {
+    .then((res: { routes: Array<TSitemapQueryRoute> }) =>
+      res.routes
+        .filter((route) => route.slug.current)
+        .map((route) => {
           return {
-            [`${ro.slug.current}`]: {
+            [`${route.slug.current}`]: {
               page: {
-                title: ro.page.title
+                title: route.page.title,
+                // eslint-disable-next-line no-underscore-dangle
+                _updatedAt: new Date(route.page._updatedAt!),
+                // eslint-disable-next-line no-underscore-dangle
+                _createdAt: new Date(route.page._createdAt!)
               },
               slug: {
-                current: ro.slug.current
+                current: route.slug.current
               },
-              // eslint-disable-next-line no-underscore-dangle
-              _updatedAt: new Date(ro.page._editedAt),
-              // eslint-disable-next-line no-underscore-dangle
-              _createdAt: new Date(ro.page._createdAt),
               includeInSitemap: true,
               disallowRobot: true
             }
           }
         })
+    )
 
-      return fRoutes
-    })
+  const smRoutes = [...staticRoutes, ...sanityRoutes]
 
-  const routess = [...staticRoutes, ...sanityRoutes]
-
-  return routess
+  return smRoutes
 }
 
 export default createRoutesForSitemap
