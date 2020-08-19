@@ -98,11 +98,11 @@ export const getStaticProps: GetStaticProps<Omit<
 
 const RenderPreviewPage: React.FC<{
   loading: boolean
-  pageProps: TSiteRoute['page']
+  pageProps: TSiteRoute['page'] | undefined
 }> = (props) => {
   const { loading, pageProps: routeProps } = props
 
-  const { title, content } = routeProps
+  const { title, content } = routeProps || { title: 'Loading' }
 
   if (loading) {
     return (
@@ -152,7 +152,7 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
     if (!data)
       return (
         <PageAnimation layoutID="layout">
-          <RenderPreviewPage loading pageProps={data.page} />
+          <RenderPreviewPage loading pageProps={undefined} />
         </PageAnimation>
       )
 
