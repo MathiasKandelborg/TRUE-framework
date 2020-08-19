@@ -6,16 +6,12 @@ import { Button, Typography } from '@material-ui/core'
 const PreviewModeAlert: React.FC = () => (
   <>
     <Typography variant="caption">
+      {/* @ts-ignore */}
       <Button
         component={MUILink}
         variant="contained"
         color="secondary"
         href="/api/exit-preview">
-        {/*    <MUILink
-          href="/api/exit-preview"
-          color="textPrimary"
-          underline="always">
-        </MUILink> */}
         Preview mode{' '}
         <span role="img" aria-label="rocket">
           🚀
