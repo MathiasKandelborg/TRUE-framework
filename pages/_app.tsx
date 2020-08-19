@@ -11,7 +11,6 @@ import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 export interface IAppProps extends AppProps {
@@ -26,15 +25,14 @@ export interface IAppProps extends AppProps {
       mainNavigation: [{ slug: { _type: string; current: string } }]
       footerNavigation: [{ slug: string }]
     }
+    preview?: boolean
   }
 }
 
 function MyApp(props: IAppProps) {
-  const { Component, pageProps } = props
+  const { Component, pageProps, router } = props
 
-  const { config } = pageProps
-
-  const router = useRouter()
+  const { config, preview = false } = pageProps
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -44,13 +42,16 @@ function MyApp(props: IAppProps) {
     }
   }, [])
 
+  /* TODO: Extract to util */
   const strippedAsPathRoute = !router.asPath[1]
     ? router.asPath.split('/').join('/')
     : router.asPath
 
+  /* TODO: Extract to common settings obj */
   const hostname =
     (config && config.url) || process.env.NEXT_PUBLIC_PROJECT_URL!
 
+  /* TODO: Extract to common settings obj */
   const canonicalRoute = CONSTANTS.DEV
     ? `https://localhost:3000${strippedAsPathRoute}`
     : `https://${hostname}:3000${strippedAsPathRoute}`
@@ -75,7 +76,9 @@ function MyApp(props: IAppProps) {
       <StoreProvider store={store}>
         <ThemeProvider theme={MainTheme}>
           <CssBaseline />
-          <Layout routes={pageProps.allRoutes || common.staticRoutes}>
+          <Layout
+            preview={preview}
+            routes={pageProps.allRoutes || common.staticRoutes}>
             <AnimateSharedLayout type="crossfade">
               <AnimatePresence exitBeforeEnter>
                 {/* eslint-disable-next-line react/jsx-props-no-spreading */}

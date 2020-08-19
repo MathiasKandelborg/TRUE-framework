@@ -1,16 +1,19 @@
 /** @format */
 
-import getPreviewPostBySlug from '@util/api/calls/getPreviewPostBySlug'
+import getPreviewPageBySlug from '@util/api/calls/getPreviewPageBySlug'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Request, Response } from 'express'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 // eslint-disable-next-line consistent-return
-export default async function preview(req: Request, res: Response) {
+export default async function preview(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
   if (
     req.query.secret !== process.env.SANITY_PREVIEW_SECRET ||
-    !req.query.slug
+    !req.query.page
   ) {
     return res.status(401).json({
       message: 'Invalid token'
@@ -18,29 +21,23 @@ export default async function preview(req: Request, res: Response) {
   }
 
   // Fetch the headless CMS to check if the provided `slug` exists
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const post: Record<string, unknown> = await getPreviewPostBySlug(
-    req.query.slug as string
-  )
+  const page = await getPreviewPageBySlug(req.query.page as string)
 
   // If the slug doesn't exist prevent preview mode from being enabled
-  if (!post) {
+  /*   if (!page) {
     return res.status(401).json({
       message: 'Invalid slug'
     })
-  }
+  } */
 
+  console.log(page)
   // Enable Preview Mode by setting the cookies
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   res.setPreviewData({})
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
   res.writeHead(307, {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    Location: `/posts/${post.slug}`
+    Location: `/${page.slug.current}`
   })
 
   return res.end()

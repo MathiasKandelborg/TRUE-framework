@@ -3,34 +3,33 @@
 import RenderSections from '@components/CMS/RenderSections'
 import { PageAnimation } from '@components/UI'
 import { Grid, Typography } from '@material-ui/core'
+import { getClient } from '@util/api'
+import getPageAndRouteByRoute from '@util/api/calls/getPageByRoute'
 import routes from '@util/api/queries/routes'
-import page from '@util/api/queries/singlePage'
 import siteConfig from '@util/api/queries/siteConfig'
+import { TSitemapQueryRoute } from '@util/createRoutesForSitemap'
 import Redirect from '@util/Redirect'
 import resolveRoutes from '@util/resolveRoutes'
-import client from '@util/sanity'
 import { CONSTANTS, ui } from '@util/settings'
 import { AllPagesProps } from 'AllPagesProps'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { NextSeo } from 'next-seo'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
 import { IAppProps } from './_app'
 
-interface IPageQueryResponse {
-  slug: string
-  title: string
-  description: string
-  disallowRobots: boolean
-  content: [{ _type: string; _key: string; [key: string]: string }]
-}
+type TSiteRoute = Omit<TSitemapQueryRoute, '_type'>
 
 interface ICustomPageProps extends AllPagesProps {
   shouldRedirect: boolean
-  currentPage: IPageQueryResponse
+  currentRoute: TSiteRoute | null
+  preview: boolean
+  previewData?: Record<string, string>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const sanityRoutes = await client.fetch(routes)
+  const sanityRoutes = await getClient(false).fetch(routes)
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -51,19 +50,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<Omit<
   ICustomPageProps,
-  'materialUI' | 'config' | 'allRoutes'
+  'config' | 'allRoutes'
 >> = async (ctx) => {
-  const params: { page: string } = {
-    page:
-      ctx.params && typeof ctx.params.page === 'string' ? ctx.params.page : ''
-  }
+  const { preview = false, params } = ctx
 
-  // Query the page defined by pageParam,
-  const currentPage: {
-    page: IPageQueryResponse
-  } = await client.fetch(page, { slug: params.page })
+  const page = params && typeof params.page === 'string' ? params.page : ''
+  // Query the routed page defined by params.page,
+  const fetchedRoute: TSitemapQueryRoute = await getPageAndRouteByRoute(
+    page,
+    preview
+  )
 
-  const what = await client
+  console.log(`current route: ${JSON.stringify(fetchedRoute)}`)
+
+  const sanityConfig = await getClient(preview)
     .fetch(siteConfig)
     .then((config: IAppProps['pageProps']['config']) => {
       if (config) {
@@ -80,19 +80,49 @@ export const getStaticProps: GetStaticProps<Omit<
     })
 
   // If the page requested doesn't exist, this is true
-  const shouldRedirect = !currentPage || JSON.stringify(currentPage) === '{}'
-  console.log(what)
+  const shouldRedirect = Boolean(
+    fetchedRoute === null || !(fetchedRoute && fetchedRoute.page)
+  )
 
   return {
     props: {
-      ...ctx,
-      ...what,
-      pageParam: params,
-      currentPage: currentPage.page || {},
-      shouldRedirect
+      preview,
+      shouldRedirect,
+      currentRoute: fetchedRoute && fetchedRoute ? fetchedRoute : null,
+      ...sanityConfig,
+      ...ctx
     },
     revalidate: 1
   }
+}
+
+const RenderPreviewPage: React.FC<{
+  loading: boolean
+  pageProps: TSiteRoute['page']
+}> = (props) => {
+  const { loading, pageProps: routeProps } = props
+
+  const { title, content } = routeProps
+
+  if (loading) {
+    return (
+      <>
+        <h1>{title}</h1>
+        <h2>PREVIEW MODE</h2>
+        <p>LOADING...</p>
+      </>
+    )
+  }
+
+  /*  console.log(`ROUTEPROPS: ${JSON.stringify(routeProps)}`) */
+
+  return (
+    <>
+      <h1>{title}</h1>
+      <h2>PREVIEW MODE</h2>
+      {content && <RenderSections sections={content} />}
+    </>
+  )
 }
 
 interface IPageStaticProps
@@ -100,35 +130,59 @@ interface IPageStaticProps
     InferGetStaticPropsType<typeof getStaticProps> {}
 
 const CustomPage: React.FC<IPageStaticProps> = (props) => {
-  const { currentPage, shouldRedirect, allRoutes } = props
+  const { currentRoute, preview } = props
+  const page = currentRoute?.page
 
+  const router = useRouter()
+  const shouldRedirect = router.isFallback
+
+  const routeToFetch = page?.slug ? page.slug : router.asPath.split('/')[1]
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks,@typescript-eslint/no-unsafe-assignment
+  const { data, error } = useSWR(
+    routeToFetch,
+    () => getPageAndRouteByRoute(routeToFetch),
+    {
+      refreshInterval: 1,
+      initialData: currentRoute
+    }
+  )
+
+  if (preview && !router.isFallback) {
+    if (!data)
+      return (
+        <PageAnimation layoutID="layout">
+          <RenderPreviewPage loading pageProps={data.page} />
+        </PageAnimation>
+      )
+
+    if (error) return <></>
+
+    /*   console.log(data) */
+
+    if (data)
+      return (
+        <>
+          <NextSeo
+            title={data.page.title}
+            description={data.page.description}
+            noindex={data.disallowRobot}
+          />
+          <PageAnimation layoutID="layout">
+            <RenderPreviewPage loading={false} pageProps={data.page} />
+          </PageAnimation>
+        </>
+      )
+  }
   /* Client-side redirect until we can use rewrites in getStaticProps
    // TODO: check for updates: https://github.com/vercel/next.js/discussions/14890
    */
-  if (shouldRedirect) {
-    return <Redirect to="/404" />
-  }
-
-  if (currentPage && currentPage.title && allRoutes) {
-    const { title, content, description } = currentPage
-
-    return (
-      <>
-        <NextSeo
-          title={title}
-          description={description}
-          noindex={currentPage.disallowRobots}
-        />
-        <PageAnimation layoutID="layout">
-          <h1>{title}</h1>
-          {content && <RenderSections sections={content} />}
-        </PageAnimation>
-      </>
-    )
+  if (!CONSTANTS.DEV && shouldRedirect) {
+    return <Redirect to="/" />
   }
 
   /* This should be stripped in production bundles */
-  if (CONSTANTS.DEV) {
+  if (CONSTANTS.DEV && !currentRoute) {
     return (
       <div
         style={{
@@ -150,6 +204,20 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
       </div>
     )
   }
+
+  if (currentRoute && currentRoute.page)
+    return (
+      <>
+        <NextSeo
+          title={currentRoute.page.title}
+          description={currentRoute.page.description}
+          noindex={currentRoute.disallowRobot}
+        />
+        <PageAnimation layoutID="layout">
+          <RenderPreviewPage loading={false} pageProps={currentRoute.page} />
+        </PageAnimation>
+      </>
+    )
 
   // Create an empty page if window is undefined,
   // as we can't know if currentPage exists
