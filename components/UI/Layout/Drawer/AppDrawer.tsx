@@ -6,7 +6,6 @@ import { useStoreActions, useStoreState } from '@util/tsEasyPeasyHooks'
 import React from 'react'
 
 interface IDrawerProps {
-  children: React.ReactChild
   drawerPaperClassName: string
 }
 
