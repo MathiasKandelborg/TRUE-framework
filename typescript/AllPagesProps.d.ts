@@ -12,5 +12,4 @@ export interface AllPagesProps {
     mainNavigation: [{ slug: string }]
     footerNavigation: [{ slug: string }]
   }
-  materialUI
 }
