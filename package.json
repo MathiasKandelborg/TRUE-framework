@@ -46,6 +46,7 @@
     "react-final-form": "^6.5.1",
     "react-icons": "^3.10.0",
     "sitemap": "^6.2.0",
+    "swr": "^0.3.0",
     "ua-parser-js": "^0.7.21"
   },
   "devDependencies": {
