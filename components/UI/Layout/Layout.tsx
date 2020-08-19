@@ -7,16 +7,18 @@ import layoutStyles from './Layout.styles'
 
 interface ILayoutProps {
   routes: Array<{ route: string; as: string }>
+  preview: boolean
 }
 
 const Layout: React.FC<ILayoutProps> = (props) => {
-  const { children, routes } = props
+  const { children, routes, preview } = props
 
   const classes = layoutStyles()
 
   return (
     <div className={classes.root}>
       <AppBar
+        preview={preview}
         appBarClassName={classes.appBar}
         iconButtonClassName={classes.menuButton}
       />
