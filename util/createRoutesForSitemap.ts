@@ -15,6 +15,9 @@ export interface TSitemapQueryRoute {
     title: string
     _createdAt?: string | Date
     _updatedAt?: string | Date
+    slug?: string
+    description?: string
+    content?: [{ _type: string; _key: string; [key: string]: string }]
   }
   slug: {
     _type?: string
@@ -36,6 +39,7 @@ const createStaticRoutesForSitemap = (
   const staticRoutes: Array<TSitemapQueryRoutes> = routes.map((route) => {
     return {
       [`${route.route}`]: {
+        _id: undefined,
         page: {
           title: route.as,
           _updatedAt: '2020-08-18T00:13:55.000Z',
