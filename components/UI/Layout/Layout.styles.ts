@@ -6,7 +6,11 @@ import { ui } from '@util/settings'
 const layoutStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      overflowX: 'hidden'
+      maxWidth: '100vw',
+      minHeight: '100vh',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: `calc(100vw - ${ui.CONSTANTS.DRAWER_WIDTH})`
+      }
     },
     drawer: {},
     appBar: {
@@ -30,10 +34,11 @@ const layoutStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       height: '100%',
       width: '100%',
-      minHeight: '100vh',
-      maxWidth: '100vw',
+      maxWidth: '100%',
       [theme.breakpoints.up('md')]: {
-        marginLeft: ui.CONSTANTS.DRAWER_WIDTH
+        paddingLeft: `calc(${theme.spacing(3)}px + ${
+          ui.CONSTANTS.DRAWER_WIDTH
+        }px)`
       }
     }
   })
