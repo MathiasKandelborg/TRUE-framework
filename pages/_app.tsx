@@ -1,19 +1,24 @@
 /** @format */
 
 import { Layout } from '@components/UI'
+import MenuItem from '@components/UI/Layout/Drawer/MenuItem'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
-import { common, CONSTANTS } from '@util/settings'
+import { getClient } from '@util/api'
+import siteConfig from '@util/api/queries/siteConfig'
+import resolveRoutes from '@util/resolveRoutes'
+import { CONSTANTS } from '@util/settings'
 import store from '@util/shared/createStore'
 import MainTheme from '@util/themes/MainTheme'
+import { AllPagesProps } from 'AllPagesProps'
 import { StoreProvider } from 'easy-peasy'
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { DefaultSeo } from 'next-seo'
-import { AppProps } from 'next/app'
+import App, { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect } from 'react'
 
-export interface IAppProps extends AppProps {
+export interface IAppProps extends AppProps, AllPagesProps {
   pageProps: {
     allRoutes: Array<{ route: string; as: string }>
     config: {
@@ -25,14 +30,14 @@ export interface IAppProps extends AppProps {
       mainNavigation: [{ slug: { _type: string; current: string } }]
       footerNavigation: [{ slug: string }]
     }
-    preview?: boolean
+    preview: boolean
   }
 }
 
 function MyApp(props: IAppProps) {
-  const { Component, pageProps, router } = props
+  const { Component, pageProps, router, sanityConfig } = props
 
-  const { config, preview = false } = pageProps
+  const { config, preview } = pageProps
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -41,6 +46,20 @@ function MyApp(props: IAppProps) {
       jssStyles.parentElement!.removeChild(jssStyles)
     }
   }, [])
+
+  const rs = sanityConfig?.allRoutes
+
+  const MenuItemsArr = rs.map((r, i) => {
+    return (
+      <MenuItem
+        key={`menu-item-${i.toString()}`}
+        text={r.as}
+        as={r.as}
+        route={r.route}
+        routes={rs}
+      />
+    )
+  })
 
   /* TODO: Extract to util */
   const strippedAsPathRoute = !router.asPath[1]
@@ -76,20 +95,45 @@ function MyApp(props: IAppProps) {
       <StoreProvider store={store}>
         <ThemeProvider theme={MainTheme}>
           <CssBaseline />
-          <Layout
-            preview={preview}
-            routes={pageProps.allRoutes || common.staticRoutes}>
-            <AnimateSharedLayout type="crossfade">
-              <AnimatePresence exitBeforeEnter>
-                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                <Component {...pageProps} key={canonicalRoute} />
-              </AnimatePresence>
-            </AnimateSharedLayout>
-          </Layout>
+          <AnimateSharedLayout type="crossfade">
+            <AnimatePresence exitBeforeEnter>
+              <Layout preview={preview} MenuItems={MenuItemsArr}>
+                <Component
+                  key={canonicalRoute}
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...sanityConfig}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...pageProps}
+                />
+              </Layout>
+            </AnimatePresence>
+          </AnimateSharedLayout>
         </ThemeProvider>
       </StoreProvider>
     </>
   )
+}
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext)
+
+  const sanityConfig = await getClient(false)
+    .fetch(siteConfig)
+    .then((config: IAppProps['pageProps']['config']) => {
+      if (config) {
+        const sanityRoutes: [{ slug: { _type: string; current: string } }] =
+          config.mainNavigation
+
+        return {
+          config,
+          allRoutes: resolveRoutes(sanityRoutes)
+        }
+      }
+
+      return Error('Could not fetch sanity config. This is REALLY REALLY BAD.')
+    })
+
+  return { ...appProps, sanityConfig }
 }
 
 export default MyApp
