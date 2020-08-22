@@ -1,12 +1,14 @@
 /** @format */
 
 declare module '@sanity/block-content-to-react' {
+  import TextBlock from './PortableText'
+
   export interface BlockContent {
     projectId: string
     dataset: string
     renderContainerOnSingleChild?: boolean
 
-    blocks: Array<{ _type: string }> | { _type: string }
+    blocks: Array<TextBlock> | TextBlock
 
     serializers?: {
       types?: Record<string, unknown>

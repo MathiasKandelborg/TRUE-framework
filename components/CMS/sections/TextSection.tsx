@@ -1,19 +1,12 @@
 /** @format */
 
 import { Typography } from '@material-ui/core'
+import { PageContent } from 'APITypes'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'
 
-interface ITextSectionProps {
+interface ITextSectionProps extends Omit<PageContent, '_type'> {
   heading: string
   label: string
-  text: [
-    {
-      style: string
-      _type: string
-      children: [{ _type: string; text: string }]
-      markDefs: [{ _key: string; _type: string; [key: string]: string }]
-    }
-  ]
 }
 
 const TextSection: React.FC<ITextSectionProps> = (props) => {

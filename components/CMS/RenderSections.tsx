@@ -1,31 +1,31 @@
 /** @format */
 import capStr from '@util/capitalizeString'
+import { Page } from 'APITypes'
+import { FC } from 'react'
 import * as SectionComponents from './sections'
 
-/* As you might have noticed by looking at this file,
- * it is not typed particularly well.
- * There are some problems to address before everything can be type safe.
- *
- * Copied from https://github.com/sanity-io/sanity-template-nextjs-landing-pages/blob/master/template/web/components/RenderSections.js
- *
+/*
  * It's incredible how resolveSections does its thing.
  * I, however, haven't tried doing something of the likes before.
- * I would have to do some research before typing this correctly,
- * which also means a refactor. It is probably quite straight forward 🤣
+ * It is probably quite straight forward 🤣
  * - Mathias Wøbbe 14/08
  */
 
 /*
  * ESLint and TypeScript hates when you do this to your comments:
  */
-function resolveSections(section: { _type: string; _key: string }) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line import/namespace,@typescript-eslint/no-unsafe-assignment,no-underscore-dangle
-  const Section = SectionComponents[capStr(section._type)]
+function resolveSections(section: Page['content']) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const Section: FC =
+    /**
+     // TODO: Section should be typed with possible Section components
+    */
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    // eslint-disable-next-line no-underscore-dangle
+    SectionComponents[capStr(section._type)]
 
   if (Section) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Section
   }
 
@@ -35,7 +35,7 @@ function resolveSections(section: { _type: string; _key: string }) {
 }
 
 interface IRenderSectionsProps {
-  sections: [{ _type: string; _key: string }]
+  sections: Page['content'] | Array<Page['content']> | undefined
 }
 
 const RenderSections: React.FC<IRenderSectionsProps> = (props) => {
@@ -47,21 +47,33 @@ const RenderSections: React.FC<IRenderSectionsProps> = (props) => {
     return <div>Missing sections</div>
   }
 
-  return (
-    <>
-      {sections.map((section) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const SectionComponent = resolveSections(section)
-        if (!SectionComponent) {
-          // eslint-disable-next-line no-underscore-dangle
-          return <div>Missing section {section._type}</div>
-        }
+  if (Array.isArray(sections)) {
+    return (
+      <>
+        {sections.map((section) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const SectionComponent = resolveSections(section)
+          if (!SectionComponent) {
+            // eslint-disable-next-line no-underscore-dangle
+            return <div>Missing section {section?._type}</div>
+          }
 
-        // eslint-disable-next-line no-underscore-dangle,@typescript-eslint/no-unsafe-assignment,react/jsx-props-no-spreading
-        return <SectionComponent {...section} key={section._key} />
-      })}
-    </>
-  )
+          // eslint-disable-next-line no-underscore-dangle,react/jsx-props-no-spreading
+          return <SectionComponent {...section} key={section?._key} />
+        })}
+      </>
+    )
+  }
+
+  const SectionComponent = resolveSections(sections)
+
+  if (!SectionComponent) {
+    // eslint-disable-next-line no-underscore-dangle
+    return <div>Missing section {sections._type}</div>
+  }
+
+  // eslint-disable-next-line no-underscore-dangle,react/jsx-props-no-spreading
+  return <SectionComponent {...sections} key={sections._key} />
 }
 
 export default RenderSections

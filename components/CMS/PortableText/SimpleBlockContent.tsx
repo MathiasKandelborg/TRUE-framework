@@ -1,10 +1,11 @@
 /** @format */
 
 import BlockContent from '@sanity/block-content-to-react'
+import { TextBlock } from 'PortableText'
 import serializers from './serializers'
 
 interface ISimpleBlockContentProps {
-  blocks: Array<{ _type: string }> | { _type: string }
+  blocks: TextBlock | TextBlock[]
 }
 
 const SimpleBlockContent: React.FC<ISimpleBlockContentProps> = (props) => {

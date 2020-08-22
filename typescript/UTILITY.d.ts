@@ -1,8 +1,14 @@
 /** @format */
 
 import { Color } from '@material-ui/core'
+import { BaseRoute } from 'APITypes'
 
 export declare namespace UTILITY {
+  import PageReference from 'PortableText'
+
+  export interface StaticRoute extends BaseRoute {
+    page: PageReference
+  }
   /** Common Settings used in many places throughout the codebase */
   export interface CommonSettings {
     staticRoutes: Array<{

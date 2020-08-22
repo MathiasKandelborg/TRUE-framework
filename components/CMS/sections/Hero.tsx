@@ -5,11 +5,12 @@ import { BlockContent } from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
 import client from '@util/sanity'
+import { TextBlock } from 'PortableText'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'
 
 interface IHeroSectionProps {
   heading: string
-  tagline: BlockContent['blocks']
+  tagline: TextBlock
   ctas: [any]
   backgroundImage: BlockContent['imageOptions']
 }
@@ -35,7 +36,7 @@ const HeroSection: React.FC<IHeroSectionProps> = (props) => {
   const image =
     style && style.backgroundImage ? style : { backgroundImage: 'nope' }
 
-  console.log(`This is the backgroundImage: ${image.backgroundImage}`)
+  // console.log(`This is the backgroundImage: ${image.backgroundImage}`)
 
   return (
     <section>

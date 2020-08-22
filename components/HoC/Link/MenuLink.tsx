@@ -37,7 +37,7 @@ const MenuLink = (props: LinkProps) => {
   })
 
   // console.log(`BEFORE:\nas: ${as}, href: ${href as string}`)
-  common.staticRoutes.forEach((route) => {
+  common.staticRoutes.map((route) => {
     /* It's late, I'm tired this should be easy.
      * It does work however :D 2:39 AM Aug. 16. */
     customHref = '/[page]'
