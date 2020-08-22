@@ -2,18 +2,17 @@
 
 import { Box, List } from '@material-ui/core'
 import appDrawerMenuStyles from './AppDrawerMenu.styles'
-import MenuItem from './MenuItem'
 
 interface IDrawerMenuProps {
-  routes: Array<{ route: string; as: string }>
+  routes: JSX.Element[]
 }
 
 const DrawerMenu: React.FC<IDrawerMenuProps> = (props) => {
   const { routes } = props
   const styles = appDrawerMenuStyles()
 
-  const MenuItemsArr: JSX.Element[] = []
-
+  /*  const MenuItemsArr: JSX.Element[] = [] */
+  /* 
   routes.map((r, i) => {
     return MenuItemsArr.push(
       <MenuItem
@@ -25,11 +24,11 @@ const DrawerMenu: React.FC<IDrawerMenuProps> = (props) => {
       />
     )
   })
-
+ */
   return (
     <>
       <Box className={styles.toolbar} />
-      <List>{MenuItemsArr}</List>
+      <List>{routes}</List>
     </>
   )
 }

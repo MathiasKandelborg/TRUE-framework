@@ -6,12 +6,12 @@ import { AppDrawer, DrawerMenu } from './Drawer'
 import layoutStyles from './Layout.styles'
 
 interface ILayoutProps {
-  routes: Array<{ route: string; as: string }>
+  MenuItems: JSX.Element[]
   preview: boolean
 }
 
 const Layout: React.FC<ILayoutProps> = (props) => {
-  const { children, routes, preview } = props
+  const { children, MenuItems, preview } = props
 
   const classes = layoutStyles()
 
@@ -24,7 +24,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
       />
       <nav>
         <AppDrawer drawerPaperClassName={classes.drawerPaper}>
-          <DrawerMenu routes={routes} />
+          <DrawerMenu routes={MenuItems} />
         </AppDrawer>
       </nav>
 

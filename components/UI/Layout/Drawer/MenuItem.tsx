@@ -13,7 +13,7 @@ interface IMenuItemProps {
 }
 
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
-  const { text, route, routes, as } = props
+  const { text, route, as } = props
 
   const drawerToggle = useStoreActions((a) => a.toggleDrawer)
 
@@ -30,8 +30,6 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
         // @ts-ignore
         component={MenuLink}
         scroll={false}
-        /* shallow */
-        routes={routes}
         href={route}
         as={as}
         className={classes.menuItem}
