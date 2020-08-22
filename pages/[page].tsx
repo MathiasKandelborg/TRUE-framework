@@ -50,7 +50,10 @@ export const getStaticProps: GetStaticProps<Omit<
 
   const page = params && typeof params.page === 'string' ? params.page : ''
   // Query the routed page defined by params.page,
-  const fetchedRoute: APIRoute = await getPageAndRouteByRoute(page, preview)
+  const fetchedRoute: APIRoute = await getPageAndRouteByRoute(
+    page,
+    Boolean(preview)
+  )
 
   // console.log(`current route: ${JSON.stringify(fetchedRoute)}`)
 
@@ -151,14 +154,14 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
 
             console.log(update.mutations)
 
-            setRouteData(pageRes)
+            if (pageRes) setRouteData(pageRes)
           },
           (err) => console.log(err),
           () => console.log('complete')
         )
 
       return () => sub.unsubscribe()
-    }, [currentRoute?._id, preview])
+    }, [preview, routeId])
 
     return (
       <>

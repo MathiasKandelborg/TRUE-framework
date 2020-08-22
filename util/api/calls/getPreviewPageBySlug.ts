@@ -22,7 +22,7 @@ function getPreviewPageListenerBySlug(pageId: string, setData: Dispatch<Page>) {
         console.log(`Page is updated: ${JSON.stringify(pageRes, null, 2)}`)
 
         console.log(`There is an update!: ${JSON.stringify(pageRes?.title)}`)
-        if (pageRes.title) setData(pageRes)
+        if (pageRes) setData(pageRes)
       },
       (err) => console.log(err),
       () => console.log('complete')

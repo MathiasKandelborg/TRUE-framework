@@ -36,7 +36,7 @@ const HeroSection: React.FC<IHeroSectionProps> = (props) => {
   const image =
     style && style.backgroundImage ? style : { backgroundImage: 'nope' }
 
-  // console.log(`This is the backgroundImage: ${image.backgroundImage}`)
+  console.log(`This is the backgroundImage: ${image.backgroundImage}`)
 
   return (
     <section>

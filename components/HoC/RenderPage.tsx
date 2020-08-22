@@ -6,15 +6,12 @@ import { APIRoute } from 'APITypes'
 const RenderPage: React.FC<{
   loading: boolean
   preview: boolean
-
   pageProps: APIRoute['page'] | undefined
 }> = (props) => {
-  const { preview, loading, pageProps } = props
+  const { preview, pageProps } = props
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { title, content } = pageProps || { title: 'TITLE NOT FOUND' }
 
-  // console.log(`ROUTEPROPS: ${JSON.stringify(content)}`)
   console.log(props)
   if (preview) {
     /*     getPreviewRouteBySlug(props.routeId!)
@@ -25,7 +22,6 @@ const RenderPage: React.FC<{
         <h2>PREVIEW MODE</h2>
         <h1>{title}</h1>
 
-        {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
         <RenderSections sections={content} />
       </>
     )
