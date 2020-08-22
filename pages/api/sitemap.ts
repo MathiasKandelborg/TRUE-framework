@@ -21,9 +21,9 @@ export default async function sitemapFunc(
         const route = routesArray[routeName]
 
         return smStream.write({
-          url: route.slug.current,
+          url: routeName,
           // eslint-disable-next-line no-underscore-dangle
-          lastmod: route.page._updatedAt! || route.page._createdAt!
+          lastmod: route._updatedAt
         })
       })
     )

@@ -3,15 +3,15 @@
 import MUILink from '@components/HoC/Link/MUILink'
 import { PageAnimation } from '@components/UI'
 import { Typography } from '@material-ui/core'
-import siteConfig from '@util/api/queries/siteConfig'
+/* import siteConfig from '@util/api/queries/siteConfig'
 import resolveRoutes from '@util/resolveRoutes'
-import client from '@util/sanity'
+import client from '@util/sanity' */
 import { AllPagesProps } from 'AllPagesProps'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { IAppProps } from './_app'
-
+/* import { IAppProps } from './_app'
+ */
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const what = await client
+  /*  const what = await client
     .fetch(siteConfig)
     .then((config: IAppProps['pageProps']['config']) => {
       if (config) {
@@ -27,11 +27,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       return Error('Could not fetch sanity config. This is REALLY REALLY BAD.')
     })
   console.log(what)
+ */
+  console.log(`context:: ${JSON.stringify(ctx, null, 2)}`)
 
   return {
-    props: { ...ctx, ...what },
+    props: { ...ctx },
 
-    revalidate: 1
+    revalidate: 3600
   }
 }
 
@@ -39,8 +41,9 @@ interface IAboutPageProps
   extends AllPagesProps,
     InferGetStaticPropsType<typeof getStaticProps> {}
 
-const AboutPage: React.FunctionComponent<IAboutPageProps> = (/* props */) => {
-  /* const { allRoutes } = props */
+const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
+  const { sanityConfig } = props
+  console.log(sanityConfig)
 
   return (
     <PageAnimation layoutID="layout">

@@ -1,14 +1,14 @@
 /** @format */
-import { TSitemapQueryRoute } from '@util/createRoutesForSitemap'
+import { getClient } from '@util/api'
+import { APIRoute } from 'APITypes'
 import groq from 'groq'
-import { getClient } from '..'
 
-async function getPageByRoute(page: string, preview = true) {
-  const data: TSitemapQueryRoute = await getClient(preview).fetch(
+async function getPageByRoute(page: string, preview: boolean) {
+  const data: APIRoute = await getClient(preview).fetch(
     groq`
 *[_type == "route" && slug.current == $slug][0]{
   ...,
-  page-> {
+  page {
     ...,
     content[] {
       ...,
