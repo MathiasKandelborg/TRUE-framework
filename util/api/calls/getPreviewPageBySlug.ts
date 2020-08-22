@@ -1,32 +1,59 @@
 /** @format */
-import { TSitemapQueryRoute } from '@util/createRoutesForSitemap'
+import { MutationEvent } from '@sanity/client'
+import { getClient } from '@util/api'
+import { APIRoute, Page } from 'APITypes'
 import groq from 'groq'
-import { getClient } from '..'
+import { Dispatch } from 'react'
 
-async function getPreviewPageBySlug(page: string) {
-  const data: TSitemapQueryRoute = await getClient(true).fetch(
-    groq`
-*[_type == "route" && slug.current == $slug][0]{
-  ...,
-  page-> {
-    ...,
-    content[] {
-      ...,
-      cta {
-        ...,
-        route->
+function getPreviewPageListenerBySlug(pageId: string, setData: Dispatch<Page>) {
+  /*   console.log(pageId) */
+  const whichId = pageId
+  const data = getClient(true)
+    .listen(groq`*[_type == "page" && _id == $pageId]{...}`, {
+      pageId: whichId
+    })
+    .subscribe(
+      (update: MutationEvent<Page>) => {
+        console.log('Page subscribe works')
+        const pageRes = update.result
+        /*     const prevRev = update.previousRev
+        const resRev = update.resultRe */
+
+        console.log(`Page is updated: ${JSON.stringify(pageRes, null, 2)}`)
+
+        console.log(`There is an update!: ${JSON.stringify(pageRes?.title)}`)
+        if (pageRes.title) setData(pageRes)
       },
-      ctas[] {
-        ...,
-        route->
-      }
-    }
-  }
-}`,
-    { slug: page }
-  )
+      (err) => console.log(err),
+      () => console.log('complete')
+    )
 
   return data
 }
 
-export default getPreviewPageBySlug
+export function getPreviewRouteListenerBySlug(
+  routeId: string,
+  setData: Dispatch<APIRoute>
+) {
+  /*   console.log(routeId ) */
+
+  const data = getClient(true)
+    .listen(groq`*[_type == "route" && slug.current == $routeId]`, {
+      routeId
+    })
+    .subscribe(
+      (update: MutationEvent<APIRoute>) => {
+        console.log('Route subscribe works')
+        const routeRes = update.result
+        /*      const prevRev = update.previousRev
+        const resRev = update.resultRe */
+
+        setData(routeRes!)
+      },
+      (err) => console.log(err),
+      () => console.log('complete')
+    )
+
+  return data
+}
+export default getPreviewPageListenerBySlug
