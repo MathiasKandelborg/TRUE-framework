@@ -1,6 +1,7 @@
 /** @format */
 
 import { Container, Grid } from '@material-ui/core'
+import FAB from '../FAB/FAB'
 import { AppBar } from './AppBar'
 import { AppDrawer, DrawerMenu } from './Drawer'
 import layoutStyles from './Layout.styles'
@@ -33,6 +34,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/grid/) */}
         <Grid container>
           <>{children}</>
+          <FAB />
         </Grid>
       </Container>
     </div>
