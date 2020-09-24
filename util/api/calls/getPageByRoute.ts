@@ -7,9 +7,9 @@ import groq from 'groq'
  * @param {string} options.pageSlug URL / Slug
  * @returns {APIRoute} A route defined by page slug
  */
-const getPageByRoute = async (options: {
+async function getPageByRoute(options: {
   pageSlug: string
-}): Promise<APIRoute> => {
+}): Promise<APIRoute> {
   const data: APIRoute = await getClient(false).fetch(
     groq`
 *[_type == "route" && slug.current == $slug][0]{

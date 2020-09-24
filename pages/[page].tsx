@@ -42,7 +42,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<Omit<
   ICustomPageProps,
-  'config' | 'allRoutes' | 'sanityConfig'
+  'config' | 'allRoutes'
 >> = async (ctx) => {
   const { preview, params } = ctx
 
