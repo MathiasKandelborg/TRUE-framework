@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = {
   root: true,
   env: {
@@ -26,25 +24,48 @@ module.exports = {
     'plugin:import/warnings',
     'airbnb',
     'airbnb/hooks',
+    'plugin:jsdoc/recommended',
+    'plugin:promise/recommended',
+    'plugin:node/recommended-module',
     'prettier',
     'prettier/react'
   ],
 
-  plugins: ['import', 'material-ui', '@next/eslint-plugin-next', 'prettier'],
+  plugins: [
+    'import',
+    'jsdoc',
+    'prefer-arrow',
+    'promise',
+    '@next/eslint-plugin-next',
+    'prettier'
+  ],
 
   rules: {
+    'no-undef': 0,
+    'node/no-missing-import': 0,
+    'jsdoc/check-tag-names': 0,
     'react/react-in-jsx-scope': 0,
     'react/prop-types': 0,
     'newline-before-return': 2,
     'import/no-unresolved': [1, { ignore: ['^(all|part):'] }],
     'comma-dangle': [
-      'error',
+      2,
       {
         arrays: 'never',
         objects: 'never',
         imports: 'never',
         exports: 'never',
         functions: 'never'
+      }
+    ],
+    'arrow-body-style': [2, 'as-needed'],
+    'prefer-arrow/prefer-arrow-functions': [
+      2,
+      {
+        allowStandaloneDeclarations: true,
+        disallowPrototype: true,
+        singleReturnOnly: true,
+        classPropertiesAllowed: false
       }
     ]
   },
@@ -65,8 +86,11 @@ module.exports = {
         'plugin:import/warnings',
         'plugin:import/typescript',
         'airbnb',
-        'airbnb-typescript',
         'airbnb/hooks',
+        'airbnb-typescript',
+        'plugin:jsdoc/recommended',
+        'plugin:promise/recommended',
+        'plugin:node/recommended-module',
         'prettier',
         'prettier/@typescript-eslint',
         'prettier/react'
@@ -75,7 +99,9 @@ module.exports = {
       plugins: [
         'import',
         '@typescript-eslint',
-        'material-ui',
+        'jsdoc',
+        'prefer-arrow',
+        'promise',
         '@next/eslint-plugin-next',
         'prettier'
       ],
@@ -91,8 +117,35 @@ module.exports = {
         }
       },
       rules: {
+        'node/no-missing-import': 0,
+        'jsdoc/check-tag-names': 0,
+        'react/react-in-jsx-scope': 0,
+        'react/prop-types': 0,
+        'newline-before-return': 2,
+        'import/no-unresolved': [1, { ignore: ['^(all|part):'] }],
+        'comma-dangle': [
+          2,
+          {
+            arrays: 'never',
+            objects: 'never',
+            imports: 'never',
+            exports: 'never',
+            functions: 'never'
+          }
+        ],
+        'prefer-arrow/prefer-arrow-functions': [
+          2,
+          {
+            disallowPrototype: true,
+            singleReturnOnly: true,
+            classPropertiesAllowed: false
+          }
+        ],
+        /* TS Specific rules */
+        'no-undef': 0,
+        'jsdoc/no-undefined-types': 0,
         '@typescript-eslint/naming-convention': [
-          'warn',
+          1,
           {
             selector: 'variable',
             format: ['camelCase', 'PascalCase', 'UPPER_CASE']
@@ -111,20 +164,6 @@ module.exports = {
             selector: ['variable'],
             format: ['camelCase'],
             leadingUnderscore: 'allow'
-          }
-        ],
-        'react/react-in-jsx-scope': 0,
-        'react/prop-types': 0,
-        'newline-before-return': 2,
-        'import/no-unresolved': [1, { ignore: ['^(all|part):'] }],
-        'comma-dangle': [
-          'error',
-          {
-            arrays: 'never',
-            objects: 'never',
-            imports: 'never',
-            exports: 'never',
-            functions: 'never'
           }
         ]
       }
