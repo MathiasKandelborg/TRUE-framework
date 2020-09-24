@@ -1,7 +1,8 @@
 /**
  * Takes a string and reassigns the value depending on the content
  *
- * @param pathname - The pathname
+ * @param {string} pathname - The pathname
+ * @returns {string} The pathname with '/' prepended or just /
  */
 function ifPathnameIsIndex(pathname: string | null | undefined): string {
   if (pathname !== '/') {

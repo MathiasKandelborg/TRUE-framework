@@ -1,11 +1,18 @@
 import { common } from './settings'
 
-type Routes = [{ slug: { _type: string; current: string } }]
+type Routes = { slug: { _type: string; current: string } }[]
 
+type ResolvedRoutes = {
+  route: string
+  as: string
+}[]
 /**
- * @param routes
+ * Take an array of routes and combine them with `setting.common.staticRoutes`
+ *
+ * @param {Routes} routes API routes
+ * @returns {ResolvedRoutes} Routes combined with static routes
  */
-function resolveRoutes(routes: Routes) {
+function resolveRoutes(routes: Routes): ResolvedRoutes {
   const resolvedRoutes = routes.map((route) => {
     return { route: `/${route.slug.current}`, as: route.slug.current }
   })

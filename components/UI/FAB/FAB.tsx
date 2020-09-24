@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Fab
-} from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { useState } from 'react'
 import makeFABStyles from './FAB.styles'
 
@@ -19,25 +13,27 @@ const FAB: React.FC = () => {
 
   return (
     <>
-      <Fab
+      <MUI.Fab
         color="primary"
         aria-label="contact"
         className={classes.fab}
         onClick={() => setModalOpen(true)}>
         <p>X</p>
-      </Fab>
-      <Dialog
+      </MUI.Fab>
+      <MUI.Dialog
         aria-labelledby="contact-dialog-title"
         aria-describedby="contact-dialog-desc"
         open={modalIsOpen}
         onClose={() => setModalOpen(false)}>
-        <DialogTitle id="contact-dialog-title">Contact Options</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="contact-dialog-desc">
+        <MUI.DialogTitle id="contact-dialog-title">
+          Contact Options
+        </MUI.DialogTitle>
+        <MUI.DialogContent>
+          <MUI.DialogContentText id="contact-dialog-desc">
             Contact options
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
+          </MUI.DialogContentText>
+        </MUI.DialogContent>
+      </MUI.Dialog>
     </>
   )
 }

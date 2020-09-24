@@ -18,18 +18,18 @@ interface SMRoute extends APIRoute {
   page: Omit<Page, 'content'>
 }
 
-interface TSitemapQueryRoutes {
+interface ISitemapQueryRoutes {
   [key: string]: SMRoute
 }
 
-interface TSitemapStaticRoutes {
+interface ISitemapStaticRoutes {
   [key: string]: StaticRoute
 }
 
 const createStaticRoutesForSitemap = (
   routes: UTILITY.CommonSettings['staticRoutes']
 ) => {
-  const staticRoutes: Array<TSitemapStaticRoutes> = routes.map((route) => {
+  const staticRoutes: Array<ISitemapStaticRoutes> = routes.map((route) => {
     return {
       [`${route.route}`]: {
         page: {
@@ -50,9 +50,11 @@ const createStaticRoutesForSitemap = (
   return staticRoutes.map((route) => route)
 }
 
-const createRoutesForSitemap = async () => {
+const createRoutesForSitemap = async (): Promise<
+  (ISitemapStaticRoutes | ISitemapQueryRoutes)[]
+> => {
   const staticRoutes = createStaticRoutesForSitemap(common.staticRoutes)
-  const sanityRoutes: Array<TSitemapQueryRoutes> = await client
+  const sanityRoutes: Array<ISitemapQueryRoutes> = await client
     .fetch(sitemapRoutes)
     .then((res: { routes: Array<SMRoute> }) =>
       res.routes

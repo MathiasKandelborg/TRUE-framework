@@ -1,4 +1,4 @@
-import { ServerStyleSheets } from '@material-ui/core/styles'
+import * as MUI from '@material-ui/core'
 import Document, {
   DocumentContext,
   Head,
@@ -37,7 +37,7 @@ export default class MyDocument extends Document {
     html: string
     head?: (JSX.Element | null)[] | undefined
   }> {
-    const sheets = new ServerStyleSheets()
+    const sheets = new MUI.ServerStyleSheets()
 
     // Ease the reading of the following `renderPage` declaration
     const originalRenderPage = ctx.renderPage

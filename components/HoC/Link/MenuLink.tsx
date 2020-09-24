@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-has-content */
 
-import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link'
+import * as MUI from '@material-ui/core'
 import { common } from '@util/settings'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -15,7 +15,7 @@ interface ILinkPropsBase {
 
 export type TLinkProps = ILinkPropsBase &
   NextComposedProps &
-  Omit<MuiLinkProps, 'href'>
+  Omit<MUI.LinkProps, 'href'>
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
@@ -56,7 +56,7 @@ const MenuLink = (props: TLinkProps) => {
   // console.log(`AFTER\nas: ${customAs}, href: ${customHref}`)
 
   return (
-    <MuiLink
+    <MUI.Link
       component={NextComposed}
       className={className}
       ref={innerRef}

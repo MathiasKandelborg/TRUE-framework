@@ -1,5 +1,5 @@
 import { PageAnimation } from '@components/UI'
-import { Typography } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 
 interface IErrorProps {
   statusCode: string | undefined
@@ -10,11 +10,11 @@ const Error: React.FC<IErrorProps> = (props) => {
 
   return (
     <PageAnimation>
-      <Typography>
+      <MUI.Typography>
         {statusCode
           ? `An error occurred on the server: ${statusCode}`
           : `An error occurred on the client`}
-      </Typography>
+      </MUI.Typography>
     </PageAnimation>
   )
 }

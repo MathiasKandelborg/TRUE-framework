@@ -1,4 +1,4 @@
-import { LinkProps as MuiLinkProps } from '@material-ui/core/Link'
+import * as MUI from '@material-ui/core'
 import ifPathnameIsIndex from '@util/ifPathnameIsIndex'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -12,7 +12,7 @@ interface ILinkPropsBase {
 
 export type LinkProps = ILinkPropsBase &
   NextComposedProps &
-  Omit<MuiLinkProps, 'href'>
+  Omit<MUI.LinkProps, 'href'>
 
 const NakedLink = (props: LinkProps) => {
   const {

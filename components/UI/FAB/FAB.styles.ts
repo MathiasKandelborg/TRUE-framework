@@ -1,7 +1,7 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 
-const makeFABStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const makeFABStyles = MUI.makeStyles((theme: MUI.Theme) =>
+  MUI.createStyles({
     fab: {
       right: theme.spacing(3),
       bottom: theme.spacing(3),

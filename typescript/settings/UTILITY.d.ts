@@ -1,4 +1,4 @@
-import { Color } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { BaseRoute } from 'APITypes'
 
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -18,8 +18,8 @@ export declare namespace UTILITY {
   /** UI Settings used throughout the codebase */
   export interface UISettings {
     DarkTheme: boolean
-    MainColor: Color
-    SecondaryColor: Color
+    MainColor: MUI.Color
+    SecondaryColor: MUI.Color
     Fonts: string[]
     CONSTANTS: {
       DRAWER_WIDTH: number

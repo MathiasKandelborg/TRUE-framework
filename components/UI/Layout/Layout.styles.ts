@@ -1,8 +1,8 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { ui } from '@util/settings'
 
-const layoutStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const layoutStyles = MUI.makeStyles((theme: MUI.Theme) =>
+  MUI.createStyles({
     drawer: {},
     drawerPaper: {
       width: ui.CONSTANTS.DRAWER_WIDTH

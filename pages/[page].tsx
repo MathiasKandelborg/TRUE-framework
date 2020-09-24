@@ -1,17 +1,17 @@
 import RenderPage from '@components/HoC/RenderPage'
 import { PageAnimation } from '@components/UI'
-import { Grid, Typography } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { MutationEvent } from '@sanity/client'
 import { getClient } from '@util/api'
 import getPageAndRouteByRoute from '@util/api/calls/getPageByRoute'
 import routes from '@util/api/queries/routes'
 import { CONSTANTS, ui } from '@util/settings'
-import { PageProps } from 'PageProps'
 import { APIRoute } from 'APITypes'
 import groq from 'groq'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
+import { PageProps } from 'PageProps'
 import { useEffect, useState } from 'react'
 
 interface ICustomPageProps extends PageProps {
@@ -47,31 +47,10 @@ export const getStaticProps: GetStaticProps<Omit<
   const { preview, params } = ctx
 
   const page = params && typeof params.page === 'string' ? params.page : ''
-  // Query the routed page defined by params.page,
-  const fetchedRoute: APIRoute = await getPageAndRouteByRoute(
-    page,
-    Boolean(preview)
-  )
 
-  // console.log(`current route: ${JSON.stringify(fetchedRoute)}`)
-
-  /*   const sanityConfig = await getClient(Boolean(preview))
-    .fetch(siteConfig)
-    .then((config: IAppProps['pageProps']['config']) => {
-      if (config) {
-        const sanityRoutes: [{ slug: { _type: string; current: string } }] =
-          config.mainNavigation
-
-        return {
-          config,
-          allRoutes: resolveRoutes(sanityRoutes)
-        }
-      }
-
-      return Error('Could not fetch sanity config. This is REALLY REALLY BAD.')
-    }) */
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const fetchedRoute: APIRoute = await getPageAndRouteByRoute({
+    pageSlug: page
+  })
 
   return {
     props: {
@@ -111,29 +90,24 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
         }}
         className="Pretty dev render page hack">
         <PageAnimation layoutID="layout">
-          <Grid container alignContent="center" justify="center">
-            <Grid item xs={12}>
-              <Typography align="center" variant="subtitle1">
+          <MUI.Grid container alignContent="center" justify="center">
+            <MUI.Grid item xs={12}>
+              <MUI.Typography align="center" variant="subtitle1">
                 Pages are generated on each request in dev mode. <br />
                 <br />
                 <b>In production this page won&apos;t show.</b>
-              </Typography>
-            </Grid>
-          </Grid>
+              </MUI.Typography>
+            </MUI.Grid>
+          </MUI.Grid>
         </PageAnimation>
       </div>
     )
 
   if (preview) {
-    /*  const routeToFetch = routeData?.slug?.current
-      ? routeData?.slug?.current
-      : router.asPath.split('/')[1] */
-
-    /*   getPreviewRouteListenerBySlug(routeToFetch, setRouteData) */
-
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [pageData, setRouteData] = useState(currentRoute)
 
+    // eslint-disable-next-line no-underscore-dangle
     const routeId = currentRoute?._id
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
@@ -143,19 +117,12 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
         })
         .subscribe(
           (update: MutationEvent<APIRoute>) => {
-            console.log('Page subscribe update')
             const pageRes = update.result
-
-            console.log(`Page is updated: ${JSON.stringify(pageRes, null, 2)}`)
-
-            console.log(`There is an update!: ${JSON.stringify(update)}`)
-
-            console.log(update.mutations)
 
             if (pageRes) setRouteData(pageRes)
           },
-          (err) => console.log(err),
-          () => console.log('complete')
+          (err) => console.error(err),
+          () => {}
         )
 
       return () => sub.unsubscribe()
@@ -169,6 +136,7 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
           noindex={pageData?.disallowRobots || false}
         />
         <PageAnimation layoutID="layout">
+          {/* eslint-disable-next-line no-underscore-dangle */}
           IS {pageData?._rev}
           <RenderPage
             preview

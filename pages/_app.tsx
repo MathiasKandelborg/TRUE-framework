@@ -1,7 +1,6 @@
 import { Layout } from '@components/UI'
 import MenuItem from '@components/UI/Layout/Drawer/MenuItem'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/core/styles'
+import * as MUI from '@material-ui/core'
 import { getClient } from '@util/api'
 import siteConfig from '@util/api/queries/siteConfig'
 import resolveRoutes from '@util/resolveRoutes'
@@ -37,7 +36,7 @@ function MyApp(props: IAppProps): JSX.Element {
     }
   }, [])
 
-  const MenuItemsArr = allRoutes.map((r, i) => {
+  const MenuItemsArr = allRoutes?.map((r, i) => {
     return (
       <MenuItem
         key={`menu-item-${i.toString()}`}
@@ -49,6 +48,7 @@ function MyApp(props: IAppProps): JSX.Element {
     )
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const hostname = process.env.NEXT_PUBLIC_HOSTNAME!
 
   const canonicalRoute = CONSTANTS.DEV
@@ -73,8 +73,8 @@ function MyApp(props: IAppProps): JSX.Element {
       />
 
       <StoreProvider store={store}>
-        <ThemeProvider theme={MainTheme}>
-          <CssBaseline />
+        <MUI.ThemeProvider theme={MainTheme}>
+          <MUI.CssBaseline />
           <AnimateSharedLayout type="crossfade">
             <Layout preview={preview} MenuItems={MenuItemsArr}>
               <Component
@@ -84,7 +84,7 @@ function MyApp(props: IAppProps): JSX.Element {
               />
             </Layout>
           </AnimateSharedLayout>
-        </ThemeProvider>
+        </MUI.ThemeProvider>
       </StoreProvider>
     </>
   )

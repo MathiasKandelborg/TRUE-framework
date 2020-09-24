@@ -1,7 +1,7 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 
-const menuItemStyles = makeStyles((theme: Theme) => {
-  return createStyles({
+const menuItemStyles = MUI.makeStyles((theme: MUI.Theme) => {
+  return MUI.createStyles({
     menuItem: {
       color: 'inherit',
       fontSize: theme.typography.subtitle1.fontSize,

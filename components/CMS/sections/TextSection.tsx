@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { PageContent } from 'APITypes'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'
 
@@ -12,12 +12,12 @@ const TextSection: React.FC<ITextSectionProps> = (props) => {
 
   return (
     <section>
-      <Typography variant="h2">{heading}</Typography>
-      <Typography variant="subtitle1">{label}</Typography>
+      <MUI.Typography variant="h2">{heading}</MUI.Typography>
+      <MUI.Typography variant="subtitle1">{label}</MUI.Typography>
       {text && (
-        <Typography component="div">
+        <MUI.Typography component="div">
           <SimpleBlockContent blocks={text} />
-        </Typography>
+        </MUI.Typography>
       )}
     </section>
   )

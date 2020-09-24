@@ -3,11 +3,14 @@ import { APIRoute } from 'APITypes'
 import groq from 'groq'
 
 /**
- * @param page
- * @param preview
+ * @param {object} options The options
+ * @param {string} options.pageSlug URL / Slug
+ * @returns {APIRoute} A route defined by page slug
  */
-async function getPageByRoute(page: string, preview: boolean) {
-  const data: APIRoute = await getClient(preview).fetch(
+const getPageByRoute = async (options: {
+  pageSlug: string
+}): Promise<APIRoute> => {
+  const data: APIRoute = await getClient(false).fetch(
     groq`
 *[_type == "route" && slug.current == $slug][0]{
   ...,
@@ -26,7 +29,7 @@ async function getPageByRoute(page: string, preview: boolean) {
     }
   }
 }`,
-    { slug: page }
+    { slug: options.pageSlug }
   )
 
   return data

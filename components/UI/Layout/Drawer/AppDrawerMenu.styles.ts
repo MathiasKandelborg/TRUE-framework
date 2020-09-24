@@ -1,7 +1,7 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 
-const appDrawerMenuStyles = makeStyles((theme: Theme) => {
-  return createStyles({
+const appDrawerMenuStyles = MUI.makeStyles((theme: MUI.Theme) => {
+  return MUI.createStyles({
     toolbar: theme.mixins.toolbar
   })
 })

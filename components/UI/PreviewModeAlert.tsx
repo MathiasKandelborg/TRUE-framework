@@ -1,10 +1,10 @@
 import { MUILink } from '@components/HoC'
-import { Button, Typography } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 
 const PreviewModeAlert: React.FC = () => (
   <>
-    <Typography variant="caption">
-      <Button
+    <MUI.Typography variant="caption">
+      <MUI.Button
         variant="contained"
         component={MUILink}
         color="secondary"
@@ -14,8 +14,8 @@ const PreviewModeAlert: React.FC = () => (
           🚀
         </span>{' '}
         &mdash; Click here to exit
-      </Button>
-    </Typography>
+      </MUI.Button>
+    </MUI.Typography>
   </>
 )
 

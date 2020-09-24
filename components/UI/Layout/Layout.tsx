@@ -1,4 +1,4 @@
-import { Container, Grid } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import FAB from '../FAB/FAB'
 import { AppBar } from './AppBar'
 import { AppDrawer, DrawerMenu } from './Drawer'
@@ -28,12 +28,12 @@ const Layout: React.FC<ILayoutProps> = (props) => {
       </nav>
 
       <div className={classes.toolbar} />
-      <Container maxWidth="md" className={classes.content} component="main">
-        {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/grid/) */}
-        <Grid container>
+      <MUI.Container maxWidth="md" className={classes.content} component="main">
+        {/* Wrap page components in a 'Root MUI.Grid' (https://material-ui.com/components/MUI.Grid/) */}
+        <MUI.Grid container>
           <>{children}</>
-        </Grid>
-      </Container>
+        </MUI.Grid>
+      </MUI.Container>
       <FAB />
     </>
   )
