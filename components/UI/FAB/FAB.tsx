@@ -1,5 +1,3 @@
-
-
 import {
   Dialog,
   DialogContent,
@@ -8,6 +6,7 @@ import {
   Fab
 } from '@material-ui/core'
 import { useState } from 'react'
+import makeFABStyles from './FAB.styles'
 
 /* interface IFABProps {
   placeholder: string
@@ -16,11 +15,14 @@ import { useState } from 'react'
 const FAB: React.FC = () => {
   const [modalIsOpen, setModalOpen] = useState(false)
 
+  const classes = makeFABStyles()
+
   return (
     <>
       <Fab
         color="primary"
         aria-label="contact"
+        className={classes.fab}
         onClick={() => setModalOpen(true)}>
         <p>X</p>
       </Fab>
