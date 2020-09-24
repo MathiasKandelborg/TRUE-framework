@@ -1,4 +1,4 @@
-/** @format */
+
 
 import { Typography } from '@material-ui/core'
 import { PageContent } from 'APITypes'

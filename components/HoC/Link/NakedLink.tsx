@@ -1,4 +1,4 @@
-/** @format */
+
 import { LinkProps as MuiLinkProps } from '@material-ui/core/Link'
 import ifPathnameIsIndex from '@util/ifPathnameIsIndex'
 import clsx from 'clsx'

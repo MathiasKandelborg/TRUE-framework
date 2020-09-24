@@ -1,4 +1,3 @@
-/** @format */
 
 import RenderPage from '@components/HoC/RenderPage'
 import { PageAnimation } from '@components/UI'

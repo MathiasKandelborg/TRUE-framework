@@ -1,4 +1,3 @@
-/** @format */
 
 import { Layout } from '@components/UI'
 import MenuItem from '@components/UI/Layout/Drawer/MenuItem'

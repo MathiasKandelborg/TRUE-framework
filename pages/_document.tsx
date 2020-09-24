@@ -1,4 +1,3 @@
-/** @format */
 import { ServerStyleSheets } from '@material-ui/core/styles'
 import Document, {
   DocumentContext,

@@ -1,4 +1,3 @@
-/** @format */
 
 import { Grid, Typography } from '@material-ui/core'
 import { BlockContent } from '@sanity/block-content-to-react'

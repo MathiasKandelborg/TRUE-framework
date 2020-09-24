@@ -1,5 +1,3 @@
-/** @format */
-
 import { NextApiRequest, NextApiResponse } from 'next'
 
 // eslint-disable-next-line @typescript-eslint/require-await

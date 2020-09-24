@@ -1,4 +1,3 @@
-/** @format */
 
 import { getClient } from '..'
 import postFields from '../queries/postFields'

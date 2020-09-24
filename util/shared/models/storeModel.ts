@@ -1,4 +1,4 @@
-/** @format */
+
 
 import StoreModel from 'state/StoreModel'
 import navigationStore from './navigation'

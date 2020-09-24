@@ -1,4 +1,3 @@
-/** @format */
 
 import { Container, Grid } from '@material-ui/core'
 import FAB from '../FAB/FAB'

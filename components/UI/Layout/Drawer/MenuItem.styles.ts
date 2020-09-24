@@ -1,5 +1,3 @@
-/** @format */
-
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 
 const menuItemStyles = makeStyles((theme: Theme) => {

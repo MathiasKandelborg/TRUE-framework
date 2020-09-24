@@ -1,5 +1,3 @@
-/** @format */
-
 import * as UI_COMPONENTS from './UI'
 
 /**

@@ -1,4 +1,4 @@
-/** @format */
+
 
 import RenderSections from '@components/CMS/RenderSections'
 import { APIRoute } from 'APITypes'

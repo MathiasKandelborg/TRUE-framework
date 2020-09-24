@@ -1,5 +1,3 @@
-/** @format */
-
 export type MetaText = {
   _type: string
   _key: string

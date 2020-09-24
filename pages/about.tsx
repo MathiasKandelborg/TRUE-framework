@@ -1,4 +1,3 @@
-/** @format */
 
 import MUILink from '@components/HoC/Link/MUILink'
 import { PageAnimation } from '@components/UI'

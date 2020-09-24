@@ -1,4 +1,4 @@
-/** @format */
+
 import { action } from 'easy-peasy'
 import NavigationModel from 'state/NavigationModel'
 

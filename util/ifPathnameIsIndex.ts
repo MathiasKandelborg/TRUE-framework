@@ -1,7 +1,6 @@
-/** @format */
-
 /**
  * Takes a string and reassigns the value depending on the content
+ *
  * @param pathname - The pathname
  */
 function ifPathnameIsIndex(pathname: string | null | undefined): string {

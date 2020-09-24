@@ -1,4 +1,3 @@
-/** @format */
 
 import { TextBlock } from 'PortableText'
 

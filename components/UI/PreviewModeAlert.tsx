@@ -1,4 +1,3 @@
-/** @format */
 
 import { MUILink } from '@components/HoC'
 import { Button, Typography } from '@material-ui/core'

@@ -1,5 +1,3 @@
-/** @format */
-
 import { PageAnimation } from '@components/UI'
 import { Typography } from '@material-ui/core'
 

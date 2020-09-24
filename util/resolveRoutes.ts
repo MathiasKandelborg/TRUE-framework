@@ -1,5 +1,3 @@
-/** @format */
-
 import { common } from './settings'
 
 type Routes = [{ slug: { _type: string; current: string } }]

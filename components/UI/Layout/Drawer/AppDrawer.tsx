@@ -1,4 +1,4 @@
-/** @format */
+
 
 import { Drawer, Hidden, SwipeableDrawer } from '@material-ui/core'
 import iOS from '@util/isIOS'

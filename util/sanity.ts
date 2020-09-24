@@ -1,4 +1,4 @@
-/** @format */
+
 
 import sanityClient, { ClientConfig } from '@sanity/client'
 import sanityImage from '@sanity/image-url'

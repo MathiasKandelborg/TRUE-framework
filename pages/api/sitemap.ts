@@ -1,4 +1,3 @@
-/** @format */
 
 import createRoutesForSitemap from '@util/createRoutesForSitemap'
 import { IncomingMessage, ServerResponse } from 'http'

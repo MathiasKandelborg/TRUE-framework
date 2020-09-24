@@ -1,4 +1,4 @@
-/** @format */
+
 import capStr from '@util/capitalizeString'
 import { Page } from 'APITypes'
 import { FC } from 'react'

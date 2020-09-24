@@ -1,4 +1,3 @@
-/** @format */
 
 import variants from '@util/animations/variants'
 import { motion } from 'framer-motion'

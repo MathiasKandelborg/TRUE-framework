@@ -1,5 +1,3 @@
-/** @format */
-
 /**
  * Scroll window to top if `window !== 'undefined'`
  */

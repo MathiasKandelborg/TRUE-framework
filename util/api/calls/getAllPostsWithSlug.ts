@@ -1,5 +1,3 @@
-/** @format */
-
 import client from '@util/sanity'
 
 async function getAllPostsWithSlug() {

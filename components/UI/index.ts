@@ -1,5 +1,3 @@
-/** @format */
-
 import { Layout, PageAnimation } from './Layout'
 
 /**

@@ -1,4 +1,3 @@
-/** @format */
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core'
 import { ui } from '@util/settings'

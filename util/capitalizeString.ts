@@ -1,5 +1,3 @@
-/** @format */
-
 /**
  * Takes a string, finds the first character with `String.charAt(0)`,
  * capitalizes the character with `String.toUpperCase`,

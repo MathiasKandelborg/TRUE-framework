@@ -1,4 +1,4 @@
-/** @format */
+
 
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles'
 import { ui } from '@util/settings'

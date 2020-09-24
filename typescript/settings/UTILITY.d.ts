@@ -1,8 +1,9 @@
-/** @format */
+
 
 import { Color } from '@material-ui/core'
 import { BaseRoute } from 'APITypes'
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export declare namespace UTILITY {
   import PageReference from 'PortableText'
 

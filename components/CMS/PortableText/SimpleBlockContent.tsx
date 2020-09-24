@@ -1,4 +1,4 @@
-/** @format */
+
 
 import BlockContent from '@sanity/block-content-to-react'
 import { TextBlock } from 'PortableText'

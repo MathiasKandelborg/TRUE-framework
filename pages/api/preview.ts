@@ -1,5 +1,3 @@
-/** @format */
-
 import getPageByRoute from '@util/api/calls/getPageByRoute'
 import { NextApiRequest, NextApiResponse } from 'next'
 

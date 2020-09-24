@@ -1,4 +1,4 @@
-/** @format */
+
 import { MutationEvent } from '@sanity/client'
 import { getClient } from '@util/api'
 import { APIRoute, Page } from 'APITypes'

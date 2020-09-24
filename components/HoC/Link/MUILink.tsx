@@ -1,6 +1,5 @@
-/** @format */
-/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-has-content */
 
+/* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-has-content */
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link'
 import * as React from 'react'
 import NextComposed, { NextComposedProps } from './NextComposed'

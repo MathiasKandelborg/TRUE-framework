@@ -1,4 +1,4 @@
-/** @format */
+
 import { getClient } from '@util/api'
 import { APIRoute } from 'APITypes'
 import groq from 'groq'
