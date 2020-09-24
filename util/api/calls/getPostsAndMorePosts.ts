@@ -1,8 +1,11 @@
-
 import { getClient } from '..'
 import postFields from '../queries/postFields'
 import getUniquePosts from './getUniquePosts'
 
+/**
+ * @param slug
+ * @param preview
+ */
 async function getPostAndMorePosts(slug: unknown, preview: boolean) {
   const curClient = getClient(preview)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

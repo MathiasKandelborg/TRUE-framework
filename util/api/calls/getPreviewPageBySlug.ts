@@ -1,10 +1,13 @@
-
 import { MutationEvent } from '@sanity/client'
 import { getClient } from '@util/api'
 import { APIRoute, Page } from 'APITypes'
 import groq from 'groq'
 import { Dispatch } from 'react'
 
+/**
+ * @param pageId
+ * @param setData
+ */
 function getPreviewPageListenerBySlug(pageId: string, setData: Dispatch<Page>) {
   /*   console.log(pageId) */
   const whichId = pageId
@@ -31,6 +34,10 @@ function getPreviewPageListenerBySlug(pageId: string, setData: Dispatch<Page>) {
   return data
 }
 
+/**
+ * @param routeId
+ * @param setData
+ */
 export function getPreviewRouteListenerBySlug(
   routeId: string,
   setData: Dispatch<APIRoute>

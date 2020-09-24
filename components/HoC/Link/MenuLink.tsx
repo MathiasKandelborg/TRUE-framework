@@ -1,4 +1,3 @@
-
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-has-content */
 
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link'
@@ -8,19 +7,19 @@ import { useRouter } from 'next/router'
 import * as React from 'react'
 import NextComposed, { NextComposedProps } from './NextComposed'
 
-interface LinkPropsBase {
+interface ILinkPropsBase {
   activeClassName?: string
   innerRef?: React.Ref<HTMLAnchorElement>
   as: string
 }
 
-export type LinkProps = LinkPropsBase &
+export type TLinkProps = ILinkPropsBase &
   NextComposedProps &
   Omit<MuiLinkProps, 'href'>
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-const MenuLink = (props: LinkProps) => {
+const MenuLink = (props: TLinkProps) => {
   const {
     activeClassName = 'active',
     className: classNameProps,
@@ -37,7 +36,7 @@ const MenuLink = (props: LinkProps) => {
   })
 
   // console.log(`BEFORE:\nas: ${as}, href: ${href as string}`)
-  common.staticRoutes.map((route) => {
+  common.staticRoutes.forEach((route) => {
     /* It's late, I'm tired this should be easy.
      * It does work however :D 2:39 AM Aug. 16. */
     customHref = '/[page]'
@@ -68,6 +67,6 @@ const MenuLink = (props: LinkProps) => {
   )
 }
 
-export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
+export default React.forwardRef<HTMLAnchorElement, TLinkProps>((props, ref) => (
   <MenuLink {...props} innerRef={ref} />
 ))

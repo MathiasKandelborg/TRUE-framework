@@ -30,7 +30,13 @@ export default class MyDocument extends Document {
   // 2. page.getInitialProps
   // 3. app.render
   // 4. page.render
-  static async getInitialProps(ctx: DocumentContext) {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<{
+    styles: JSX.Element[]
+    html: string
+    head?: (JSX.Element | null)[] | undefined
+  }> {
     const sheets = new ServerStyleSheets()
 
     // Ease the reading of the following `renderPage` declaration
@@ -60,7 +66,7 @@ export default class MyDocument extends Document {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Html lang="en">
         {/* DO NOT POPULATE THIS HEAD COMPONENT */}

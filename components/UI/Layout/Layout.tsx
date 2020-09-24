@@ -1,4 +1,3 @@
-
 import { Container, Grid } from '@material-ui/core'
 import FAB from '../FAB/FAB'
 import { AppBar } from './AppBar'
@@ -16,7 +15,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
   const classes = layoutStyles()
 
   return (
-    <div className={classes.root}>
+    <>
       <AppBar
         preview={preview}
         appBarClassName={classes.appBar}
@@ -28,15 +27,15 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         </AppDrawer>
       </nav>
 
-      <Container className={classes.content} component="main">
-        <div className={classes.toolbar} />
+      <div className={classes.toolbar} />
+      <Container maxWidth="md" className={classes.content} component="main">
         {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/grid/) */}
         <Grid container>
           <>{children}</>
-          <FAB />
         </Grid>
       </Container>
-    </div>
+      <FAB />
+    </>
   )
 }
 

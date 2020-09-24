@@ -1,11 +1,10 @@
-
 import MUILink from '@components/HoC/Link/MUILink'
 import { PageAnimation } from '@components/UI'
 import { Typography } from '@material-ui/core'
 /* import siteConfig from '@util/api/queries/siteConfig'
 import resolveRoutes from '@util/resolveRoutes'
 import client from '@util/sanity' */
-import { AllPagesProps } from 'AllPagesProps'
+import { PageProps } from 'PageProps'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 /* import { IAppProps } from './_app'
  */
@@ -37,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 }
 
 interface IAboutPageProps
-  extends AllPagesProps,
+  extends PageProps,
     InferGetStaticPropsType<typeof getStaticProps> {}
 
 const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {

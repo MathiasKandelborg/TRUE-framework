@@ -1,8 +1,11 @@
-
 import { getClient } from '@util/api'
 import { APIRoute } from 'APITypes'
 import groq from 'groq'
 
+/**
+ * @param page
+ * @param preview
+ */
 async function getPageByRoute(page: string, preview: boolean) {
   const data: APIRoute = await getClient(preview).fetch(
     groq`

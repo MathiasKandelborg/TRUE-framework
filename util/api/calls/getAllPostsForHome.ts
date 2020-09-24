@@ -1,8 +1,10 @@
-
 import { getClient } from '..'
 import postFields from '../queries/postFields'
 import getUniquePosts from './getUniquePosts'
 
+/**
+ * @param preview
+ */
 export async function getAllPostsForHome(preview: boolean) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const results = await getClient(preview)

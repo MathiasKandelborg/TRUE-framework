@@ -1,4 +1,3 @@
-
 import { TextBlock } from 'PortableText'
 
 export interface BaseAPIObject {

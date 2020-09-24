@@ -1,6 +1,5 @@
-
 import variants from '@util/animations/variants'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 interface IPageAnimation {
   layoutID?: string
@@ -8,18 +7,25 @@ interface IPageAnimation {
 
 /**
  * Animates the page entering and on un-mount leaving again
+ *
+ * @param {object} options The options object
+ * @param {string} options.layoutID The unique id
+ * @param {JSX.Element|JSX.Element[]} options.children React children
+ * @returns Page animation div
  */
 const PageAnimation: React.FC<IPageAnimation> = ({ layoutID, children }) => {
   return (
-    <motion.div
-      layoutId={layoutID}
-      variants={variants}
-      initial="exit"
-      animate="enter"
-      exit="exit"
-      layout>
-      {children}
-    </motion.div>
+    <AnimatePresence exitBeforeEnter presenceAffectsLayout>
+      <motion.div
+        layoutId={layoutID}
+        variants={variants}
+        initial="exit"
+        animate="enter"
+        exit="exit"
+        layout>
+        {children}
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

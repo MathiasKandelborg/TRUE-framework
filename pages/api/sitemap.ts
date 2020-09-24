@@ -1,8 +1,11 @@
-
 import createRoutesForSitemap from '@util/createRoutesForSitemap'
 import { IncomingMessage, ServerResponse } from 'http'
 import { SitemapStream, streamToPromise } from 'sitemap'
 
+/**
+ * @param req
+ * @param res
+ */
 export default async function sitemapFunc(
   req: IncomingMessage,
   res: ServerResponse

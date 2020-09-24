@@ -1,14 +1,12 @@
-
 import { MUILink } from '@components/HoC'
 import { Button, Typography } from '@material-ui/core'
 
 const PreviewModeAlert: React.FC = () => (
   <>
     <Typography variant="caption">
-      {/* @ts-ignore */}
       <Button
-        component={MUILink}
         variant="contained"
+        component={MUILink}
         color="secondary"
         href="/api/exit-preview">
         Preview mode{' '}

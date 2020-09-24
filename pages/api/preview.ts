@@ -1,12 +1,20 @@
 import getPageByRoute from '@util/api/calls/getPageByRoute'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function preview(
+/**
+ * @param {NextApiRequest} req The HTTP request
+ * @param {NextApiResponse} res The HTTP response
+ * @returns {void} HTTP response
+ */
+export default async (
   req: NextApiRequest,
   res: NextApiResponse
-) {
-  // Check the secret and next parameters
-  // This secret should only be known to this API route and the CMS
+): Promise<void> => {
+  /*
+   * Check the secret, and next parameters
+   * This secret should only be known to this API route and the CMS
+   * If secret don't match, 401 the user
+   */
   if (
     req.query.secret !== process.env.SANITY_PREVIEW_SECRET ||
     !req.query.page
@@ -16,25 +24,27 @@ export default async function preview(
     })
   }
 
-  // Fetch the headless CMS to check if the provided `slug` exists
+  /*  Fetch the headless CMS to check if the provided `slug` exists */
   const route = await getPageByRoute(req.query.page as string, true)
 
   const slug = route.slug.current
 
-  // If the slug doesn't exist prevent preview mode from being enabled
+  /*  No slug, no preview mode */
   if (!slug) {
     return res.status(401).json({
       message: 'Invalid slug'
     })
   }
 
-  // Enable Preview Mode by setting the cookies
+  /*  Enable Preview Mode by setting the cookies */
   res.setPreviewData({})
 
-  // Redirect to the path from the fetched post
-  // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
+  /*
+   * Redirect to the path from the fetched post
+   * We don't redirect to req.query.page as that might lead to open redirect vulnerabilities
+   */
   res.writeHead(307, {
-    Location: `/${slug}`
+    Location: `/${route.slug.current}`
   })
 
   return res.end()

@@ -1,5 +1,3 @@
-
-
 import { Variants } from 'framer-motion'
 import easing from './easing'
 

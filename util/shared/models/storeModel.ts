@@ -1,5 +1,3 @@
-
-
 import StoreModel from 'state/StoreModel'
 import navigationStore from './navigation'
 import uiStore from './ui'

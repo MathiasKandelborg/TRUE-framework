@@ -1,4 +1,3 @@
-
 import RenderPage from '@components/HoC/RenderPage'
 import { PageAnimation } from '@components/UI'
 import { Grid, Typography } from '@material-ui/core'
@@ -7,7 +6,7 @@ import { getClient } from '@util/api'
 import getPageAndRouteByRoute from '@util/api/calls/getPageByRoute'
 import routes from '@util/api/queries/routes'
 import { CONSTANTS, ui } from '@util/settings'
-import { AllPagesProps } from 'AllPagesProps'
+import { PageProps } from 'PageProps'
 import { APIRoute } from 'APITypes'
 import groq from 'groq'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -15,7 +14,7 @@ import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-interface ICustomPageProps extends AllPagesProps {
+interface ICustomPageProps extends PageProps {
   currentRoute: APIRoute | null
   preview: boolean
   previewData?: Record<string, string>
@@ -85,7 +84,7 @@ export const getStaticProps: GetStaticProps<Omit<
 }
 
 interface IPageStaticProps
-  extends AllPagesProps,
+  extends PageProps,
     InferGetStaticPropsType<typeof getStaticProps> {}
 
 const CustomPage: React.FC<IPageStaticProps> = (props) => {

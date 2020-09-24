@@ -1,4 +1,3 @@
-
 import { ui } from '@util/settings'
 import UIModel from 'state/UIModel'
 

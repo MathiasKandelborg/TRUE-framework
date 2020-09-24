@@ -1,5 +1,3 @@
-
-
 import { Typography } from '@material-ui/core'
 import { PageContent } from 'APITypes'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'

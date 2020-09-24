@@ -1,7 +1,9 @@
-
 import { getClient } from '..'
 import postFields from '../queries/postFields'
 
+/**
+ * @param slug
+ */
 async function getPreviewPostBySlug(slug: string) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const data: [Record<string, unknown>] = await getClient(true).fetch(

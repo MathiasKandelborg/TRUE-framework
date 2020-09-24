@@ -1,5 +1,3 @@
-
-
 import { Color } from '@material-ui/core'
 import { BaseRoute } from 'APITypes'
 

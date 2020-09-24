@@ -1,4 +1,3 @@
-
 import { Grid, Typography } from '@material-ui/core'
 import { BlockContent } from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
@@ -14,9 +13,11 @@ interface IHeroSectionProps {
   backgroundImage: BlockContent['imageOptions']
 }
 
-function urlFor(source: SanityImageSource) {
-  return imageUrlBuilder(client).image(source)
-}
+/**
+ * @param source
+ */
+const urlFor = (source: SanityImageSource) =>
+  imageUrlBuilder(client).image(source)
 
 const HeroSection: React.FC<IHeroSectionProps> = (props) => {
   const { heading, tagline, backgroundImage } = props

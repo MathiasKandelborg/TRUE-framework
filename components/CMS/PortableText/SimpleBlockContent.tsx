@@ -1,5 +1,3 @@
-
-
 import BlockContent from '@sanity/block-content-to-react'
 import { TextBlock } from 'PortableText'
 import serializers from './serializers'
@@ -15,6 +13,7 @@ const SimpleBlockContent: React.FC<ISimpleBlockContentProps> = (props) => {
     <BlockContent
       blocks={blocks}
       serializers={serializers}
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
       dataset="production"
     />

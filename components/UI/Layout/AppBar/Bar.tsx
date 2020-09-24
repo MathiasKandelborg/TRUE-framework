@@ -1,5 +1,3 @@
-
-
 import PreviewModeAlert from '@components/UI/PreviewModeAlert'
 import { AppBar as Bar, Toolbar } from '@material-ui/core'
 import AppHeader from './Header'

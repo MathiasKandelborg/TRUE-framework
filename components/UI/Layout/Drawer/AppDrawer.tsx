@@ -1,5 +1,3 @@
-
-
 import { Drawer, Hidden, SwipeableDrawer } from '@material-ui/core'
 import iOS from '@util/isIOS'
 import { useStoreActions, useStoreState } from '@util/tsEasyPeasyHooks'
