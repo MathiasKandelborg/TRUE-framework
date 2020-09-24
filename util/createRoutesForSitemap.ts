@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 
 import { APIRoute, BaseRoute, Page, PageReference } from 'APITypes'
-import { UTILITY } from 'UTILITY'
+import { UTILITY } from 'settings/UTILITY'
 import sitemapRoutes from './api/queries/sitemapRoutes'
 import client from './sanity'
 import { common } from './settings'

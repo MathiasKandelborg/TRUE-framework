@@ -1,7 +1,5 @@
 import { UTILITY } from 'settings/UTILITY'
 
-import { UTILITY } from 'UTILITY'
-
 const common: UTILITY.CommonSettings = {
   staticRoutes: [
     {

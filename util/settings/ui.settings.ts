@@ -1,6 +1,7 @@
 
+
 import { blue, orange } from '@material-ui/core/colors'
-import { UTILITY } from 'UTILITY'
+import { UTILITY } from 'settings/UTILITY'
 
 const ui: UTILITY.UISettings = {
   DarkTheme: true,
