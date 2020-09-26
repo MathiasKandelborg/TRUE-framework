@@ -1,5 +1,3 @@
-/** @format */
-
 import Drawer from './AppDrawer'
 import DrawerMenu from './AppDrawerMenu'
 

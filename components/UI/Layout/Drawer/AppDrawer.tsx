@@ -1,6 +1,4 @@
-/** @format */
-
-import { Drawer, Hidden, SwipeableDrawer } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import iOS from '@util/isIOS'
 import { useStoreActions, useStoreState } from '@util/tsEasyPeasyHooks'
 import React from 'react'
@@ -24,8 +22,8 @@ const AppDrawer: React.FC<IDrawerProps> = (props) => {
 
   return (
     <>
-      <Hidden mdUp implementation="js">
-        <SwipeableDrawer
+      <MUI.Hidden mdUp implementation="js">
+        <MUI.SwipeableDrawer
           variant="temporary"
           onClose={toggleDrawerClose}
           onOpen={toggleDrawerOpen}
@@ -37,18 +35,18 @@ const AppDrawer: React.FC<IDrawerProps> = (props) => {
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}>
           {children}
-        </SwipeableDrawer>
-      </Hidden>
-      <Hidden smDown implementation="js">
-        <Drawer
+        </MUI.SwipeableDrawer>
+      </MUI.Hidden>
+      <MUI.Hidden smDown implementation="js">
+        <MUI.Drawer
           variant="permanent"
           open
           classes={{
             paper: drawerPaperClassName
           }}>
           {children}
-        </Drawer>
-      </Hidden>
+        </MUI.Drawer>
+      </MUI.Hidden>
     </>
   )
 }

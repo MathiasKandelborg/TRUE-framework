@@ -1,12 +1,22 @@
-/** @format */
-
+import { AppRoute } from 'settings/AppRoute'
 import { common } from './settings'
 
-type Routes = [{ slug: { _type: string; current: string } }]
+type Routes = { slug: { _type: string; current: string } }[]
 
-const resolveRoutes = (routes: Routes) => {
+type ResolvedRoutes = Array<AppRoute>
+/**
+ * Take an array of routes and combine them with `setting.common.staticRoutes`
+ *
+ * @param {Routes} routes API routes
+ * @returns {ResolvedRoutes} Routes combined with static routes
+ */
+function resolveRoutes(routes: Routes): ResolvedRoutes {
   const resolvedRoutes = routes.map((route) => {
-    return { route: `/${route.slug.current}`, as: route.slug.current }
+    return {
+      as: `/${route.slug.current}`,
+      route: '/[page]',
+      name: `${route.slug.current}`
+    }
   })
 
   common.staticRoutes.map((staticRoute) => resolvedRoutes.push(staticRoute))

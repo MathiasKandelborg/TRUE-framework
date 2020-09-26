@@ -1,7 +1,5 @@
-/** @format */
-
 import RenderSections from '@components/CMS/RenderSections'
-import { APIRoute } from 'APITypes'
+import { APIRoute } from "cms/APIRoute"
 
 const RenderPage: React.FC<{
   loading: boolean
@@ -12,7 +10,7 @@ const RenderPage: React.FC<{
 
   const { title, content } = pageProps || { title: 'TITLE NOT FOUND' }
 
-  console.log(props)
+
   if (preview) {
     /*     getPreviewRouteBySlug(props.routeId!)
     getPreviewPageListenerBySlug(_id || 'id not present') */

@@ -1,7 +1,5 @@
-/** @format */
-
-import { Typography } from '@material-ui/core'
-import { PageContent } from 'APITypes'
+import * as MUI from '@material-ui/core'
+import { PageContent } from 'cms/Page'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'
 
 interface ITextSectionProps extends Omit<PageContent, '_type'> {
@@ -14,12 +12,12 @@ const TextSection: React.FC<ITextSectionProps> = (props) => {
 
   return (
     <section>
-      <Typography variant="h2">{heading}</Typography>
-      <Typography variant="subtitle1">{label}</Typography>
+      <MUI.Typography variant="h2">{heading}</MUI.Typography>
+      <MUI.Typography variant="subtitle1">{label}</MUI.Typography>
       {text && (
-        <Typography component="div">
+        <MUI.Typography component="div">
           <SimpleBlockContent blocks={text} />
-        </Typography>
+        </MUI.Typography>
       )}
     </section>
   )

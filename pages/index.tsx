@@ -1,52 +1,28 @@
-/** @format */
-
 import MUILink from '@components/HoC/Link/MUILink'
 import { PageAnimation } from '@components/UI'
-import { Typography } from '@material-ui/core'
-import siteConfig from '@util/api/queries/siteConfig'
-import resolveRoutes from '@util/resolveRoutes'
-import client from '@util/sanity'
-import { AllPagesProps } from 'AllPagesProps'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { IAppProps } from './_app'
+import * as MUI from '@material-ui/core'
+import { GetStaticProps } from 'next'
+import { PageProps } from 'PageProps'
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const what = await client
-    .fetch(siteConfig)
-    .then((config: IAppProps['pageProps']['config']) => {
-      if (config) {
-        const sanityRoutes: [{ slug: { _type: string; current: string } }] =
-          config.mainNavigation
-
-        return {
-          config,
-          allRoutes: resolveRoutes(sanityRoutes)
-        }
-      }
-
-      return Error('Could not fetch sanity config. This is REALLY REALLY BAD.')
-    })
-  console.log(what)
-
-  return {
-    props: { ...ctx, ...what },
-
-    revalidate: 1
-  }
+interface IHomePageProps extends PageProps {
+  test: string
 }
 
-interface IHomePageProps
-  extends AllPagesProps,
-    InferGetStaticPropsType<typeof getStaticProps> {
-  test: string
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  return {
+    props: { ...ctx },
+
+    revalidate: 3600
+  }
 }
 
 const HomePage: React.FC<IHomePageProps> = (props) => {
   const { config } = props
 
   return (
-    <PageAnimation layoutID="layout">
-      <Typography variant="h1">Hello World {config.title}</Typography>
+    <PageAnimation layoutID="page">
+      <MUI.Typography variant="h1">Hello World {config.title}</MUI.Typography>
       <MUILink color="primary" href="/about">
         About
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}

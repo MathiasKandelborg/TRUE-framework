@@ -1,6 +1,5 @@
-/** @format */
 import capStr from '@util/capitalizeString'
-import { Page } from 'APITypes'
+import { Page } from 'cms/Page'
 import { FC } from 'react'
 import * as SectionComponents from './sections'
 
@@ -14,12 +13,16 @@ import * as SectionComponents from './sections'
 /*
  * ESLint and TypeScript hates when you do this to your comments:
  */
+/**
+ * @param section
+ * @returns {FC<{}> | null} A section
+ */
 function resolveSections(section: Page['content']) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Section: FC =
     /**
      // TODO: Section should be typed with possible Section components
-    */
+     */
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     // eslint-disable-next-line no-underscore-dangle

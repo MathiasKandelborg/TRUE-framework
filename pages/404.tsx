@@ -1,14 +1,13 @@
-/** @format */
-
 import { PageAnimation } from '@components/UI'
-import { Typography } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { lpar } from '@util/characters'
-import { AllPagesProps } from 'AllPagesProps'
+import { GetStaticProps } from 'next'
+import { PageProps } from 'PageProps'
 
-const Page404: React.FC<AllPagesProps> = () => {
+const Page404: React.FC<PageProps> = () => {
   return (
     <PageAnimation layoutID="layout">
-      <Typography>404 - Page Not Found :{lpar}</Typography>
+      <MUI.Typography>404 - Page Not Found :{lpar}</MUI.Typography>
     </PageAnimation>
   )
 }
@@ -16,8 +15,6 @@ const Page404: React.FC<AllPagesProps> = () => {
 export default Page404
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export async function getStaticProps() {
-  return {
-    props: {}
-  }
-}
+export const getStaticProps: GetStaticProps = async () => ({
+  props: {}
+})

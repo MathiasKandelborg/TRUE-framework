@@ -1,6 +1,4 @@
-/** @format */
-
-import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles'
+import * as MUI from '@material-ui/core'
 import { ui } from '@util/settings'
 
 const MyWonderFullFont: {
@@ -19,7 +17,7 @@ const { DarkTheme, MainColor, SecondaryColor, Fonts } = ui
 
 const fonts = Fonts.join(',')
 
-const MainTheme = createMuiTheme({
+const MainTheme = MUI.unstable_createMuiStrictModeTheme({
   palette: {
     type: (DarkTheme && 'dark') || 'light',
 
@@ -33,10 +31,7 @@ const MainTheme = createMuiTheme({
     tonalOffset: 0.4
   },
   typography: {
-    fontFamily: fonts,
-    h1: {
-      /*    fontSize: '3.2rem' */
-    }
+    fontFamily: fonts
   },
 
   overrides: {

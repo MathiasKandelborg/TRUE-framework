@@ -1,5 +1,3 @@
-/** @format */
-
 interface IEmbedHTMLProps {
   node: {
     html: string
@@ -15,6 +13,7 @@ const EmbedHTML: React.FC<IEmbedHTMLProps> = (props) => {
     return <></>
   }
 
+  // eslint-disable-next-line react/no-danger
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 

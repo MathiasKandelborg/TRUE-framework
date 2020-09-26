@@ -1,5 +1,3 @@
-/** @format */
-
 import EmbedHTML from './EmbedHTML'
 import Figure from './Figure'
 

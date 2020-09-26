@@ -1,5 +1,3 @@
-/** @format */
-
 import imageUrlBuilder from '@sanity/image-url'
 import client from '@util/sanity'
 
@@ -22,6 +20,7 @@ const Figure: React.FC<IFigureProps> = (props) => {
   return (
     <figure>
       <img
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         src={builder.image(asset).auto('format').width(200).url()!}
         alt={alt}
       />

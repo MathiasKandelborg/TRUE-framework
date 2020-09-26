@@ -1,6 +1,4 @@
-/** @format */
-
-import { Grid, Typography } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import { BlockContent } from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
@@ -15,15 +13,19 @@ interface IHeroSectionProps {
   backgroundImage: BlockContent['imageOptions']
 }
 
-function urlFor(source: SanityImageSource) {
-  return imageUrlBuilder(client).image(source)
-}
+/**
+ * @param {SanityImageSource} source The Sanity image source
+ * @returns {url} Image url
+ */
+const urlFor = (source: SanityImageSource) =>
+  imageUrlBuilder(client).image(source)
 
 const HeroSection: React.FC<IHeroSectionProps> = (props) => {
   const { heading, tagline, backgroundImage } = props
 
   const style = backgroundImage
     ? {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         backgroundImage: `url("${urlFor(backgroundImage)
           .width(2000)
           .auto('format')
@@ -40,14 +42,14 @@ const HeroSection: React.FC<IHeroSectionProps> = (props) => {
 
   return (
     <section>
-      <Grid>
-        <Typography variant="h1">{heading}</Typography>
+      <MUI.Grid>
+        <MUI.Typography variant="h1">{heading}</MUI.Typography>
         {tagline && (
-          <Typography>
+          <MUI.Typography>
             <SimpleBlockContent blocks={tagline} />
-          </Typography>
+          </MUI.Typography>
         )}
-      </Grid>
+      </MUI.Grid>
     </section>
   )
 }

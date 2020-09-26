@@ -1,5 +1,4 @@
-/** @format */
-import { ServerStyleSheets } from '@material-ui/core/styles'
+import * as MUI from '@material-ui/core'
 import Document, {
   DocumentContext,
   Head,
@@ -31,8 +30,14 @@ export default class MyDocument extends Document {
   // 2. page.getInitialProps
   // 3. app.render
   // 4. page.render
-  static async getInitialProps(ctx: DocumentContext) {
-    const sheets = new ServerStyleSheets()
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<{
+    styles: JSX.Element[]
+    html: string
+    head?: (JSX.Element | null)[] | undefined
+  }> {
+    const sheets = new MUI.ServerStyleSheets()
 
     // Ease the reading of the following `renderPage` declaration
     const originalRenderPage = ctx.renderPage
@@ -61,7 +66,7 @@ export default class MyDocument extends Document {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <Html lang="en">
         {/* DO NOT POPULATE THIS HEAD COMPONENT */}
