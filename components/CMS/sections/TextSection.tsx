@@ -1,5 +1,5 @@
 import * as MUI from '@material-ui/core'
-import { PageContent } from 'APITypes'
+import { PageContent } from 'cms/Page'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'
 
 interface ITextSectionProps extends Omit<PageContent, '_type'> {

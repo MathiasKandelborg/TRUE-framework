@@ -1,5 +1,5 @@
 import RenderSections from '@components/CMS/RenderSections'
-import { APIRoute } from 'APITypes'
+import { APIRoute } from "cms/APIRoute"
 
 const RenderPage: React.FC<{
   loading: boolean

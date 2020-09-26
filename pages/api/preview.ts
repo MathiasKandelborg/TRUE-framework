@@ -1,4 +1,4 @@
-import getPageByRoute from '@util/api/calls/getPageByRoute'
+import getPageByRoute from '@util/api/calls/getSinglePageByRoute'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 /**
@@ -25,7 +25,10 @@ export default async (
   }
 
   /*  Fetch the headless CMS to check if the provided `slug` exists */
-  const route = await getPageByRoute(req.query.page as string, true)
+  const route = await getPageByRoute({
+    pageSlug: req.query.page as string,
+    preview: true
+  })
 
   const slug = route.slug.current
 

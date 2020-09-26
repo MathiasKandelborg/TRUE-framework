@@ -1,8 +1,8 @@
-import { MetaAPIObject } from 'APITypes'
+import { MetaAPIObject, APISlug } from 'cms/MetaAPIObject'
 import { TextBlock } from 'PortableText'
 
 export interface Category extends MetaAPIObject {
-  description: TextBlock
+  description: TextBlock[]
   title: string
-  products: any[]
+  url: APISlug
 }

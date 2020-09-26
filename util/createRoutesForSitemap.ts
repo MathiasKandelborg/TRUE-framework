@@ -1,15 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 
-import { APIRoute, BaseRoute, Page, PageReference } from 'APITypes'
+import { APIRoute, BaseRoute } from 'cms/APIRoute'
+import { APIReference } from 'cms/MetaAPIObject'
+import { Page } from 'cms/Page'
 import { UTILITY } from 'settings/UTILITY'
-import sitemapRoutes from './api/queries/sitemapRoutes'
+import sitemapRoutes from './api/queries/allSitemapRoutes'
 import client from './sanity'
 import { common } from './settings'
 
 export type TSitemapRoute = Omit<APIRoute, '_id' | '_type'>
 
 interface StaticRoute extends BaseRoute {
-  page: Omit<PageReference, '_id'>
+  page: Pick<APIReference, '_ref'>
   _createdAt: string
   _updatedAt: string
 }

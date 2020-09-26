@@ -1,4 +1,4 @@
-import { APIRoute } from 'APITypes'
+import { APIRoute } from "cms/APIRoute"
 
 const previewSecret = process.env.NEXT_PREVIEW_SECRET // Copy the string you used for SANITY_PREVIEW_SECRET
 const projectUrl = process.env.NEXT_PUBLIC_PROJECT_URL

@@ -2,7 +2,7 @@ import { Layout } from '@components/UI'
 import MenuItem from '@components/UI/Layout/Drawer/MenuItem'
 import * as MUI from '@material-ui/core'
 import { getClient } from '@util/api'
-import siteConfig from '@util/api/queries/siteConfig'
+import siteConfig from '@util/api/queries/singleSiteConfig'
 import resolveRoutes from '@util/resolveRoutes'
 import { CONSTANTS } from '@util/settings'
 import store from '@util/shared/createStore'
@@ -20,6 +20,8 @@ export interface IAppProps extends AppProps {
 }
 
 /**
+ * [Custom app component](https://nextjs.org/docs/advanced-features/custom-app)
+ *
  * @param {IAppProps} props Global app props
  * @returns {JSX.Element} The App
  */

@@ -7,7 +7,6 @@ interface IMenuItemProps {
   text: string
   route: string
   as: string
-  routes: { route: string; as: string }[]
 }
 
 const MenuItem: React.FC<IMenuItemProps> = (props) => {

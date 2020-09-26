@@ -1,5 +1,5 @@
 import capStr from '@util/capitalizeString'
-import { Page } from 'APITypes'
+import { Page } from 'cms/Page'
 import { FC } from 'react'
 import * as SectionComponents from './sections'
 
@@ -15,6 +15,7 @@ import * as SectionComponents from './sections'
  */
 /**
  * @param section
+ * @returns {FC<{}> | null} A section
  */
 function resolveSections(section: Page['content']) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
