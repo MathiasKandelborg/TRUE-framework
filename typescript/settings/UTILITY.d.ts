@@ -1,19 +1,11 @@
 import * as MUI from '@material-ui/core'
-import { BaseRoute } from 'APITypes'
+import { AppRoute } from 'settings/AppRoute'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export declare namespace UTILITY {
-  import PageReference from 'PortableText'
-
-  export interface StaticRoute extends BaseRoute {
-    page: PageReference
-  }
   /** Common Settings used in many places throughout the codebase */
   export interface CommonSettings {
-    staticRoutes: Array<{
-      route: string
-      as: string
-    }>
+    staticRoutes: Array<AppRoute>
   }
   /** UI Settings used throughout the codebase */
   export interface UISettings {

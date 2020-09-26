@@ -40,10 +40,9 @@ function MyApp(props: IAppProps): JSX.Element {
     return (
       <MenuItem
         key={`menu-item-${i.toString()}`}
-        text={r.as}
+        text={r.name}
         as={r.as}
         route={r.route}
-        routes={allRoutes}
       />
     )
   })

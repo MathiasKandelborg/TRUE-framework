@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-has-content */
 
 import * as MUI from '@material-ui/core'
-import { common } from '@util/settings'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import * as React from 'react'
@@ -28,29 +27,11 @@ const MenuLink = (props: TLinkProps) => {
     href,
     ...other
   } = props
-  let { cHref: customHref, cAs: customAs } = { cHref: '', cAs: '' }
+
   const router = useRouter()
 
   const className = clsx(classNameProps, {
     [activeClassName]: router.asPath === href && activeClassName
-  })
-
-  // console.log(`BEFORE:\nas: ${as}, href: ${href as string}`)
-  common.staticRoutes.forEach((route) => {
-    /* It's late, I'm tired this should be easy.
-     * It does work however :D 2:39 AM Aug. 16. */
-    customHref = '/[page]'
-    customAs = as
-    if (href === '/') {
-      customAs = '/'
-      customHref = '/'
-
-      return
-    }
-    if (route.as === 'About' && route.as === as) {
-      customAs = '/about'
-      customHref = '/about'
-    }
   })
 
   // console.log(`AFTER\nas: ${customAs}, href: ${customHref}`)
@@ -61,8 +42,8 @@ const MenuLink = (props: TLinkProps) => {
       className={className}
       ref={innerRef}
       {...other}
-      href={customHref}
-      as={customAs}
+      href={href as string}
+      as={as}
     />
   )
 }

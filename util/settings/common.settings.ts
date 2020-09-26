@@ -3,12 +3,19 @@ import { UTILITY } from 'settings/UTILITY'
 const common: UTILITY.CommonSettings = {
   staticRoutes: [
     {
+      name: 'Home',
       route: '/',
-      as: 'Home'
+      as: '/'
     },
     {
+      name: 'About',
       route: '/about',
-      as: 'About'
+      as: '/about'
+    },
+    {
+      name: 'Categories',
+      route: '/categories',
+      as: '/categories'
     }
   ]
 }

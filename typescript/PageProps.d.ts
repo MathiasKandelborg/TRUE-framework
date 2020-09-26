@@ -9,6 +9,7 @@ export interface PageProps {
     footerNavigation: [{ slug: string }]
   }
   allRoutes: Array<{
+    name: string
     route: string
     as: string
   }>
