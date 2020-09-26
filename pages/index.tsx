@@ -9,13 +9,11 @@ interface IHomePageProps extends PageProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  return {
-    props: { ...ctx },
+export const getStaticProps: GetStaticProps = async (ctx) => ({
+  props: { ...ctx },
 
-    revalidate: 3600
-  }
-}
+  revalidate: 3600
+})
 
 const HomePage: React.FC<IHomePageProps> = (props) => {
   const { config } = props

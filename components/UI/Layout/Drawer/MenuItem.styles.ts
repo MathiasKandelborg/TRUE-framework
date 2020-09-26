@@ -1,7 +1,7 @@
 import * as MUI from '@material-ui/core'
 
-const menuItemStyles = MUI.makeStyles((theme: MUI.Theme) => {
-  return MUI.createStyles({
+const menuItemStyles = MUI.makeStyles((theme: MUI.Theme) =>
+  MUI.createStyles({
     menuItem: {
       color: 'inherit',
       fontSize: theme.typography.subtitle1.fontSize,
@@ -13,6 +13,6 @@ const menuItemStyles = MUI.makeStyles((theme: MUI.Theme) => {
       paddingLeft: theme.spacing(3)
     }
   })
-})
+)
 
 export default menuItemStyles

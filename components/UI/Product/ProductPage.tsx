@@ -24,11 +24,11 @@ const SingleProductPage: React.FC<ISingleProductPageProps> = (props) => {
 
       <MUI.Divider flexItem variant="middle" light />
       <br />
-        <MUI.Grid container component={MUI.Paper} className={classes.paper}>
-      <PageAnimation layoutID="page">
+      <MUI.Grid container component={MUI.Paper} className={classes.paper}>
+        <PageAnimation layoutID="page">
           <SimpleBlockContent blocks={product?.description} />
-      </PageAnimation>
-        </MUI.Grid>
+        </PageAnimation>
+      </MUI.Grid>
     </MUI.Grid>
   )
 }

@@ -13,4 +13,3 @@ export interface Page extends MetaAPIObject {
   description: string
   content?: PageContent
 }
-

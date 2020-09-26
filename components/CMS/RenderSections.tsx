@@ -14,18 +14,17 @@ import * as SectionComponents from './sections'
  * ESLint and TypeScript hates when you do this to your comments:
  */
 /**
- * @param section
- * @returns {FC<{}> | null} A section
+ * @param {Page['content']} section The section the resolve
+ * @returns {FC | null} A section
  */
-function resolveSections(section: Page['content']) {
+function resolveSections(section: Page['content']): FC | null {
+  /**
+   * // TODO: Section should be typed with possible Section components
+   */
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Section: FC =
-    /**
-     // TODO: Section should be typed with possible Section components
-     */
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    // eslint-disable-next-line no-underscore-dangle
     SectionComponents[capStr(section._type)]
 
   if (Section) {
@@ -57,11 +56,9 @@ const RenderSections: React.FC<IRenderSectionsProps> = (props) => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const SectionComponent = resolveSections(section)
           if (!SectionComponent) {
-            // eslint-disable-next-line no-underscore-dangle
             return <div>Missing section {section?._type}</div>
           }
 
-          // eslint-disable-next-line no-underscore-dangle,react/jsx-props-no-spreading
           return <SectionComponent {...section} key={section?._key} />
         })}
       </>
@@ -71,11 +68,9 @@ const RenderSections: React.FC<IRenderSectionsProps> = (props) => {
   const SectionComponent = resolveSections(sections)
 
   if (!SectionComponent) {
-    // eslint-disable-next-line no-underscore-dangle
     return <div>Missing section {sections._type}</div>
   }
 
-  // eslint-disable-next-line no-underscore-dangle,react/jsx-props-no-spreading
   return <SectionComponent {...sections} key={sections._key} />
 }
 

@@ -13,20 +13,18 @@ interface IPageAnimation {
  * @param {JSX.Element|JSX.Element[]} options.children React children
  * @returns {JSX.Element} Page animation div
  */
-const PageAnimation: React.FC<IPageAnimation> = ({ layoutID, children }) => {
-  return (
-    <AnimatePresence exitBeforeEnter presenceAffectsLayout>
-      <motion.div
-        layoutId={layoutID}
-        variants={pageVariants}
-        initial="exit"
-        animate="enter"
-        exit="exit"
-        layout>
-        {children}
-      </motion.div>
-    </AnimatePresence>
-  )
-}
+const PageAnimation: React.FC<IPageAnimation> = ({ layoutID, children }) => (
+  <AnimatePresence exitBeforeEnter presenceAffectsLayout>
+    <motion.div
+      layoutId={layoutID}
+      variants={pageVariants}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      layout>
+      {children}
+    </motion.div>
+  </AnimatePresence>
+)
 
 export default PageAnimation

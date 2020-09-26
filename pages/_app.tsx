@@ -38,16 +38,14 @@ function MyApp(props: IAppProps): JSX.Element {
     }
   }, [])
 
-  const MenuItemsArr = allRoutes?.map((r, i) => {
-    return (
-      <MenuItem
-        key={`menu-item-${i.toString()}`}
-        text={r.name}
-        as={r.as}
-        route={r.route}
-      />
-    )
-  })
+  const MenuItemsArr = allRoutes?.map((r, i) => (
+    <MenuItem
+      key={`menu-item-${i.toString()}`}
+      text={r.name}
+      as={r.as}
+      route={r.route}
+    />
+  ))
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const hostname = process.env.NEXT_PUBLIC_HOSTNAME!
@@ -78,11 +76,7 @@ function MyApp(props: IAppProps): JSX.Element {
           <MUI.CssBaseline />
           <AnimateSharedLayout type="crossfade">
             <Layout preview={preview} MenuItems={MenuItemsArr}>
-              <Component
-                key={canonicalRoute}
-                /* eslint-disable-next-line react/jsx-props-no-spreading */
-                {...pageProps}
-              />
+              <Component key={canonicalRoute} {...pageProps} />
             </Layout>
           </AnimateSharedLayout>
         </MUI.ThemeProvider>

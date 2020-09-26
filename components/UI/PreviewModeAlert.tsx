@@ -4,6 +4,8 @@ import * as MUI from '@material-ui/core'
 const PreviewModeAlert: React.FC = () => (
   <>
     <MUI.Typography variant="caption">
+      {/* 
+      // @ts-expect-error variant is used in MUI link too */}
       <MUI.Button
         variant="contained"
         component={MUILink}

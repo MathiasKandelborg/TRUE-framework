@@ -8,7 +8,7 @@ export interface APIReference {
 }
 
 export interface APISlug {
-  _type: 'slug',
+  _type: 'slug'
   current: string
 }
 

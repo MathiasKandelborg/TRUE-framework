@@ -5,13 +5,11 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  return {
-    props: { ...ctx },
+export const getStaticProps: GetStaticProps = async (ctx) => ({
+  props: { ...ctx },
 
-    revalidate: 3600
-  }
-}
+  revalidate: 3600
+})
 
 interface IAboutPageProps
   extends PageProps,

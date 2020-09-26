@@ -4,13 +4,11 @@ import { lpar } from '@util/characters'
 import { GetStaticProps } from 'next'
 import { PageProps } from 'PageProps'
 
-const Page404: React.FC<PageProps> = () => {
-  return (
-    <PageAnimation layoutID="layout">
-      <MUI.Typography>404 - Page Not Found :{lpar}</MUI.Typography>
-    </PageAnimation>
-  )
-}
+const Page404: React.FC<PageProps> = () => (
+  <PageAnimation layoutID="layout">
+    <MUI.Typography>404 - Page Not Found :{lpar}</MUI.Typography>
+  </PageAnimation>
+)
 
 export default Page404
 

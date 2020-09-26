@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps<Omit<
 
   const category = await getCategoryBySlug(slug)
 
-  // eslint-disable-next-line no-underscore-dangle
   const products = await getProductsByCategory(category._id)
 
   return {

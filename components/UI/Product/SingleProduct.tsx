@@ -9,7 +9,10 @@ interface ISingleProductProps {
 }
 
 const SingleProduct: React.FC<ISingleProductProps> = (props) => {
-  const { product: { title, description, url}, categorySlug  } = props
+  const {
+    product: { title, description, url },
+    categorySlug
+  } = props
 
   return (
     <MUI.Card>
