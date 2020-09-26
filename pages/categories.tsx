@@ -1,3 +1,4 @@
+import ListCategoriesPage from '@components/UI/Category/CategoriesListPage'
 import getAllCategories from '@util/api/calls/getAllCategories'
 import { Category } from 'cms/Category'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -32,8 +33,11 @@ interface ICategoriesPageStaticProps
 const CategoriesPage: React.FC<ICategoriesPageStaticProps> = (props) => {
   const { categories } = props
 
-
-  return <></>
+  return (
+    <>
+      <ListCategoriesPage categories={categories} />
+    </>
+  )
 }
 
 export default CategoriesPage
