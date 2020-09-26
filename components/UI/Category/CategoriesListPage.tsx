@@ -29,7 +29,6 @@ const ListCategoriesPage: React.FC<ICategoriesPageProps> = (props) => {
         <PageAnimation layoutID="page">
           <MUI.Grid
             container
-            alignItems="center"
             justify="space-around"
             component={MUI.Paper}
             className={classes.paper}>

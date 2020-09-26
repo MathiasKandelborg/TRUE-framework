@@ -2,6 +2,7 @@ import * as MUI from '@material-ui/core'
 import FAB from '../FAB/FAB'
 import { AppBar } from './AppBar'
 import { AppDrawer, DrawerMenu } from './Drawer'
+import Footer from './Footer/Footer'
 import layoutStyles from './Layout.styles'
 
 interface ILayoutProps {
@@ -33,6 +34,8 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         <MUI.Grid container>
           <>{children}</>
         </MUI.Grid>
+        <div className={classes.mainGrid} />
+        <Footer />
       </MUI.Container>
       <FAB />
     </>
