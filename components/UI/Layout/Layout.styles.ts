@@ -28,6 +28,7 @@ const layoutStyles = MUI.makeStyles((theme: MUI.Theme) =>
       height: '100vh',
       width: '100%',
       maxWidth: '100%',
+      paddingTop: theme.spacing(3),
       [theme.breakpoints.up('md')]: {
         paddingLeft: `calc(${theme.spacing(3)}px + ${
           ui.CONSTANTS.DRAWER_WIDTH

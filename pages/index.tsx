@@ -21,7 +21,7 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
   const { config } = props
 
   return (
-    <PageAnimation layoutID="layout">
+    <PageAnimation layoutID="page">
       <MUI.Typography variant="h1">Hello World {config.title}</MUI.Typography>
       <MUILink color="primary" href="/about">
         About

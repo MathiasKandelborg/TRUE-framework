@@ -25,7 +25,7 @@ const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
   }
 
   return (
-    <PageAnimation layoutID="layout">
+    <PageAnimation layoutID="page">
       <MUI.Typography variant="h1">About</MUI.Typography>
       <MUILink color="primary" href="/">
         Home

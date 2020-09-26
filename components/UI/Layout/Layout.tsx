@@ -27,8 +27,8 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         </AppDrawer>
       </nav>
 
-      <div className={classes.toolbar} />
       <MUI.Container maxWidth="md" className={classes.content} component="main">
+        <div className={classes.toolbar} />
         {/* Wrap page components in a 'Root MUI.Grid' (https://material-ui.com/components/MUI.Grid/) */}
         <MUI.Grid container>
           <>{children}</>
