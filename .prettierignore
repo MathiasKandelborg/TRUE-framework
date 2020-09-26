@@ -1,0 +1,7 @@
+# Ignore artifacts:
+.next
+# Ignore node_modules
+node_modules
+
+# Usually we don't want to format public files
+public

@@ -1,5 +1,3 @@
-/** @format */
-
 import NavigationModel from './NavigationModel'
 import UIModel from './UIModel'
 

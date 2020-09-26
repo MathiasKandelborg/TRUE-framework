@@ -1,12 +1,10 @@
-/** @format */
-
-import { blue, orange } from '@material-ui/core/colors'
-import { UTILITY } from 'UTILITY'
+import * as MUI from '@material-ui/core'
+import { UTILITY } from 'settings/UTILITY'
 
 const ui: UTILITY.UISettings = {
   DarkTheme: true,
-  MainColor: orange,
-  SecondaryColor: blue,
+  MainColor: MUI.colors.orange,
+  SecondaryColor: MUI.colors.blue,
   Fonts: [
     'Manrope',
     '-apple-system',

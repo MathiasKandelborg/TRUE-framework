@@ -1,12 +1,10 @@
-/** @format */
-
-import { UTILITY } from 'UTILITY'
+import { UTILITY } from 'settings/UTILITY'
 
 /*
  * DO NOT IMPORT ANYTHING - except types -  TO THIS FILE
  */
 
-const { PORT = '3333', TITLE = 'TRUE Starter Kit' } = process.env
+const { PORT = '3333', TITLE = 'TRUE Framework' } = process.env
 
 const DEV = process.env.NODE_ENV !== 'production'
 

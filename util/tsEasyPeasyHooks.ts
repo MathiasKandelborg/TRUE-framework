@@ -1,5 +1,3 @@
-/** @format */
-
 import { createTypedHooks } from 'easy-peasy'
 import StoreModel from 'state/StoreModel'
 

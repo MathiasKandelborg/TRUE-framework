@@ -1,6 +1,4 @@
-/** @format */
-
-import { Container, Grid } from '@material-ui/core'
+import * as MUI from '@material-ui/core'
 import FAB from '../FAB/FAB'
 import { AppBar } from './AppBar'
 import { AppDrawer, DrawerMenu } from './Drawer'
@@ -17,7 +15,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
   const classes = layoutStyles()
 
   return (
-    <div className={classes.root}>
+    <>
       <AppBar
         preview={preview}
         appBarClassName={classes.appBar}
@@ -29,15 +27,15 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         </AppDrawer>
       </nav>
 
-      <Container className={classes.content} component="main">
+      <MUI.Container maxWidth="md" className={classes.content} component="main">
         <div className={classes.toolbar} />
-        {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/grid/) */}
-        <Grid container>
+        {/* Wrap page components in a 'Root MUI.Grid' (https://material-ui.com/components/MUI.Grid/) */}
+        <MUI.Grid container>
           <>{children}</>
-          <FAB />
-        </Grid>
-      </Container>
-    </div>
+        </MUI.Grid>
+      </MUI.Container>
+      <FAB />
+    </>
   )
 }
 

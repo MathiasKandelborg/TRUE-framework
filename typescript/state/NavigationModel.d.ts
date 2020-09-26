@@ -1,5 +1,3 @@
-/** @format */
-
 import { Action } from 'easy-peasy'
 
 interface NavigationModel {

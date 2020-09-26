@@ -1,5 +1,3 @@
-/** @format */
-
 import groq from 'groq'
 
 const routes = groq`

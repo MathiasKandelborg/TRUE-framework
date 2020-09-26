@@ -4,10 +4,6 @@
 /.pnp
 .pnp.js
 
-# CMS
-cms/**/.checksums
-true-cms/**/.checksums
-true-cms/dist
 
 # testing
 /coverage

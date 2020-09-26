@@ -1,5 +1,3 @@
-/** @format */
-
 const sitemapRoutes = `
   {
     "routes": *[_type == "route"] {
