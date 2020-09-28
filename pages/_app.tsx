@@ -52,15 +52,39 @@ function MyApp(props: IAppProps): JSX.Element {
 
   const canonicalRoute = CONSTANTS.DEV
     ? `https://localhost:3000${router.asPath}`
-    : `https://${hostname}${router.asPath}`
+    : `${hostname}${router.asPath}`
 
   return (
     <>
       <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="application-name" content="TRUE Framework" />
+        <meta name="theme-color" content="#0097a7" />
+        <meta name="apple-mobile-web-app-title" content="TRUE Framework" />
+        <meta
+          name="description"
+          content="The TRUE Framework === The Really Unique and Exciting Framework"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="shortcut icon" href="/images/TRUE-logo/logo-32.png" />
+
+        <link
+          rel="mask-icon"
+          href="/images/TRUE-logo/TRUE-logo-16.svg"
+          color="#0097a7"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/TRUE-logo/logo-180-white.png"
+        />
         <meta
           name="viewport"
           key="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
+          content="minimum-scale=1, initial-scale=1, width=device-width "
         />
       </Head>
       <DefaultSeo
@@ -69,6 +93,7 @@ function MyApp(props: IAppProps): JSX.Element {
          * https://github.com/garmeeh/next-seo#title-template
          */
         titleTemplate="%s | TRUE Framework"
+        title="Set my title"
       />
 
       <StoreProvider store={store}>
