@@ -1,0 +1,24 @@
+<svg version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="filter793" color-interpolation-filters="sRGB">
+   <feFlood flood-color="rgb(0,0,0)" flood-opacity=".5" result="flood"/>
+   <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+   <feGaussianBlur in="composite1" result="blur" stdDeviation="2"/>
+   <feOffset dx="1" dy="1" result="offset"/>
+   <feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+  </filter>
+  <filter id="filter886" color-interpolation-filters="sRGB">
+   <feFlood flood-color="rgb(0,0,0)" flood-opacity=".5" result="flood"/>
+   <feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+   <feGaussianBlur in="composite1" result="blur" stdDeviation="2"/>
+   <feOffset dx="1" dy="1" result="offset"/>
+   <feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+  </filter>
+ </defs>
+ <g style="mix-blend-mode:normal">
+  <g transform="matrix(.04 0 0 .04 -3 -.8)" fill="#0097a7" stroke-width="0">
+   <path d="m322 179-15 29 8 3 7-13 29 12-91 170 36-5 75-157 28 11-7 13 8 3 15-29z" filter="url(#filter886)"/>
+   <path d="m152 108 21-12 123 279-36 5z" filter="url(#filter793)"/>
+  </g>
+ </g>
+</svg>
