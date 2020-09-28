@@ -30,6 +30,7 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
@@ -38,15 +39,15 @@
     "webpack": "5.0.0-beta.30"
   },
   "dependencies": {
-    "@types/react": "16.9.49",
-    "@types/react-dom": "16.9.8",
-    "@types/webpack-env": "1.15.3",
-    "@types/express": "4.17.8",
-    "@types/node": "14.11.2",
     "@material-ui/core": "4.11.0",
     "@sanity/block-content-to-react": "2.0.7",
     "@sanity/client": "1.150.7",
     "@sanity/image-url": "0.140.19",
+    "@types/express": "4.17.8",
+    "@types/node": "14.11.2",
+    "@types/react": "16.9.49",
+    "@types/react-dom": "16.9.8",
+    "@types/webpack-env": "1.15.3",
     "clsx": "1.1.1",
     "easy-peasy": "3.3.1",
     "final-form": "4.20.1",
@@ -89,6 +90,7 @@
     "eslint-plugin-react": "7.20.6",
     "eslint-plugin-react-hooks": "4.1.2",
     "husky": "4.3.0",
+    "lint-staged": "^10.4.0",
     "prettier": "2.1.2",
     "semantic-release": "17.1.2",
     "typescript": "4.0.3"
