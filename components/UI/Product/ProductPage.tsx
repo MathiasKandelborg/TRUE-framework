@@ -1,9 +1,8 @@
 import SimpleBlockContent from '@components/CMS/PortableText/SimpleBlockContent'
 import * as MUI from '@material-ui/core'
 import { Product } from 'cms/Product'
+import TitleWithDivider from '../../HoC/TitleWithDivider'
 import { PageAnimation } from '../Layout'
-import TitleAnimation from '../Layout/TitleAnimation'
-import TitleDivider from '../TitleDivider'
 import singleProductPageStyles from './ProductPage.styles'
 
 interface ISingleProductPageProps {
@@ -16,20 +15,15 @@ const SingleProductPage: React.FC<ISingleProductPageProps> = (props) => {
   const classes = singleProductPageStyles()
 
   return (
-    <MUI.Grid item xs={12} container>
-      <TitleAnimation>
-        <MUI.Typography variant="h1" component="h2" gutterBottom>
-          {product?.title}
-        </MUI.Typography>
-      </TitleAnimation>
+    <>
+      <TitleWithDivider variant="h1" text={product?.title} />
 
-      <TitleDivider />
-      <MUI.Grid container component={MUI.Paper} className={classes.paper}>
-        <PageAnimation layoutID="page">
+      <PageAnimation layoutID="page">
+        <MUI.Grid container component={MUI.Paper} className={classes.paper}>
           <SimpleBlockContent blocks={product?.description} />
-        </PageAnimation>
-      </MUI.Grid>
-    </MUI.Grid>
+        </MUI.Grid>
+      </PageAnimation>
+    </>
   )
 }
 

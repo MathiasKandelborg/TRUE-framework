@@ -1,4 +1,4 @@
-import MUILink from '@components/HoC/Link/MUILink'
+import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -23,15 +23,15 @@ const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
   }
 
   return (
-    <PageAnimation layoutID="page">
-      <MUI.Typography variant="h1">About</MUI.Typography>
-      <MUILink color="primary" href="/">
-        Home
-      </MUILink>
-      <MUILink color="primary" href="/[page]" as="/testerr">
-        testerr
-      </MUILink>
-    </PageAnimation>
+    <>
+      <TitleWithDivider variant="h1" text="About" />
+
+      <PageAnimation layoutID="page">
+        <MUI.Grid component={MUI.Paper}>
+          <MUI.Typography>Placeholder</MUI.Typography>
+        </MUI.Grid>
+      </PageAnimation>
+    </>
   )
 }
 

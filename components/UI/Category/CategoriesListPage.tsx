@@ -1,8 +1,7 @@
 import * as MUI from '@material-ui/core'
 import { Category } from 'cms/Category'
+import TitleWithDivider from '../../HoC/TitleWithDivider'
 import { PageAnimation } from '../Layout'
-import TitleAnimation from '../Layout/TitleAnimation'
-import TitleDivider from '../TitleDivider'
 import categoriesPageListStyles from './CategoriesListPage.styles'
 import ListCategory from './ListCategory'
 
@@ -10,32 +9,26 @@ interface ICategoriesPageProps {
   categories: Category[]
 }
 
-const ListCategoriesPage: React.FC<ICategoriesPageProps> = (props) => {
+const CategoriesListPage: React.FC<ICategoriesPageProps> = (props) => {
   const { categories } = props
 
   const classes = categoriesPageListStyles()
 
   return (
-    <MUI.Grid item xs={12} container>
-      <TitleAnimation>
-        <MUI.Typography variant="h2" component="h1" gutterBottom>
-          Categories
-        </MUI.Typography>
-      </TitleAnimation>
-      <TitleDivider />
-      <MUI.Grid item xs={12}>
-        <PageAnimation layoutID="page">
-          <MUI.Grid
-            container
-            justify="space-around"
-            component={MUI.Paper}
-            className={classes.paper}>
-            <ListCategory categories={categories} />
-          </MUI.Grid>
-        </PageAnimation>
-      </MUI.Grid>
-    </MUI.Grid>
+    <>
+      <TitleWithDivider variant="h1" text="Categories" />
+
+      <PageAnimation layoutID="page">
+        <MUI.Grid
+          container
+          justify="space-around"
+          component={MUI.Paper}
+          className={classes.paper}>
+          <ListCategory categories={categories} />
+        </MUI.Grid>
+      </PageAnimation>
+    </>
   )
 }
 
-export default ListCategoriesPage
+export default CategoriesListPage

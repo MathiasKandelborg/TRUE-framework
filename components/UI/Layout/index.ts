@@ -1,4 +1,4 @@
 import Layout from './Layout'
-import PageAnimation from './PageAnimation'
+import PageAnimation from '../Animation/PageAnimation'
 
 export { Layout, PageAnimation }
