@@ -10,7 +10,7 @@ module.exports = withPWA({
     dest: 'public'
   },
   reactStrictMode: true,
-  trailingSlash: false,
+  trailingSlash: true,
   poweredByHeader: false,
   webpack: (
     config /* ,{ buildId, dev, isServer, defaultLoaders, webpack } */
@@ -20,7 +20,7 @@ module.exports = withPWA({
   rewrites: async () => [
     { source: '/sitemap', destination: '/api/sitemap' },
     { source: '/sitemap.xml', destination: '/api/sitemap' },
-    { source: '/robots', destination: '/public/robots.txt' },
+    { source: '/browserconfig.xml', destination: '/public/browserconfig.xml' },
     { source: '/robots.txt', destination: '/public/robots.txt' }
   ]
 })
