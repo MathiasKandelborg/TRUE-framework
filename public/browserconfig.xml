@@ -1,0 +1,10 @@
+<!-- https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/dn320426(v=vs.85) -->
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="/mstile-150x150.png"/>
+            <TileColor>#0d59ad</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>

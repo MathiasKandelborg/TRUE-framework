@@ -6,7 +6,7 @@ import { getClient } from '@util/api'
 import getPageAndRouteByRoute from '@util/api/calls/getSinglePageByRoute'
 import routes from '@util/api/queries/allRoutes'
 import { CONSTANTS, ui } from '@util/settings'
-import { APIRoute } from "cms/APIRoute"
+import { APIRoute } from 'cms/APIRoute'
 import groq from 'groq'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { NextSeo } from 'next-seo'
@@ -107,7 +107,6 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [pageData, setRouteData] = useState(currentRoute)
 
-    // eslint-disable-next-line no-underscore-dangle
     const routeId = currentRoute?._id
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
@@ -136,7 +135,6 @@ const CustomPage: React.FC<IPageStaticProps> = (props) => {
           noindex={pageData?.disallowRobots || false}
         />
         <PageAnimation layoutID="layout">
-          {/* eslint-disable-next-line no-underscore-dangle */}
           IS {pageData?._rev}
           <RenderPage
             preview

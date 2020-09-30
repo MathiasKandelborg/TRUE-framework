@@ -1,4 +1,15 @@
-module.exports = {
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
+
+module.exports = withPWA({
+  pwa: {
+    disable: process.env.NODE_ENV === 'development',
+    register: true,
+    scope: '/',
+    sw: 'service-worker.js',
+    dest: 'public',
+    runtimeCaching
+  },
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
@@ -9,6 +20,8 @@ module.exports = {
     config,
   rewrites: async () => [
     { source: '/sitemap', destination: '/api/sitemap' },
-    { source: '/sitemap.xml', destination: '/api/sitemap' }
+    { source: '/sitemap.xml', destination: '/api/sitemap' },
+    { source: '/browserconfig.xml', destination: '/public/browserconfig.xml' },
+    { source: '/robots.txt', destination: '/public/robots.txt' }
   ]
-}
+})

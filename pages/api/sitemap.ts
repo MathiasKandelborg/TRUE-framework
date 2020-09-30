@@ -24,7 +24,6 @@ export default async function sitemapFunc(
 
         return smStream.write({
           url: routeName,
-          // eslint-disable-next-line no-underscore-dangle
           lastmod: route._updatedAt
         })
       })

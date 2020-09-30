@@ -3,8 +3,8 @@ import { UTILITY } from 'settings/UTILITY'
 
 const ui: UTILITY.UISettings = {
   DarkTheme: true,
-  MainColor: MUI.colors.orange,
-  SecondaryColor: MUI.colors.blue,
+  MainColor: MUI.colors.cyan,
+  SecondaryColor: MUI.colors.yellow,
   Fonts: [
     'Manrope',
     '-apple-system',

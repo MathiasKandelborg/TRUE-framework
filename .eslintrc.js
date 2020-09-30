@@ -1,3 +1,46 @@
+const rules = {
+  'no-underscore-dangle': [
+    'error',
+    { allow: ['_id', '_type', '_rev', '_key', '_createdAt', '_updatedAt'] }
+  ],
+  'react/jsx-props-no-spreading': [
+    2,
+    {
+      html: 'enforce',
+      custom: 'enforce',
+      explicitSpread: 'ignore',
+      exceptions: ['App', 'Component', 'SectionComponent', 'SingleCategory']
+    }
+  ],
+  'no-undef': 0,
+  'node/no-missing-import': 0,
+  'jsdoc/check-tag-names': 0,
+  'react/react-in-jsx-scope': 0,
+  'react/prop-types': 0,
+  'newline-before-return': 2,
+  'import/no-unresolved': [1, { ignore: ['^(all|part):'] }],
+  'comma-dangle': [
+    2,
+    {
+      arrays: 'never',
+      objects: 'never',
+      imports: 'never',
+      exports: 'never',
+      functions: 'never'
+    }
+  ],
+  'arrow-body-style': [2, 'as-needed'],
+  'prefer-arrow/prefer-arrow-functions': [
+    2,
+    {
+      allowStandaloneDeclarations: true,
+      disallowPrototype: true,
+      singleReturnOnly: true,
+      classPropertiesAllowed: false
+    }
+  ]
+}
+
 module.exports = {
   root: true,
   env: {
@@ -9,6 +52,9 @@ module.exports = {
     tsconfigRootDir: './',
     project: 'tsconfig.json',
     sourceType: 'module'
+  },
+  globals: {
+    JSX: true
   },
 
   settings: {
@@ -40,35 +86,7 @@ module.exports = {
     'prettier'
   ],
 
-  rules: {
-    'no-undef': 0,
-    'node/no-missing-import': 0,
-    'jsdoc/check-tag-names': 0,
-    'react/react-in-jsx-scope': 0,
-    'react/prop-types': 0,
-    'newline-before-return': 2,
-    'import/no-unresolved': [1, { ignore: ['^(all|part):'] }],
-    'comma-dangle': [
-      2,
-      {
-        arrays: 'never',
-        objects: 'never',
-        imports: 'never',
-        exports: 'never',
-        functions: 'never'
-      }
-    ],
-    'arrow-body-style': [2, 'as-needed'],
-    'prefer-arrow/prefer-arrow-functions': [
-      2,
-      {
-        allowStandaloneDeclarations: true,
-        disallowPrototype: true,
-        singleReturnOnly: true,
-        classPropertiesAllowed: false
-      }
-    ]
-  },
+  rules,
 
   overrides: [
     {
@@ -111,39 +129,16 @@ module.exports = {
         },
         'import/resolver': {
           typescript: {
-            alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+            alwaysTryTypes: false, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
             project: 'tsconfig.json'
           }
         }
       },
       rules: {
-        'node/no-missing-import': 0,
-        'jsdoc/check-tag-names': 0,
-        'react/react-in-jsx-scope': 0,
-        'react/prop-types': 0,
-        'newline-before-return': 2,
-        'import/no-unresolved': [1, { ignore: ['^(all|part):'] }],
-        'comma-dangle': [
-          2,
-          {
-            arrays: 'never',
-            objects: 'never',
-            imports: 'never',
-            exports: 'never',
-            functions: 'never'
-          }
-        ],
-        'prefer-arrow/prefer-arrow-functions': [
-          2,
-          {
-            disallowPrototype: true,
-            singleReturnOnly: true,
-            classPropertiesAllowed: false
-          }
-        ],
+        ...rules,
         /* TS Specific rules */
         'no-undef': 0,
-        'jsdoc/no-undefined-types': 0,
+
         '@typescript-eslint/naming-convention': [
           1,
           {

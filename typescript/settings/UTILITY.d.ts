@@ -5,7 +5,10 @@ import { AppRoute } from 'settings/AppRoute'
 export declare namespace UTILITY {
   /** Common Settings used in many places throughout the codebase */
   export interface CommonSettings {
+    title: string
+    description: string
     staticRoutes: Array<AppRoute>
+    language: string
   }
   /** UI Settings used throughout the codebase */
   export interface UISettings {
