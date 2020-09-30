@@ -23,7 +23,7 @@ export interface IAppProps extends AppProps {
  * [Custom app component](https://nextjs.org/docs/advanced-features/custom-app)
  *
  * @param {IAppProps} props Global app props
- * @returns {App} The App
+ * @returns {JSX.Element} The App
  */
 function MyApp(props: IAppProps): JSX.Element {
   const { Component, pageProps, router } = props
