@@ -8,7 +8,7 @@ const menuItemStyles = MUI.makeStyles((theme: MUI.Theme) =>
       fontWeight: theme.typography.fontWeightMedium
     },
     menuItemActive: {
-      color: theme.palette.primary.main,
+      color: theme.palette.primary.light,
       fontWeight: theme.typography.fontWeightBold,
       paddingLeft: theme.spacing(3)
     }

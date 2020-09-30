@@ -28,13 +28,13 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         </AppDrawer>
       </nav>
 
-      <MUI.Container maxWidth="md" className={classes.content} component="main">
+      <MUI.Container maxWidth="lg" className={classes.content} component="main">
         <div className={classes.toolbar} />
         {/* Wrap page components in a 'Root MUI.Grid' (https://material-ui.com/components/MUI.Grid/) */}
-        <MUI.Grid container>
+        <MUI.Grid container direction="column">
           <>{children}</>
         </MUI.Grid>
-        <div className={classes.mainGrid} />
+        <div className={classes.mainSpacer} />
         <Footer />
       </MUI.Container>
       <FAB />
