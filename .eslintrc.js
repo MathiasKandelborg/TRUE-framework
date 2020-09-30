@@ -53,6 +53,9 @@ module.exports = {
     project: 'tsconfig.json',
     sourceType: 'module'
   },
+  globals: {
+    JSX: true
+  },
 
   settings: {
     'import/parsers': {
