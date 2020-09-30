@@ -3,6 +3,7 @@ import * as MUI from '@material-ui/core'
 import { Product } from 'cms/Product'
 import { PageAnimation } from '../Layout'
 import TitleAnimation from '../Layout/TitleAnimation'
+import TitleDivider from '../TitleDivider'
 import singleProductPageStyles from './ProductPage.styles'
 
 interface ISingleProductPageProps {
@@ -22,8 +23,7 @@ const SingleProductPage: React.FC<ISingleProductPageProps> = (props) => {
         </MUI.Typography>
       </TitleAnimation>
 
-      <MUI.Divider flexItem variant="middle" light />
-      <br />
+      <TitleDivider />
       <MUI.Grid container component={MUI.Paper} className={classes.paper}>
         <PageAnimation layoutID="page">
           <SimpleBlockContent blocks={product?.description} />

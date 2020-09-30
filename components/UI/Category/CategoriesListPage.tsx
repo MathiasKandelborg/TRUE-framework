@@ -2,6 +2,7 @@ import * as MUI from '@material-ui/core'
 import { Category } from 'cms/Category'
 import { PageAnimation } from '../Layout'
 import TitleAnimation from '../Layout/TitleAnimation'
+import TitleDivider from '../TitleDivider'
 import categoriesPageListStyles from './CategoriesListPage.styles'
 import ListCategory from './ListCategory'
 
@@ -21,10 +22,7 @@ const ListCategoriesPage: React.FC<ICategoriesPageProps> = (props) => {
           Categories
         </MUI.Typography>
       </TitleAnimation>
-      <MUI.Grid item xs={12}>
-        <MUI.Divider variant="middle" light />
-        <br />
-      </MUI.Grid>
+      <TitleDivider />
       <MUI.Grid item xs={12}>
         <PageAnimation layoutID="page">
           <MUI.Grid

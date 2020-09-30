@@ -1,4 +1,4 @@
-import SingleCategoryPage from '@components/UI/Category/CategoryPage'
+import SingleCategoryPage from '@components/UI/Category/SingleCategoryPage'
 import getAllCategories from '@util/api/calls/getAllCategories'
 import getProductsByCategory from '@util/api/calls/getAllProductsByCategory'
 import getCategoryBySlug from '@util/api/calls/getSingleCategoryBySlug'
