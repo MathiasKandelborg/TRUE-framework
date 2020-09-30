@@ -1,4 +1,5 @@
 const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
 module.exports = withPWA({
   pwa: {
@@ -6,11 +7,11 @@ module.exports = withPWA({
     register: true,
     scope: '/',
     sw: 'service-worker.js',
-
-    dest: 'public'
+    dest: 'public',
+    runtimeCaching
   },
   reactStrictMode: true,
-  trailingSlash: true,
+  trailingSlash: false,
   poweredByHeader: false,
   webpack: (
     config /* ,{ buildId, dev, isServer, defaultLoaders, webpack } */

@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node util/fixSw.js",
     "start": "next start",
     "commit": "git-cz",
     "semantic-release": "semantic-release"
@@ -92,7 +92,6 @@
     "lint-staged": "10.4.0",
     "prettier": "2.1.2",
     "semantic-release": "17.1.2",
-    "typescript": "4.0.3",
-    "webpack": "5.0.0-rc.3"
+    "typescript": "4.0.3"
   }
 }
