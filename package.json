@@ -54,7 +54,7 @@
     "framer-motion": "2.6.15",
     "groq": "1.150.1",
     "mdi-material-ui": "6.19.0",
-    "next": "9.5.4-canary.22",
+    "next": "9.5.4-canary.23",
     "next-pwa": "^3.1.4",
     "next-seo": "4.7.3",
     "react": "16.13.1",
