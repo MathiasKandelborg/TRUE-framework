@@ -15,6 +15,9 @@
 # production
 /build
 
+# PWA
+public/service-worker.js
+
 # misc
 .DS_Store
 
