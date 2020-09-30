@@ -8,20 +8,18 @@ import { AnimatePresence, motion } from 'framer-motion'
  * @param {JSX.Element|JSX.Element[]} options.children React children
  * @returns {JSX.Element} Title animation div
  */
-const TitleAnimation: React.FC = ({ children }) => {
-  return (
-    <AnimatePresence exitBeforeEnter presenceAffectsLayout>
-      <motion.div
-        layoutId="page-title"
-        variants={titleVariants}
-        initial="exit"
-        animate="enter"
-        exit="exit"
-        layout>
-        {children}
-      </motion.div>
-    </AnimatePresence>
-  )
-}
+const TitleAnimation: React.FC = ({ children }) => (
+  <AnimatePresence exitBeforeEnter presenceAffectsLayout>
+    <motion.div
+      layoutId="page-title"
+      variants={titleVariants}
+      initial="exit"
+      animate="enter"
+      exit="exit"
+      layout>
+      {children}
+    </motion.div>
+  </AnimatePresence>
+)
 
 export default TitleAnimation

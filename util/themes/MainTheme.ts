@@ -17,30 +17,33 @@ const { DarkTheme, MainColor, SecondaryColor, Fonts } = ui
 
 const fonts = Fonts.join(',')
 
-const MainTheme = MUI.unstable_createMuiStrictModeTheme({
-  palette: {
-    type: (DarkTheme && 'dark') || 'light',
+const MainTheme = MUI.responsiveFontSizes(
+  MUI.unstable_createMuiStrictModeTheme({
+    palette: {
+      type: (DarkTheme && 'dark') || 'light',
 
-    primary: {
-      main: MainColor[500]
+      primary: {
+        main: MainColor[700],
+        light: MainColor[300]
+      },
+
+      secondary: {
+        main: SecondaryColor.A200
+      }
+      /*       tonalOffset: 0.4 */
+    },
+    typography: {
+      fontFamily: fonts
     },
 
-    secondary: {
-      main: SecondaryColor[500]
-    },
-    tonalOffset: 0.4
-  },
-  typography: {
-    fontFamily: fonts
-  },
-
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@font-face': [MyWonderFullFont]
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          '@font-face': [MyWonderFullFont]
+        }
       }
     }
-  }
-})
+  })
+)
 
 export default MainTheme

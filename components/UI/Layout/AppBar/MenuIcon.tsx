@@ -8,6 +8,8 @@ const MenuIcon: React.FC<{ iconButtonClassName: string }> = (props) => {
 
   return (
     <MUI.IconButton
+      name="Menu Button"
+      aria-label="Menu Button"
       className={iconButtonClassName}
       onClick={() => drawerToggle(true)}>
       <Menu color="inherit" aria-label="Open Menu" />

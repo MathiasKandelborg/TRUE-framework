@@ -9,7 +9,6 @@ const ListCategory: React.FC<{ categories: Category[] }> = (props) => {
     <>
       {categories.map((category) => (
         <MUI.Grid item xs={12} md={4}>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <SingleCategory {...category} />
         </MUI.Grid>
       ))}

@@ -1,17 +1,15 @@
-import MUILink from '@components/HoC/Link/MUILink'
+import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  return {
-    props: { ...ctx },
+export const getStaticProps: GetStaticProps = async (ctx) => ({
+  props: { ...ctx },
 
-    revalidate: 3600
-  }
-}
+  revalidate: 3600
+})
 
 interface IAboutPageProps
   extends PageProps,
@@ -25,15 +23,15 @@ const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
   }
 
   return (
-    <PageAnimation layoutID="page">
-      <MUI.Typography variant="h1">About</MUI.Typography>
-      <MUILink color="primary" href="/">
-        Home
-      </MUILink>
-      <MUILink color="primary" href="/[page]" as="/testerr">
-        testerr
-      </MUILink>
-    </PageAnimation>
+    <>
+      <TitleWithDivider variant="h1" text="About" />
+
+      <PageAnimation layoutID="page">
+        <MUI.Grid component={MUI.Paper}>
+          <MUI.Typography>Placeholder</MUI.Typography>
+        </MUI.Grid>
+      </PageAnimation>
+    </>
   )
 }
 

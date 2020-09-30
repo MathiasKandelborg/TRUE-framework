@@ -10,7 +10,7 @@ interface ILinkPropsBase {
 
 export type TLinkProps = ILinkPropsBase &
   NextComposedProps &
-  Omit<MUI.LinkProps, 'variant' | 'href'>
+  Omit<MUI.LinkProps, 'href'>
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link

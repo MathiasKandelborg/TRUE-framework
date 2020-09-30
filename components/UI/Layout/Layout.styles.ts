@@ -8,6 +8,7 @@ const layoutStyles = MUI.makeStyles((theme: MUI.Theme) =>
       width: ui.CONSTANTS.DRAWER_WIDTH
     },
     appBar: {
+      backgroundColor: theme.palette.background.default,
       zIndex: theme.zIndex.drawer + 1,
       [theme.breakpoints.up('md')]: {
         marginLeft: ui.CONSTANTS.DRAWER_WIDTH
@@ -23,12 +24,13 @@ const layoutStyles = MUI.makeStyles((theme: MUI.Theme) =>
     },
     toolbar: { ...theme.mixins.toolbar },
 
+    mainSpacer: {
+      height: 612
+    },
+
     content: {
-      flexGrow: 1,
-      height: '100vh',
-      width: '100%',
-      maxWidth: '100%',
       paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(3),
       [theme.breakpoints.up('md')]: {
         paddingLeft: `calc(${theme.spacing(3)}px + ${
           ui.CONSTANTS.DRAWER_WIDTH

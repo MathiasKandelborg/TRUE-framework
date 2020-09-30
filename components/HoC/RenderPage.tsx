@@ -1,5 +1,5 @@
 import RenderSections from '@components/CMS/RenderSections'
-import { APIRoute } from "cms/APIRoute"
+import { APIRoute } from 'cms/APIRoute'
 
 const RenderPage: React.FC<{
   loading: boolean
@@ -9,7 +9,6 @@ const RenderPage: React.FC<{
   const { preview, pageProps } = props
 
   const { title, content } = pageProps || { title: 'TITLE NOT FOUND' }
-
 
   if (preview) {
     /*     getPreviewRouteBySlug(props.routeId!)
