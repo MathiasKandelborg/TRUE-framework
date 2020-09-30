@@ -11,13 +11,11 @@ type ResolvedRoutes = Array<AppRoute>
  * @returns {ResolvedRoutes} Routes combined with static routes
  */
 function resolveRoutes(routes: Routes): ResolvedRoutes {
-  const resolvedRoutes = routes.map((route) => {
-    return {
-      as: `/${route.slug.current}`,
-      route: '/[page]',
-      name: `${route.slug.current}`
-    }
-  })
+  const resolvedRoutes = routes.map((route) => ({
+    as: `/${route.slug.current}`,
+    route: '/[page]',
+    name: `${route.slug.current}`
+  }))
 
   common.staticRoutes.map((staticRoute) => resolvedRoutes.push(staticRoute))
 

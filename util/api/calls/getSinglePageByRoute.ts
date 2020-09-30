@@ -1,5 +1,5 @@
 import { getClient } from '@util/api'
-import { APIRoute } from "cms/APIRoute"
+import { APIRoute } from 'cms/APIRoute'
 import groq from 'groq'
 
 /**

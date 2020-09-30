@@ -31,23 +31,21 @@ interface ISitemapStaticRoutes {
 const createStaticRoutesForSitemap = (
   routes: UTILITY.CommonSettings['staticRoutes']
 ) => {
-  const staticRoutes: Array<ISitemapStaticRoutes> = routes.map((route) => {
-    return {
-      [`${route.route}`]: {
-        page: {
-          _ref: ''
-        },
-        slug: {
-          _type: 'slug',
-          current: route.route
-        },
-        _updatedAt: new Date().toUTCString(),
-        _createdAt: new Date().toUTCString(),
-        includeInSitemap: true,
-        disallowRobots: true
-      }
+  const staticRoutes: Array<ISitemapStaticRoutes> = routes.map((route) => ({
+    [`${route.route}`]: {
+      page: {
+        _ref: ''
+      },
+      slug: {
+        _type: 'slug',
+        current: route.route
+      },
+      _updatedAt: new Date().toUTCString(),
+      _createdAt: new Date().toUTCString(),
+      includeInSitemap: true,
+      disallowRobots: true
     }
-  })
+  }))
 
   return staticRoutes.map((route) => route)
 }
@@ -61,11 +59,9 @@ const createRoutesForSitemap = async (): Promise<
     .then((res: { routes: Array<SMRoute> }) =>
       res.routes
         .filter((route) => route.slug.current)
-        .map((route) => {
-          return {
-            [`${route.slug.current}`]: { ...route }
-          }
-        })
+        .map((route) => ({
+          [`${route.slug.current}`]: { ...route }
+        }))
     )
 
   const smRoutes = [...staticRoutes, ...sanityRoutes]

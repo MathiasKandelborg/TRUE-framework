@@ -38,23 +38,21 @@ function MyApp(props: IAppProps): JSX.Element {
     }
   }, [])
 
-  const MenuItemsArr = allRoutes?.map((r, i) => {
-    return (
-      <MenuItem
-        key={`menu-item-${i.toString()}`}
-        text={r.name}
-        as={r.as}
-        route={r.route}
-      />
-    )
-  })
+  const MenuItemsArr = allRoutes?.map((r, i) => (
+    <MenuItem
+      key={`menu-item-${i.toString()}`}
+      text={r.name}
+      as={r.as}
+      route={r.route}
+    />
+  ))
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const hostname = process.env.NEXT_PUBLIC_HOSTNAME!
 
   const canonicalRoute = CONSTANTS.DEV
     ? `https://localhost:3000${router.asPath}`
-    : `https://${hostname}${router.asPath}`
+    : `${hostname}${router.asPath}`
 
   return (
     <>
@@ -62,7 +60,7 @@ function MyApp(props: IAppProps): JSX.Element {
         <meta
           name="viewport"
           key="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
+          content="minimum-scale=1, initial-scale=1, width=device-width "
         />
       </Head>
       <DefaultSeo
@@ -71,6 +69,7 @@ function MyApp(props: IAppProps): JSX.Element {
          * https://github.com/garmeeh/next-seo#title-template
          */
         titleTemplate="%s | TRUE Framework"
+        title="Set my title"
       />
 
       <StoreProvider store={store}>
@@ -78,11 +77,7 @@ function MyApp(props: IAppProps): JSX.Element {
           <MUI.CssBaseline />
           <AnimateSharedLayout type="crossfade">
             <Layout preview={preview} MenuItems={MenuItemsArr}>
-              <Component
-                key={canonicalRoute}
-                /* eslint-disable-next-line react/jsx-props-no-spreading */
-                {...pageProps}
-              />
+              <Component key={canonicalRoute} {...pageProps} />
             </Layout>
           </AnimateSharedLayout>
         </MUI.ThemeProvider>

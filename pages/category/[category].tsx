@@ -1,4 +1,4 @@
-import SingleCategoryPage from '@components/UI/Category/CategoryPage'
+import SingleCategoryPage from '@components/UI/Category/SingleCategoryPage'
 import getAllCategories from '@util/api/calls/getAllCategories'
 import getProductsByCategory from '@util/api/calls/getAllProductsByCategory'
 import getCategoryBySlug from '@util/api/calls/getSingleCategoryBySlug'
@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps<Omit<
 
   const category = await getCategoryBySlug(slug)
 
-  // eslint-disable-next-line no-underscore-dangle
   const products = await getProductsByCategory(category._id)
 
   return {

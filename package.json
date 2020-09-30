@@ -5,55 +5,54 @@
   "description": "TRUE Framework === The Really Unique & Exciting Framework (for the web)",
   "version": "0.0.0-development",
   "license": "MIT",
-  "homepage": "https://github.com/MathiasKandelborg/TRUE#readme",
+  "homepage": "https://github.com/MathiasKandelborg/TRUE-framework#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MathiasKandelborg/TRUE.git"
+    "url": "git+https://github.com/MathiasKandelborg/TRUE-framework.git"
   },
   "bugs": {
-    "url": "https://github.com/MathiasKandelborg/TRUE/issues"
+    "url": "https://github.com/MathiasKandelborg/TRUE-framework/issues"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node util/fixSw.js",
     "start": "next start",
     "commit": "git-cz",
     "semantic-release": "semantic-release"
   },
   "config": {
     "commitizen": {
-      "path": "../../node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "resolutions": {
-    "webpack": "5.0.0-beta.30"
-  },
   "dependencies": {
-    "@types/react": "16.9.49",
-    "@types/react-dom": "16.9.8",
-    "@types/webpack-env": "1.15.3",
-    "@types/express": "4.17.8",
-    "@types/node": "14.11.2",
     "@material-ui/core": "4.11.0",
     "@sanity/block-content-to-react": "2.0.7",
     "@sanity/client": "1.150.7",
     "@sanity/image-url": "0.140.19",
+    "@types/express": "4.17.8",
+    "@types/node": "14.11.2",
+    "@types/react": "16.9.49",
+    "@types/react-dom": "16.9.8",
+    "@types/webpack-env": "1.15.3",
     "clsx": "1.1.1",
     "easy-peasy": "3.3.1",
     "final-form": "4.20.1",
     "framer-motion": "2.6.15",
     "groq": "1.150.1",
     "mdi-material-ui": "6.19.0",
-    "next": "9.5.4-canary.22",
+    "next": "9.5.4-canary.23",
+    "next-pwa": "^3.1.4",
     "next-seo": "4.7.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -61,7 +60,8 @@
     "react-icons": "3.11.0",
     "sitemap": "6.3.0",
     "swr": "0.3.3",
-    "ua-parser-js": "^0.7.22"
+    "ua-parser-js": "^0.7.22",
+    "vsce-yarn-patch": "^1.66.2"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
@@ -89,6 +89,7 @@
     "eslint-plugin-react": "7.20.6",
     "eslint-plugin-react-hooks": "4.1.2",
     "husky": "4.3.0",
+    "lint-staged": "10.4.0",
     "prettier": "2.1.2",
     "semantic-release": "17.1.2",
     "typescript": "4.0.3"

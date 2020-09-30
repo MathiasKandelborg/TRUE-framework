@@ -1,4 +1,5 @@
 import * as MUI from '@material-ui/core'
+import { common, ui } from '@util/settings'
 import Document, {
   DocumentContext,
   Head,
@@ -45,10 +46,7 @@ export default class MyDocument extends Document {
     // Render app and page and get the context of the page with collected side effects.
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => {
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          return sheets.collect(<App {...props} />)
-        }
+        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />)
       })
 
     const initialProps = await Document.getInitialProps(ctx)
@@ -67,10 +65,52 @@ export default class MyDocument extends Document {
   }
 
   render(): JSX.Element {
+    const { language, title, description } = common
+
     return (
-      <Html lang="en">
-        {/* DO NOT POPULATE THIS HEAD COMPONENT */}
-        <Head />
+      <Html lang={language}>
+        {/* DO NOT POPULATE THIS HEAD COMPONENT WITH UNCOMMON TAGS
+         * I.E DO NOT PUT `title` or `description` or social media tags here
+         *
+         * Use the dedicated SEO components in `components/SEO` */}
+        <Head>
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="application-name" content={title} />
+          <meta name="description" content={description} />
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-title" content={title} />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="default"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/TRUE-logo/TRUE-logo-16.svg"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/TRUE-logo/TRUE-logo-16.svg"
+          />
+
+          <link
+            rel="mask-icon"
+            href="/images/TRUE-logo/TRUE-logo-16.svg"
+            color="#0097a7"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/TRUE-logo/logo-180-white.png"
+          />
+          <meta name="msapplication-TileColor" content={ui.MainColor[700]} />
+          <meta name="theme-color" content={ui.MainColor[700]} />
+        </Head>
         <body>
           <Main />
 
