@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 const TitleAnimation: React.FC = ({ children }) => (
   <AnimatePresence exitBeforeEnter presenceAffectsLayout>
     <motion.div
-      layoutId="page-title"
+      /*  layoutId="page-title" */
       variants={titleVariants}
       initial="exit"
       animate="enter"

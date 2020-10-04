@@ -25,10 +25,25 @@ const layoutStyles = MUI.makeStyles((theme: MUI.Theme) =>
     toolbar: { ...theme.mixins.toolbar },
 
     mainSpacer: {
-      height: 612
+      height: theme.spacing(20)
+    },
+
+    main: {
+      /*
+       * Remove scrollbars on transitions, where content would be scrolled,
+       * if initial container height was in the resulting container.
+       */
+      overflow: 'hidden'
     },
 
     content: {
+      /* Don't show horizontal scroll-bar on horizontal/x position animations
+       * ########## WARNING WARNING WARNING WARNING ################
+       * This settings disables a visual queue that content is too wide
+       * If overflowX equals hidden, one need to
+       * ### Manually check content width consistency. ###
+       */
+      overflowX: 'hidden',
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
       [theme.breakpoints.up('md')]: {
