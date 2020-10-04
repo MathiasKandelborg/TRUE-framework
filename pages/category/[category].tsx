@@ -1,7 +1,10 @@
-import SingleCategoryPage from '@components/UI/Category/SingleCategoryPage'
+import PageSEO from '@components/HoC/SEO/Page'
+import SingleCategoryPage from '@components/UI/Pages/Category/SingleCategoryPage'
 import getAllCategories from '@util/api/calls/getAllCategories'
 import getProductsByCategory from '@util/api/calls/getAllProductsByCategory'
+import getSanityConfig from '@util/api/calls/getSanityConfig'
 import getCategoryBySlug from '@util/api/calls/getSingleCategoryBySlug'
+import generateRawTextFromTextBlock from '@util/generateRawTextFromTextBlock'
 import { Category } from 'cms/Category'
 import { Product } from 'cms/Product'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -32,12 +35,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Omit<
-  PageProps,
+  ICategoriesPageProps,
   'config' | 'allRoutes'
 >> = async (ctx) => {
   const { preview, params } = ctx
 
   const slug = params?.category as string
+
+  const config = await getSanityConfig()
 
   const category = await getCategoryBySlug(slug)
 
@@ -45,6 +50,7 @@ export const getStaticProps: GetStaticProps<Omit<
 
   return {
     props: {
+      ...config,
       preview: Boolean(preview),
       category: category || null,
       products,
@@ -54,23 +60,27 @@ export const getStaticProps: GetStaticProps<Omit<
   }
 }
 
-interface ICategoryPageStaticProps
-  extends ICategoriesPageProps,
-    InferGetStaticPropsType<typeof getStaticProps> {}
-
-const CategoryPage: React.FC<ICategoryPageStaticProps> = (props) => {
+const CategoryPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props
+) => {
   const { category, products } = props
 
   const router = useRouter()
 
   useEffect(() => {
     if (typeof category === 'undefined') {
-      console.log('CATEGORY IS UNDEFINEEEEED')
       router.back()
     }
-  })
+  }, [category, router])
 
-  return <SingleCategoryPage category={category} products={products} />
+  const rawTextDesc = generateRawTextFromTextBlock(category?.description)
+
+  return (
+    <>
+      <PageSEO title={category?.title} description={rawTextDesc} />
+      <SingleCategoryPage category={category} products={products} />
+    </>
+  )
 }
 
 export default CategoryPage

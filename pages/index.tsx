@@ -1,36 +1,31 @@
-import TitleWithDivider from '@components/HoC/TitleWithDivider'
-import { PageAnimation } from '@components/UI'
-import * as MUI from '@material-ui/core'
-import { GetStaticProps } from 'next'
+import PageSEO from '@components/HoC/SEO/Page'
+import HomePage from '@components/UI/Pages/Home/HomePage'
+import getSanityConfig from '@util/api/calls/getSanityConfig'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
 
-interface IHomePageProps extends PageProps {
-  test: string
+export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
+  const config = await getSanityConfig()
+
+  return {
+    props: { ...ctx, ...config },
+    revalidate: 3600
+  }
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticProps: GetStaticProps = async (ctx) => ({
-  props: { ...ctx },
+const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props
+) => (
+  <>
+    <PageSEO
+      title="Home Page"
+      description="The homepage for the TRUE framework showcase of itself"
+    />
+    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+    <HomePage {...props} />
+  </>
+)
 
-  revalidate: 3600
-})
+Home.displayName = 'Home Page'
 
-const HomePage: React.FC<IHomePageProps> = (props) => {
-  const { config } = props
-
-  return (
-    <>
-      <TitleWithDivider variant="h1" text={config.title} />
-
-      <PageAnimation layoutID="page">
-        <MUI.Grid component={MUI.Paper}>
-          <MUI.Typography variant="h2">Showcase</MUI.Typography>
-        </MUI.Grid>
-      </PageAnimation>
-    </>
-  )
-}
-
-HomePage.displayName = 'Home Page'
-
-export default HomePage
+export default Home

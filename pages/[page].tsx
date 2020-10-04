@@ -3,6 +3,7 @@ import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
 import { MutationEvent } from '@sanity/client'
 import { getClient } from '@util/api'
+import getSanityConfig from '@util/api/calls/getSanityConfig'
 import getPageAndRouteByRoute from '@util/api/calls/getSinglePageByRoute'
 import routes from '@util/api/queries/allRoutes'
 import { CONSTANTS, ui } from '@util/settings'
@@ -16,7 +17,7 @@ import { useEffect, useState } from 'react'
 
 interface ICustomPageProps extends PageProps {
   currentRoute: APIRoute | null
-  preview: boolean
+  preview?: boolean
   previewData?: Record<string, string>
 }
 
@@ -27,6 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const routeParams: [{ params: { page: string } }] = []
+  // FIXME double JSON parse... what!? I should be ashamed of myself!
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
   await JSON.parse(JSON.stringify(sanityRoutes)).forEach(
     (route: { slug: { current: string } }) => {
@@ -46,6 +48,8 @@ export const getStaticProps: GetStaticProps<Omit<
 >> = async (ctx) => {
   const { preview, params } = ctx
 
+  const config = await getSanityConfig()
+
   const page = params && typeof params.page === 'string' ? params.page : ''
 
   const fetchedRoute: APIRoute = await getPageAndRouteByRoute({
@@ -54,6 +58,7 @@ export const getStaticProps: GetStaticProps<Omit<
 
   return {
     props: {
+      ...config,
       preview: Boolean(preview),
       currentRoute: fetchedRoute || null,
       ...ctx
@@ -62,11 +67,9 @@ export const getStaticProps: GetStaticProps<Omit<
   }
 }
 
-interface IPageStaticProps
-  extends PageProps,
-    InferGetStaticPropsType<typeof getStaticProps> {}
-
-const CustomPage: React.FC<IPageStaticProps> = (props) => {
+const CustomPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props
+) => {
   const { currentRoute, preview } = props
 
   const router = useRouter()
