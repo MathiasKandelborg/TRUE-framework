@@ -1,5 +1,6 @@
 import { UTILITY } from 'settings/UTILITY'
 
-declare type UIModel = Omit<UTILITY.UISettings, 'CONSTANTS'>
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+declare interface IUIModel extends Omit<UTILITY.UISettings, 'CONSTANTS'> {}
 
-export default UIModel
+export default IUIModel
