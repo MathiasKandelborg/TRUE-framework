@@ -1,8 +1,8 @@
 import SimpleBlockContent from '@components/CMS/PortableText/SimpleBlockContent'
+import TitleWithDivider from '@components/HoC/TitleWithDivider'
+import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
 import { Product } from 'cms/Product'
-import TitleWithDivider from '../../HoC/TitleWithDivider'
-import { PageAnimation } from '../Layout'
 import singleProductPageStyles from './ProductPage.styles'
 
 interface ISingleProductPageProps {

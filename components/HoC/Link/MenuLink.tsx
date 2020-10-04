@@ -34,8 +34,6 @@ const MenuLink = (props: TLinkProps) => {
     [activeClassName]: router.asPath === href && activeClassName
   })
 
-  // console.log(`AFTER\nas: ${customAs}, href: ${customHref}`)
-
   return (
     <MUI.Link
       component={NextComposed}

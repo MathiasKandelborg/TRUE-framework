@@ -6,7 +6,7 @@ import MenuIconSvg from './MenuIcon'
 interface IAppBarProps {
   appBarClassName: string
   iconButtonClassName: string
-  preview: boolean
+  preview?: boolean
 }
 
 const AppBar: React.FC<IAppBarProps> = (props) => {

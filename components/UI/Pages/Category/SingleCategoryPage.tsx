@@ -1,9 +1,9 @@
+import TitleWithDivider from '@components/HoC/TitleWithDivider'
+import { PageAnimation } from '@components/UI'
+import ListProduct from '@components/UI/Product/ListProduct'
 import * as MUI from '@material-ui/core'
 import { Category } from 'cms/Category'
 import { Product } from 'cms/Product'
-import TitleWithDivider from '../../HoC/TitleWithDivider'
-import { PageAnimation } from '../Layout'
-import ListProduct from '../Product/ListProduct'
 import categoriesPageListStyles from './CategoriesListPage.styles'
 
 interface ICategoryPageProps {

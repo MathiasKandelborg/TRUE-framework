@@ -13,7 +13,7 @@ const ListProduct: React.FC<IListProductProps> = (props) => {
   return (
     <>
       {products?.map((product) => (
-        <MUI.Grid item xs={12} md={4}>
+        <MUI.Grid key={product._id} item xs={12} md={4}>
           <SingleProduct categorySlug={categorySlug} product={{ ...product }} />
         </MUI.Grid>
       ))}

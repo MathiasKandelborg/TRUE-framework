@@ -2,6 +2,7 @@ import * as MUI from '@material-ui/core'
 import { BlockContent } from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import generateRawTextFromTextBlock from '@util/generateRawTextFromTextBlock'
 import client from '@util/sanity'
 import { TextBlock } from 'PortableText'
 import SimpleBlockContent from '../PortableText/SimpleBlockContent'
@@ -9,13 +10,13 @@ import SimpleBlockContent from '../PortableText/SimpleBlockContent'
 interface IHeroSectionProps {
   heading: string
   tagline: TextBlock
-  ctas: [any]
+  ctas: [string]
   backgroundImage: BlockContent['imageOptions']
 }
 
 /**
  * @param {SanityImageSource} source The Sanity image source
- * @returns {url} Image url
+ * @returns {string} Image url
  */
 const urlFor = (source: SanityImageSource) =>
   imageUrlBuilder(client).image(source)
@@ -33,16 +34,13 @@ const HeroSection: React.FC<IHeroSectionProps> = (props) => {
       }
     : {}
 
-  // Helper function to keep TS happy
-  // TODO: Remove, it's just for testing integration
-  const image =
-    style && style.backgroundImage ? style : { backgroundImage: 'nope' }
-
-  console.log(`This is the backgroundImage: ${image.backgroundImage}`)
-
   return (
     <section>
       <MUI.Grid>
+        <img
+          src={style?.backgroundImage}
+          alt={generateRawTextFromTextBlock(Array(tagline))}
+        />
         <MUI.Typography variant="h1">{heading}</MUI.Typography>
         {tagline && (
           <MUI.Typography>
