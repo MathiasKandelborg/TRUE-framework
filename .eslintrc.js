@@ -1,8 +1,31 @@
+const typeNames = [
+  'AppProps',
+  'AppRoute',
+  'BaseAPIObject',
+  'BaseRoute',
+  'BaseTextObject',
+  'BlockContent',
+  'Category',
+  'MetaAPIObject',
+  'Page',
+  'PageContent',
+  'PageProps',
+  'Product',
+  'StaticRoute',
+  'SMRoute',
+  'SpanTextObject',
+  'TextBlock',
+  'TextBlockMarkDefs'
+]
+
+const typesToIgnore = typeNames.join('|')
+
 const rules = {
   'no-underscore-dangle': [
     'error',
     { allow: ['_id', '_type', '_rev', '_key', '_createdAt', '_updatedAt'] }
   ],
+  'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
   'react/jsx-props-no-spreading': [
     2,
     {
@@ -148,7 +171,11 @@ module.exports = {
           {
             selector: 'interface',
             format: ['PascalCase'],
-            prefix: ['I', 'A']
+            prefix: ['I', 'A'],
+            filter: {
+              regex: `^(${typesToIgnore})$`,
+              match: false
+            }
           },
           {
             selector: 'typeParameter',
