@@ -1,8 +1,8 @@
-import StoreModel from 'state/StoreModel'
+import IStoreModel from 'state/StoreModel'
 import navigationStore from './navigation'
 import uiStore from './ui'
 
-const storeModel: StoreModel = {
+const storeModel: IStoreModel = {
   ...uiStore,
   ...navigationStore
 }
