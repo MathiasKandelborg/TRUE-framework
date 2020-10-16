@@ -1,5 +1,5 @@
 import * as MUI from '@material-ui/core'
-import { common, seo, ui } from '@util/settings'
+import { seo, ui } from '@util/settings'
 import Document, {
   DocumentContext,
   Head,
@@ -65,12 +65,11 @@ export default class MyDocument extends Document {
   }
 
   render(): JSX.Element {
-    const { language } = common
     const { title, applicationName } = seo
 
     return (
-      <Html lang={language}>
-        {/* DO NOT POPULATE THIS HEAD COMPONENT WITH UNCOMMON TAGS
+      <Html>
+        {/* DO NOT POPULATE THIS HEAD COMPONENT WITH COMMON TAGS
          * I.E DO NOT PUT `title` or `description` or social media tags here
          *
          * Use the dedicated SEO components in `components/SEO` */}
