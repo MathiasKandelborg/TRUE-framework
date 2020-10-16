@@ -31,7 +31,7 @@ const MenuLink = (props: TLinkProps) => {
   const router = useRouter()
 
   const className = clsx(classNameProps, {
-    [activeClassName]: router.asPath === href && activeClassName
+    [activeClassName]: router.asPath === as && activeClassName
   })
 
   return (

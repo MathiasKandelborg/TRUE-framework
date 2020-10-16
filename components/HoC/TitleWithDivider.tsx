@@ -11,7 +11,10 @@ const TitleWithDivider: React.FC<ITitleDividerProps> = (props) => {
   return (
     <MUI.Grid item xs={12}>
       <TitleAnimation>
-        <MUI.Typography variant={variant} gutterBottom={gutterBottom}>
+        <MUI.Typography
+          color="primary"
+          variant={variant}
+          gutterBottom={gutterBottom}>
           {text}
         </MUI.Typography>
       </TitleAnimation>

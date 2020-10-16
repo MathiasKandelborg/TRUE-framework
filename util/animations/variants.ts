@@ -21,17 +21,19 @@ const pageVariants: Variants = {
 
 const titleVariants: Variants = {
   exit: {
-    x: -500,
+    position: 'absolute',
+    x: -3000,
     opacity: 0,
-    /*  transitionDuration: '500ms', */
+    transitionDuration: '175ms',
     transition: {
       easings: easing
     }
   },
   enter: {
+    position: 'initial',
     x: 0,
     opacity: 1,
-    /*     transitionDuration: '500ms', */
+    transitionDuration: '175ms',
     transition: {
       easings: easing
     }

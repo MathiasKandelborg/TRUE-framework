@@ -46,6 +46,7 @@ const layoutStyles = MUI.makeStyles((theme: MUI.Theme) =>
       overflowX: 'hidden',
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
+
       [theme.breakpoints.up('md')]: {
         paddingLeft: `calc(${theme.spacing(3)}px + ${
           ui.CONSTANTS.DRAWER_WIDTH

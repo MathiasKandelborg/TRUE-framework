@@ -23,7 +23,7 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
         button
         onClick={() => drawerToggle(false)}
         component={MenuLink}
-        scroll={false}
+        scroll
         href={route}
         as={as}
         className={classes.menuItem}

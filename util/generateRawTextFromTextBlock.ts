@@ -9,6 +9,7 @@ import { TextBlock } from 'PortableText'
  */
 function generateRawTextFromTextBlock(textBlock: TextBlock[]): string {
   let rawText = ''
+
   /* Create raw-text description from description text blocks */
   textBlock?.forEach((textChild) =>
     textChild.children.map(
