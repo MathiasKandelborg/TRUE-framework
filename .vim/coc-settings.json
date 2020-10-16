@@ -1,0 +1,6 @@
+{
+  "eslint.run": "onType",
+  "prettier.eslintIntegration": true,
+  "eslint.packageManager": "yarn",
+  "prettier.formatterPriority": -1
+}
