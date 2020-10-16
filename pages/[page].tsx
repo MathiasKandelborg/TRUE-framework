@@ -22,18 +22,14 @@ interface ICustomPageProps extends PageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const sanityRoutes = await getClient(false).fetch(routes)
+  const sanityRoutes: Array<{ slug: { current: string } }> = await getClient(
+    false
+  ).fetch(routes)
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const routeParams: [{ params: { page: string } }] = []
-  // FIXME double JSON parse... what!? I should be ashamed of myself!
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-  await JSON.parse(JSON.stringify(sanityRoutes)).forEach(
-    (route: { slug: { current: string } }) => {
-      routeParams.push({ params: { page: `/${route.slug.current}` } })
-    }
+  const routeParams: { params: { page: string } }[] = []
+
+  sanityRoutes.forEach((route) =>
+    routeParams.push({ params: { page: `/${route.slug.current}` } })
   )
 
   return {
@@ -42,10 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<Omit<
-  ICustomPageProps,
-  'config' | 'allRoutes'
->> = async (ctx) => {
+export const getStaticProps: GetStaticProps<ICustomPageProps> = async (ctx) => {
   const { preview, params } = ctx
 
   const config = await getSanityConfig()
