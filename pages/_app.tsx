@@ -3,7 +3,7 @@ import LogoSEO from '@components/HoC/SEO/Logo'
 import { Layout } from '@components/UI'
 import ListMenuItems from '@components/UI/Layout/Drawer/MenuItemsArr'
 import * as MUI from '@material-ui/core'
-import { CONSTANTS, seo } from '@util/settings'
+import canonicalRoute from '@util/canonicalRoute'
 import store from '@util/shared/createStore'
 import MainTheme from '@util/themes/MainTheme'
 import { StoreProvider } from 'easy-peasy'
@@ -34,14 +34,12 @@ function MyApp(props: IAppProps): JSX.Element {
     }
   }, [])
 
-  const canonicalRoute = CONSTANTS.DEV
-    ? `https://localhost:3000${router.asPath}`
-    : `${seo.url}${router.asPath}`
+  const currentRoute = canonicalRoute(router)
 
   return (
     <>
-      <DefaultSEO canonicalRoute={canonicalRoute} />
-      <LogoSEO canonicalRoute={canonicalRoute} />
+      <DefaultSEO canonicalRoute={currentRoute} />
+      <LogoSEO canonicalRoute={currentRoute} />
 
       <StoreProvider store={store}>
         <MUI.ThemeProvider theme={MainTheme}>
@@ -50,7 +48,7 @@ function MyApp(props: IAppProps): JSX.Element {
             <Layout
               preview={preview}
               MenuItems={<ListMenuItems allRoutes={allRoutes} />}>
-              <Component key={canonicalRoute} {...pageProps} />
+              <Component key={currentRoute} {...pageProps} />
             </Layout>
           </AnimateSharedLayout>
         </MUI.ThemeProvider>
