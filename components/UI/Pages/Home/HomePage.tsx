@@ -1,9 +1,12 @@
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
+import handleExitComplete from '@util/handleExitComplete'
+import { AnimatePresence } from 'framer-motion'
 import { PageProps } from 'PageProps'
 import homePageStyles from './HomePage.styles'
 import SectionBasedOnPracticesIdeas from './Section/BasedOnPracticesIdeas'
+import SectionBasedOnThisTech from './Section/BasedOnThisTech'
 import SectionWhyUseTrue from './Section/WhyUseTrue'
 
 type IHomePageProps = PageProps
@@ -17,38 +20,34 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
 
   return (
     <>
-      <TitleWithDivider variant="h1" text={config.title} />
-
-      <PageAnimation layoutID="page">
-        <Grid component={MUI.Paper} className={classes.root}>
-          <img
-            style={{ borderTopLeftRadius: 4, borderTopRightRadius: 4 }}
-            width="100%"
-            srcSet="/images/TRUE-logo/TRUE-logo-social-blue.png,
-             /images/TRUE-logo/TRUE-logo-social-large-blue 2x"
-            src="/images/TRUE-logo/TRUE-logo-social-large-blue.png"
-            alt="TRUE Framework Logo Header"
-          />
-          <br />
-          <br />
-          <SectionWhyUseTrue />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <SectionBasedOnPracticesIdeas />
-          <Grid item xs={12}>
+      <AnimatePresence
+        presenceAffectsLayout
+        onExitComplete={() => handleExitComplete()}>
+        <TitleWithDivider key="home-title" variant="h1" text={config.title} />
+        <PageAnimation key="home-page" layoutID="page">
+          <Grid component={MUI.Paper} className={classes.root}>
             <img
-              src="/images/illustrations/nextjs.svg"
+              className={classes.headerImg}
               width="100%"
-              height={256}
-              alt="Next dot JS Illustration"
+              srcSet="/images/TRUE-logo/TRUE-logo-social-small-blue.png,
+             /images/TRUE-logo/TRUE-logo-social-large-blue.png 2x"
+              src="/images/TRUE-logo/TRUE-logo-social-large-small-blue.png"
+              alt="TRUE Framework Logo Header"
             />
+            <br />
+            <br />
+            <SectionWhyUseTrue />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <SectionBasedOnPracticesIdeas />
+            <SectionBasedOnThisTech />
           </Grid>
-        </Grid>
-      </PageAnimation>
+        </PageAnimation>
+      </AnimatePresence>
     </>
   )
 }
