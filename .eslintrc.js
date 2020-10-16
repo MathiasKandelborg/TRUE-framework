@@ -96,7 +96,7 @@ module.exports = {
     'plugin:jsdoc/recommended',
     'plugin:promise/recommended',
     'plugin:node/recommended-module',
-    'prettier',
+    'plugin:prettier/recommended',
     'prettier/react'
   ],
 
@@ -132,7 +132,7 @@ module.exports = {
         'plugin:jsdoc/recommended',
         'plugin:promise/recommended',
         'plugin:node/recommended-module',
-        'prettier',
+        'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
         'prettier/react'
       ],

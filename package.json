@@ -21,7 +21,7 @@
     "build": "next build && node util/fixSw.js",
     "start": "next start",
     "commit": "git-cz",
-    "check:all": " prettier components pages typescript util && eslint .",
+    "check:all": " prettier components pages typescript util && eslint --cache .",
     "semantic-release": "semantic-release"
   },
   "config": {
@@ -49,10 +49,10 @@
     "clsx": "1.1.1",
     "easy-peasy": "3.3.1",
     "final-form": "4.20.1",
-    "framer-motion": "2.7.7",
+    "framer-motion": "2.8.0",
     "groq": "1.150.1",
     "mdi-material-ui": "6.19.0",
-    "next": "9.5.4-canary.23",
+    "next": "9.5.4",
     "next-pwa": "3.1.5",
     "next-seo": "4.11.0",
     "react": "16.13.1",
@@ -60,8 +60,7 @@
     "react-final-form": "6.5.1",
     "sitemap": "6.3.2",
     "swr": "0.3.5",
-    "ua-parser-js": "0.7.22",
-    "vsce-yarn-patch": "1.66.2"
+    "ua-parser-js": "0.7.22"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
