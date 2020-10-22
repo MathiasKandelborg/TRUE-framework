@@ -8,7 +8,7 @@ import productsByCategory from '../queries/allProductsByCategory'
  */
 async function getProductsByCategory(id: string): Promise<Product[]> {
   const data: Product[] = await getClient(false).fetch(productsByCategory, {
-    id
+    id: `${id}`
   })
 
   return data

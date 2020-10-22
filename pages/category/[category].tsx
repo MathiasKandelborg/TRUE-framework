@@ -23,7 +23,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categoriesArr: { params: { category: string } }[] = []
 
   categories.forEach((category) => {
-    categoriesArr.push({ params: { category: category.url.current } })
+    categoriesArr.push({
+      params: { category: category?.url?.current || 'UNDEFINED' }
+    })
   })
 
   return {
@@ -47,6 +49,8 @@ export const getStaticProps: GetStaticProps<Omit<
   const category = await getCategoryBySlug(slug)
 
   const products = await getProductsByCategory(category._id)
+
+  if (!category) return { unstable_notFound: true }
 
   return {
     props: {

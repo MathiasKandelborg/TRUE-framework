@@ -8,7 +8,7 @@ import singleProductFromSlug from '../queries/singleProductBySlug'
  */
 async function getSingleProductBySlug(slug: string): Promise<Product> {
   const data: Product = await getClient(false).fetch(singleProductFromSlug, {
-    slug
+    slug: `${slug}`
   })
 
   return data

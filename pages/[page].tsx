@@ -9,19 +9,24 @@ import routes from '@util/api/queries/allRoutes'
 import { CONSTANTS, ui } from '@util/settings'
 import { APIRoute } from 'cms/APIRoute'
 import groq from 'groq'
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType
+} from 'next'
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { PageProps } from 'PageProps'
 import { useEffect, useState } from 'react'
 
-interface ICustomPageProps extends PageProps {
+interface ICustomPageProps extends PageProps, GetStaticPropsContext {
   currentRoute: APIRoute | null
-  preview?: boolean
-  previewData?: Record<string, string>
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const getStaticPaths = async (hmm: unknown) => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  console.info(`GetStaticPathsObj: ${hmm}`)
   const sanityRoutes: Array<{ slug: { current: string } }> = await getClient(
     false
   ).fetch(routes)
@@ -29,8 +34,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const routeParams: { params: { page: string } }[] = []
 
   sanityRoutes.forEach((route) =>
-    routeParams.push({ params: { page: `/${route.slug.current}` } })
+    routeParams.push({
+      params: { page: `/${route.slug.current}` }
+    })
   )
+
+  // eslint-disable-next-line no-console
+  console.dir(routeParams)
 
   return {
     paths: !routeParams[0] ? [{ params: { page: 'REDIRECT' } }] : routeParams,
@@ -40,7 +50,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<ICustomPageProps> = async (ctx) => {
   const { preview, params } = ctx
-
+  // eslint-disable-next-line no-console
+  console.log(ctx)
   const config = await getSanityConfig()
 
   const page = params && typeof params.page === 'string' ? params.page : ''
@@ -49,14 +60,20 @@ export const getStaticProps: GetStaticProps<ICustomPageProps> = async (ctx) => {
     pageSlug: page
   })
 
+  if (!fetchedRoute || !fetchedRoute._id) {
+    return {
+      unstable_notFound: true
+    }
+  }
+
   return {
     props: {
       ...config,
       preview: Boolean(preview),
-      currentRoute: fetchedRoute || null,
+      currentRoute: fetchedRoute,
       ...ctx
     },
-    revalidate: 1
+    revalidate: 10
   }
 }
 

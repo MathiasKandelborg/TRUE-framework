@@ -38,8 +38,8 @@ async function generateProductParamsArr(): Promise<IParams> {
       if (productInCategory)
         paramsArr.push({
           params: {
-            category: cat.url.current,
-            product: prod.url.current
+            category: cat.url?.current,
+            product: prod.url?.current
           }
         })
     })

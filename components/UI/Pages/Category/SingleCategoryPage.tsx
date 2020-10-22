@@ -31,7 +31,7 @@ const SingleCategoryPage: React.FC<ICategoryPageProps> = (props) => {
           component={MUI.Paper}
           className={classes.paper}>
           <ListProduct
-            categorySlug={category?.url.current}
+            categorySlug={category?.url?.current}
             products={products}
           />
         </MUI.Grid>

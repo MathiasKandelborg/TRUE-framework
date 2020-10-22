@@ -7,7 +7,9 @@ import categoryBySlug from '../queries/singleCategoryBySlug'
  * @returns {Promise<Category>} The category provided by slug
  */
 async function getCategoryBySlug(slug: string): Promise<Category> {
-  const data: Category = await getClient(false).fetch(categoryBySlug, { slug })
+  const data: Category = await getClient(false).fetch(categoryBySlug, {
+    slug: `${slug}`
+  })
 
   return data
 }
