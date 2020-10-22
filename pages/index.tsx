@@ -2,6 +2,7 @@ import PageSEO from '@components/HoC/SEO/Page'
 import HomePage from '@components/UI/Pages/Home/HomePage'
 import getSanityConfig from '@util/api/calls/getSanityConfig'
 import resolveTranslationFiles from '@util/i18n/resolveTranslationFiles'
+import { TSupportedLanguages } from 'i18n/Languages'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
 
@@ -17,8 +18,8 @@ export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
    * To access keys in the file, use object notation
    */
   const translation = resolveTranslationFiles({
-    locale: ctx.locale || error,
-    locales: ctx.locales || [error],
+    locale: (ctx.locale as TSupportedLanguages) || error,
+    locales: (ctx.locales as TSupportedLanguages[]) || [error],
     namespaces: ['homePage', 'test']
   })
 

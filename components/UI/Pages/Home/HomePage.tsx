@@ -14,13 +14,14 @@ type IHomePageProps = PageProps
 const { Grid } = MUI
 
 const HomePage: React.FC<IHomePageProps> = (props) => {
-  const { config } = props
+  const { config, translation } = props
 
   const classes = homePageStyles()
 
   return (
     <>
       <AnimatePresence
+        exitBeforeEnter
         presenceAffectsLayout
         onExitComplete={() => handleExitComplete()}>
         <TitleWithDivider key="home-title" variant="h1" text={config.title} />
@@ -34,6 +35,7 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
               src="/images/TRUE-logo/TRUE-logo-social-large-small-blue.png"
               alt="TRUE Framework Logo Header"
             />
+            <h1>{translation![0].title}</h1>
             <br />
             <br />
             <SectionWhyUseTrue />
