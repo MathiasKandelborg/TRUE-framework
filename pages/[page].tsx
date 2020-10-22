@@ -35,7 +35,7 @@ export const getStaticPaths = async (hmm: unknown) => {
 
   sanityRoutes.forEach((route) =>
     routeParams.push({
-      params: { page: `/${route.slug.current}` }
+      params: { page: `${route.slug.current}` }
     })
   )
 
