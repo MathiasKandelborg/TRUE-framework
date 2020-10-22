@@ -41,7 +41,7 @@ const MainTheme = MUI.responsiveFontSizes(
     },
 
     typography: {
-      htmlFontSize: 14,
+      htmlFontSize: 16,
       fontFamily: fonts
     },
 
