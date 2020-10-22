@@ -1,23 +1,23 @@
 import getAllCategories from './api/calls/getAllCategories'
 import getAllProducts from './api/calls/getAllProducts'
 
-type IParams = {
+type TParamsArray = {
   params: { category: string; product: string }
 }[]
 
 /**
  * For each `product`:
- * - It's not in a `category`
+ * - It's by default not in a `category`
  *
  * Then, for each `category`:
  * - If `category.id` matches an `id` in `product.categories[n].id`
- * - Current `product` is now in a `category`
+ * - Current `product` is placed in current `category`
  * - Push params to paramsArr
  *
  *
- * @returns {IParams} Params arr
+ * @returns {TParamsArray} Params arr
  */
-async function generateProductParamsArr(): Promise<IParams> {
+async function generateProductParamsArr(): Promise<TParamsArray> {
   const paramsArr: { params: { category: string; product: string } }[] = []
 
   const categories = await getAllCategories()
