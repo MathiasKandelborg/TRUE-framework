@@ -14,6 +14,7 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>(
       passHref,
       shallow,
       prefetch,
+      locale,
       ...other
     } = props
 
@@ -22,6 +23,7 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>(
         href={href}
         prefetch={prefetch}
         as={as}
+        locale={locale}
         replace={replace}
         scroll={scroll}
         shallow={shallow}

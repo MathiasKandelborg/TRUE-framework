@@ -24,6 +24,7 @@ const MenuLink = (props: TLinkProps) => {
     className: classNameProps,
     innerRef,
     as,
+    locale,
     href,
     ...other
   } = props
