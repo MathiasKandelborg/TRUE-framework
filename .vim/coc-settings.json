@@ -1,6 +1,7 @@
 {
-  "eslint.run": "onType",
-  "prettier.eslintIntegration": true,
+  "eslint.run": "onSave",
   "eslint.packageManager": "yarn",
-  "prettier.formatterPriority": -1
+  "prettier.eslintIntegration": true,
+  "prettier.formatterPriority": -1,
+  "eslint.autoFixOnSave": true
 }

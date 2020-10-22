@@ -96,6 +96,7 @@ module.exports = {
     'plugin:jsdoc/recommended',
     'plugin:promise/recommended',
     'plugin:node/recommended-module',
+    'plugin:@next/next/recommended',
     'plugin:prettier/recommended',
     'prettier/react'
   ],
@@ -105,7 +106,7 @@ module.exports = {
     'jsdoc',
     'prefer-arrow',
     'promise',
-    '@next/eslint-plugin-next',
+    '@next/next',
     'prettier'
   ],
 
@@ -126,12 +127,12 @@ module.exports = {
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:import/typescript',
-        'airbnb',
-        'airbnb/hooks',
         'airbnb-typescript',
+        'airbnb/hooks',
         'plugin:jsdoc/recommended',
         'plugin:promise/recommended',
         'plugin:node/recommended-module',
+        'plugin:@next/next/recommended',
         'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
         'prettier/react'
@@ -142,8 +143,8 @@ module.exports = {
         '@typescript-eslint',
         'jsdoc',
         'prefer-arrow',
+        '@next/next',
         'promise',
-        '@next/eslint-plugin-next',
         'prettier'
       ],
       settings: {
@@ -160,7 +161,7 @@ module.exports = {
       rules: {
         ...rules,
         /* TS Specific rules */
-        'no-undef': 0,
+        'no-undef': 2,
 
         '@typescript-eslint/naming-convention': [
           1,

@@ -10,9 +10,12 @@ module.exports = withPWA({
     dest: 'public',
     runtimeCaching
   },
-  i18n: {
-    locales: ['en-US'],
-    defaultLocale: 'en-US'
+  experimental: {
+    i18n: {
+      locales: ['en-US', 'da-DK', 'da', 'en'],
+      defaultLocale: 'en-US',
+      locale: 'en-US'
+    }
   },
   reactStrictMode: true,
   trailingSlash: false,
