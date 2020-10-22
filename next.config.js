@@ -20,6 +20,7 @@ module.exports = withPWA({
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
+  target: 'serverless',
   webpack: (
     config /* ,{ buildId, dev, isServer, defaultLoaders, webpack } */
   ) =>
