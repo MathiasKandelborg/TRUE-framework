@@ -27,6 +27,7 @@ module.exports = withPWA({
     /* This is a placeholder if one ever needs to edit the webpack config */
     config,
   rewrites: async () => [
+    { source: '/', destination: '/home' },
     { source: '/sitemap', destination: '/api/sitemap' },
     { source: '/sitemap.xml', destination: '/api/sitemap' },
     { source: '/browserconfig.xml', destination: '/public/browserconfig.xml' },
