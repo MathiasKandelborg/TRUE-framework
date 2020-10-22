@@ -1,5 +1,5 @@
 const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
+// const runtimeCaching = require('next-pwa/cache')
 
 module.exports = withPWA({
   pwa: {
@@ -7,8 +7,8 @@ module.exports = withPWA({
     register: true,
     scope: '/',
     sw: 'service-worker.js',
-    dest: 'public',
-    runtimeCaching
+    dest: 'public'
+    //  runtimeCaching
   },
   experimental: {
     i18n: {
