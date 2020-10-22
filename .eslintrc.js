@@ -161,7 +161,7 @@ module.exports = {
       rules: {
         ...rules,
         /* TS Specific rules */
-        'no-undef': 2,
+        'no-undef': 0,
 
         '@typescript-eslint/naming-convention': [
           1,
