@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<Omit<
 
   const products = await getProductsByCategory(category._id)
 
-  if (!category) return { unstable_notFound: true }
+  if (!category) return { notFound: true }
 
   return {
     props: {

@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<ICustomPageProps> = async (ctx) => {
 
   if (!fetchedRoute || !fetchedRoute._id) {
     return {
-      unstable_notFound: true
+      notFound: true
     }
   }
 
@@ -147,14 +147,11 @@ const CustomPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           description={pageData?.page?.description || 'loading'}
           noindex={pageData?.disallowRobots || false}
         />
-        <PageAnimation layoutID="layout">
-          IS {pageData?._rev}
-          <RenderPage
-            preview
-            loading={router.isFallback}
-            pageProps={pageData?.page}
-          />
-        </PageAnimation>
+        <RenderPage
+          preview
+          loading={router.isFallback}
+          pageProps={pageData?.page}
+        />
       </>
     )
   }

@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps<Omit<
 
   const product = await getSingleProductBySlug(slug)
 
-  if (!product) return { unstable_notFound: true }
+  if (!product) return { notFound: true }
 
   return {
     props: {

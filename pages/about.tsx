@@ -16,7 +16,9 @@ export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
 const About: React.FunctionComponent<InferGetStaticPropsType<
   typeof getStaticProps
 >> = (props) => {
-  const { preview } = props
+  const { preview, locale } = props
+
+  console.info(`Loading ${locale || ''} strings`)
 
   if (preview) {
     return <h1>Implement me!</h1>
