@@ -1,7 +1,7 @@
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
-module.exports = withPWA({
+const conf = {
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     register: true,
@@ -10,12 +10,10 @@ module.exports = withPWA({
     dest: 'public',
     runtimeCaching
   },
-  experimental: {
-    i18n: {
-      locales: ['en-US', 'da-DK', 'da', 'en'],
-      defaultLocale: 'en-US',
-      locale: 'en-US'
-    }
+  i18n: {
+    locales: ['en-US', 'da-DK', 'da', 'en'],
+    defaultLocale: 'en-US',
+    locale: 'en-US'
   },
   reactStrictMode: true,
   trailingSlash: false,
@@ -27,10 +25,11 @@ module.exports = withPWA({
     /* This is a placeholder if one ever needs to edit the webpack config */
     config,
   rewrites: async () => [
-    { source: '/', destination: '/home' },
     { source: '/sitemap', destination: '/api/sitemap' },
     { source: '/sitemap.xml', destination: '/api/sitemap' },
     { source: '/browserconfig.xml', destination: '/public/browserconfig.xml' },
     { source: '/robots.txt', destination: '/public/robots.txt' }
   ]
-})
+}
+
+module.exports = withPWA(conf)
