@@ -21,7 +21,6 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
       <MUI.ListItem
         alignItems="center"
         button
-        locale={false}
         onClick={() => drawerToggle(false)}
         component={MenuLink}
         scroll
