@@ -5,9 +5,9 @@ interface IPageAnimation {
   layoutID?: string
 }
 
-const PageAnimation: React.FC<IPageAnimation> = ({ layoutID, children }) => (
+const PageAnimation: React.FC<IPageAnimation> = ({ children }) => (
   <motion.div
-    layoutId={layoutID}
+    // layoutId={layoutID}
     variants={pageVariants}
     initial="exit"
     animate="enter"

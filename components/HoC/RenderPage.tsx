@@ -1,5 +1,7 @@
 import RenderSections from '@components/CMS/RenderSections'
+import { PageAnimation, TitleAnimation } from '@components/UI'
 import { APIRoute } from 'cms/APIRoute'
+import { AnimatePresence } from 'framer-motion'
 
 const RenderPage: React.FC<{
   loading: boolean
@@ -26,8 +28,14 @@ const RenderPage: React.FC<{
 
   return (
     <>
-      <h1>{title}</h1>
-      {content && <RenderSections sections={content} />}
+      <AnimatePresence>
+        <TitleAnimation key="title">
+          <h1>{title}</h1>
+        </TitleAnimation>
+        <PageAnimation key="title">
+          {content && <RenderSections sections={content} />}
+        </PageAnimation>
+      </AnimatePresence>
     </>
   )
 }

@@ -3,16 +3,17 @@ import easing from './easing'
 
 const pageVariants: Variants = {
   exit: {
-    scale: 0.2,
-    /*  x: 100, 
-    opacity: 0, */ transition: {
+    // scale: 0.2,
+    x: 100,
+    opacity: 0,
+    transition: {
       easings: easing
     }
   },
   enter: {
-    scale: 1,
-    /*  x: 0,
-    opacity: 1, */
+    //  scale: 1,
+    x: 0,
+    opacity: 1,
     transition: {
       easings: easing
     }

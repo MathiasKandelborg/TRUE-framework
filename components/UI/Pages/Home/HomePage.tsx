@@ -1,7 +1,7 @@
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
-import handleExitComplete from '@util/handleExitComplete'
+// import handleExitComplete from '@util/handleExitComplete'
 import { AnimatePresence } from 'framer-motion'
 import { PageProps } from 'PageProps'
 import homePageStyles from './HomePage.styles'
@@ -21,11 +21,13 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
   return (
     <>
       <AnimatePresence
-        exitBeforeEnter
-        presenceAffectsLayout
-        onExitComplete={() => handleExitComplete()}>
+      //  exitBeforeEnter
+      // presenceAffectsLayout
+      // onExitComplete={() => handleExitComplete()}>
+      >
         <TitleWithDivider key="home-title" variant="h1" text={config.title} />
-        <PageAnimation key="home-page" layoutID="page">
+
+        <PageAnimation key="home-page">
           <Grid component={MUI.Paper} className={classes.root}>
             <img
               className={classes.headerImg}
