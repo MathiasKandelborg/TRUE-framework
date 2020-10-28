@@ -8,8 +8,10 @@ import getPageAndRouteByRoute from '@util/api/calls/getSinglePageByRoute'
 import routes from '@util/api/queries/allRoutes'
 import { CONSTANTS, ui } from '@util/settings'
 import { APIRoute } from 'cms/APIRoute'
+import { AnimatePresence } from 'framer-motion'
 import groq from 'groq'
 import {
+  GetStaticPaths,
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType
@@ -23,10 +25,7 @@ interface ICustomPageProps extends PageProps, GetStaticPropsContext {
   currentRoute: APIRoute | null
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getStaticPaths = async (hmm: unknown) => {
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  console.info(`GetStaticPathsObj: ${hmm}`)
+export const getStaticPaths: GetStaticPaths = async () => {
   const sanityRoutes: Array<{ slug: { current: string } }> = await getClient(
     false
   ).fetch(routes)
@@ -39,9 +38,6 @@ export const getStaticPaths = async (hmm: unknown) => {
     })
   )
 
-  // eslint-disable-next-line no-console
-  console.dir(routeParams)
-
   return {
     paths: !routeParams[0] ? [{ params: { page: 'REDIRECT' } }] : routeParams,
     fallback: true
@@ -50,8 +46,6 @@ export const getStaticPaths = async (hmm: unknown) => {
 
 export const getStaticProps: GetStaticProps<ICustomPageProps> = async (ctx) => {
   const { preview, params } = ctx
-  // eslint-disable-next-line no-console
-  console.log(ctx)
   const config = await getSanityConfig()
 
   const page = params && typeof params.page === 'string' ? params.page : ''
@@ -84,16 +78,7 @@ const CustomPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
 
   const router = useRouter()
 
-  /*   const { data, error } = useSWR(
-    routeToFetch,
-    () => getPageAndRouteByRoute(routeToFetch),
-    {
-      refreshInterval: 10,
-      initialData: currentRoute
-    }
-  ) */
-
-  /* This should be stripped in production bundles */
+  /* This is stripped in production bundles */
   if (CONSTANTS.DEV && !currentRoute)
     return (
       <div
@@ -164,20 +149,21 @@ const CustomPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           description={currentRoute.page.description}
           noindex={currentRoute.disallowRobots}
         />
-        <PageAnimation layoutID="layout">
-          <RenderPage
-            preview={false}
-            loading={false}
-            pageProps={currentRoute.page}
-          />
-        </PageAnimation>
+        <AnimatePresence>
+          <PageAnimation layoutID="layout">
+            <RenderPage
+              preview={false}
+              loading={false}
+              pageProps={currentRoute.page}
+            />
+          </PageAnimation>
+        </AnimatePresence>
       </>
     )
   }
 
-  // Create an empty page if window is undefined,
-  // as we can't know if currentPage exists
-  // This is perfect for skeletons and stuff
+  // We usually never make it here, it means we didn't catch some behavior.
+  // It's a blank page
   return <PageAnimation layoutID="layout" />
 }
 
