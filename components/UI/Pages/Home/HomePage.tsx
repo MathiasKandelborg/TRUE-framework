@@ -1,9 +1,9 @@
+import CustomAnimatePresence from '@components/HoC/Animation/CustomAnimatePresence'
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
-// import handleExitComplete from '@util/handleExitComplete'
-import { AnimatePresence } from 'framer-motion'
 import { PageProps } from 'PageProps'
+import Image from 'next/image'
 import homePageStyles from './HomePage.styles'
 import SectionBasedOnPracticesIdeas from './Section/BasedOnPracticesIdeas'
 import SectionBasedOnThisTech from './Section/BasedOnThisTech'
@@ -20,22 +20,18 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
 
   return (
     <>
-      <AnimatePresence
-      //  exitBeforeEnter
-      // presenceAffectsLayout
-      // onExitComplete={() => handleExitComplete()}>
-      >
+      <CustomAnimatePresence exitFirst layoutShift>
         <TitleWithDivider key="home-title" variant="h1" text={config.title} />
 
         <PageAnimation key="home-page">
           <Grid component={MUI.Paper} className={classes.root}>
-            <img
+            <Image
               className={classes.headerImg}
-              width="960"
-              height="480"
-              srcSet="/images/TRUE-logo/TRUE-logo-social-small-blue.png 1x,
-             /images/TRUE-logo/TRUE-logo-social-large-blue.png 2x"
-              src="/images/TRUE-logo/TRUE-logo-social-large-small-blue.png"
+              sizes="30vw"
+              width={960}
+              height={480}
+              // /images/TRUE-logo/TRUE-logo-social-large-blue.png 2x"
+              src="/images/TRUE-logo/TRUE-logo-social-large-blue.png"
               alt="TRUE Framework Logo Header"
             />
             <h1>{translation![0].title}</h1>
@@ -52,7 +48,7 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
             <SectionBasedOnThisTech />
           </Grid>
         </PageAnimation>
-      </AnimatePresence>
+      </CustomAnimatePresence>
     </>
   )
 }

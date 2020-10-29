@@ -12,8 +12,8 @@ const homePageStyles = MUI.makeStyles((theme: MUI.Theme) =>
       maxHeight: 24
     },
     headerImg: {
-      width: '100%',
-      height: '100%',
+      width: '960px',
+      height: '480px',
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4
     }

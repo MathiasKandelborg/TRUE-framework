@@ -10,6 +10,9 @@ const conf = {
     dest: 'public',
     runtimeCaching
   },
+  images: {
+    deviceSizes: [600, 960, 1280, 1920]
+  },
   i18n: {
     locales: ['en-US', 'da-DK', 'da', 'en'],
     defaultLocale: 'en-US',

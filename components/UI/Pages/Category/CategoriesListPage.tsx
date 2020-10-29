@@ -1,10 +1,9 @@
+import CustomAnimatePresence from '@components/HoC/Animation/CustomAnimatePresence'
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import ListCategory from '@components/UI/Category/ListCategory'
 import * as MUI from '@material-ui/core'
-import handleExitComplete from '@util/handleExitComplete'
 import { Category } from 'cms/Category'
-import { AnimatePresence } from 'framer-motion'
 import categoriesPageListStyles from './CategoriesListPage.styles'
 
 interface ICategoriesPageProps {
@@ -17,12 +16,10 @@ const CategoriesListPage: React.FC<ICategoriesPageProps> = (props) => {
   const classes = categoriesPageListStyles()
 
   return (
-    <AnimatePresence
-      presenceAffectsLayout
-      onExitComplete={() => handleExitComplete()}>
-      <TitleWithDivider variant="h1" text="Categories" />
+    <CustomAnimatePresence layoutShift>
+      <TitleWithDivider key="title" variant="h1" text="Categories" />
 
-      <PageAnimation layoutID="page">
+      <PageAnimation key="page">
         <MUI.Grid
           container
           justify="space-around"
@@ -31,7 +28,7 @@ const CategoriesListPage: React.FC<ICategoriesPageProps> = (props) => {
           <ListCategory categories={categories} />
         </MUI.Grid>
       </PageAnimation>
-    </AnimatePresence>
+    </CustomAnimatePresence>
   )
 }
 

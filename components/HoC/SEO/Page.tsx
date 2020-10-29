@@ -1,4 +1,4 @@
-import { common, seo } from '@util/settings'
+import { common, CONSTANTS, seo } from '@util/settings'
 import { NextSeo } from 'next-seo'
 import { OpenGraphImages, OpenGraphProfile, Twitter } from 'next-seo/lib/types'
 
@@ -19,6 +19,8 @@ interface IPageSEOProps {
 }
 
 const PageSEO: React.FC<IPageSEOProps> = (props) => {
+  const seoImgUrl = CONSTANTS.DEV ? 'http://localhost:3000' : seo.url
+
   const {
     title = seo.title,
     description = seo.description,
@@ -26,7 +28,7 @@ const PageSEO: React.FC<IPageSEOProps> = (props) => {
     defaultImageWidth = 2500,
     images = [
       {
-        url: `${seo.url}/images/TRUE-logo-social-large-blue.png`,
+        url: `${seoImgUrl}/images/TRUE-logo-social-large-blue.png`,
         height: defaultImageHeight,
         width: defaultImageWidth
       }

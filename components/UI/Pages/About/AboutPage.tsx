@@ -1,7 +1,7 @@
+import CustomAnimatePresence from '@components/HoC/Animation/CustomAnimatePresence'
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import * as MUI from '@material-ui/core'
-import { AnimatePresence } from 'framer-motion'
 import { PageProps } from 'PageProps'
 import aboutPageStyles from './AboutPage.styles'
 
@@ -14,9 +14,7 @@ const AboutPage: React.FC<IAboutPageProps> = () => {
 
   return (
     <>
-      <AnimatePresence
-        presenceAffectsLayout
-        onExitComplete={() => console.info('Exit complete!@')}>
+      <CustomAnimatePresence layoutShift exitFirst>
         <TitleWithDivider key="about-title" variant="h1" text="About" />
         <PageAnimation key="about-page" layoutID="page">
           <Grid component={MUI.Paper} className={classes.root}>
@@ -51,7 +49,7 @@ const AboutPage: React.FC<IAboutPageProps> = () => {
             </Typography>
           </Grid>
         </PageAnimation>
-      </AnimatePresence>
+      </CustomAnimatePresence>
     </>
   )
 }
