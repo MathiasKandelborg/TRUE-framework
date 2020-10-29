@@ -1,15 +1,16 @@
 import createRoutesForSitemap from '@util/createRoutesForSitemap'
-import { IncomingMessage, ServerResponse } from 'http'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { SitemapStream, streamToPromise } from 'sitemap'
 
 /**
- * @param req
- * @param res
+ * @param {NextApiRequest} req Incomming request
+ * @param {NextApiResponse} res Response
+ * @returns {void}
  */
 export default async function sitemapFunc(
-  req: IncomingMessage,
-  res: ServerResponse
-) {
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> {
   res.setHeader('Content-Type', 'text/xml')
   try {
     const createdRoutesForSitemap = await createRoutesForSitemap() // call the backend and fetch all stories
@@ -36,7 +37,7 @@ export default async function sitemapFunc(
     res.write(sitemap)
     res.end()
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.statusCode = 500
     res.end()
   }

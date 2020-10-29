@@ -1,4 +1,4 @@
 import Layout from './Layout'
-import PageAnimation from '../Animation/PageAnimation'
 
-export { Layout, PageAnimation }
+// eslint-disable-next-line import/prefer-default-export
+export { Layout }

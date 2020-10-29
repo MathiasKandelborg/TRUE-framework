@@ -1,6 +1,5 @@
-import NavigationModel from './NavigationModel'
-import UIModel from './UIModel'
+import INavigationModel from './NavigationModel'
 
-declare type StoreModel = NavigationModel & UIModel
+declare interface IStoreModel extends INavigationModel, IUIModel {}
 
-export default StoreModel
+export default IStoreModel

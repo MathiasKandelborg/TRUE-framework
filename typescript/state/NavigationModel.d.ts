@@ -1,8 +1,8 @@
 import { Action } from 'easy-peasy'
 
-interface NavigationModel {
+interface INavigationModel {
   drawerOpen: boolean
-  toggleDrawer: Action<NavigationModel, boolean>
+  toggleDrawer: Action<INavigationModel, boolean>
 }
 
-export default NavigationModel
+export default INavigationModel

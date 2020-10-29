@@ -8,7 +8,7 @@ const ListCategory: React.FC<{ categories: Category[] }> = (props) => {
   return (
     <>
       {categories.map((category) => (
-        <MUI.Grid item xs={12} md={4}>
+        <MUI.Grid key={category._id} item xs={12} md={4}>
           <SingleCategory {...category} />
         </MUI.Grid>
       ))}

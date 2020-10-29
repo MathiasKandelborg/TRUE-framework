@@ -3,26 +3,41 @@ import easing from './easing'
 
 const pageVariants: Variants = {
   exit: {
-    scale: 0.2,
-    /*  x: 100, 
-    opacity: 0, */ transition: easing
+    // scale: 0.2,
+    x: 100,
+    opacity: 0,
+    transition: {
+      easings: easing
+    }
   },
   enter: {
-    scale: 1,
-    /*  x: 0,
-    opacity: 1, */
-    transition: { ease: easing }
+    //  scale: 1,
+    x: 0,
+    opacity: 1,
+    transition: {
+      easings: easing
+    }
   }
 }
 
 const titleVariants: Variants = {
   exit: {
-    x: -250,
-    opacity: 0
+    position: 'absolute',
+    x: -3000,
+    opacity: 0,
+    transitionDuration: '175ms',
+    transition: {
+      easings: easing
+    }
   },
   enter: {
+    position: 'initial',
     x: 0,
-    opacity: 1
+    opacity: 1,
+    transitionDuration: '175ms',
+    transition: {
+      easings: easing
+    }
   }
 }
 

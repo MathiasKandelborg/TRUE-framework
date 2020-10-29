@@ -6,7 +6,7 @@ const ui: UTILITY.UISettings = {
   MainColor: MUI.colors.cyan,
   SecondaryColor: MUI.colors.yellow,
   Fonts: [
-    'Manrope',
+    'Lato',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',

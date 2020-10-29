@@ -1,5 +1,5 @@
 import capStr from '@util/capitalizeString'
-import { Page } from 'cms/Page'
+import { Page, PageContent } from 'cms/Page'
 import { FC } from 'react'
 import * as SectionComponents from './sections'
 
@@ -14,10 +14,10 @@ import * as SectionComponents from './sections'
  * ESLint and TypeScript hates when you do this to your comments:
  */
 /**
- * @param {Page['content']} section The section the resolve
+ * @param {PageContent} section The section the resolve
  * @returns {FC | null} A section
  */
-function resolveSections(section: Page['content']): FC | null {
+function resolveSections(section?: PageContent): FC | null {
   /**
    * // TODO: Section should be typed with possible Section components
    */

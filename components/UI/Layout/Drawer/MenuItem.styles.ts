@@ -4,8 +4,8 @@ const menuItemStyles = MUI.makeStyles((theme: MUI.Theme) =>
   MUI.createStyles({
     menuItem: {
       color: 'inherit',
-      fontSize: theme.typography.subtitle1.fontSize,
-      fontWeight: theme.typography.fontWeightMedium
+      fontSize: theme.typography.subtitle1.fontSize
+      /*  fontWeight: theme.typography.fontWeightMedium */
     },
     menuItemActive: {
       color: theme.palette.primary.light,

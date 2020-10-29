@@ -1,23 +1,26 @@
+import { BaseRoute } from 'cms/APIRoute'
 import { AppRoute } from 'settings/AppRoute'
+import capitalizeString from './capitalizeString'
 import { common } from './settings'
 
-type Routes = { slug: { _type: string; current: string } }[]
-
-type ResolvedRoutes = Array<AppRoute>
 /**
  * Take an array of routes and combine them with `setting.common.staticRoutes`
  *
- * @param {Routes} routes API routes
- * @returns {ResolvedRoutes} Routes combined with static routes
+ * @param {BaseRoute[]} routes API routes
+ * @returns {Array<AppRoute>} Routes combined with static routes
  */
-function resolveRoutes(routes: Routes): ResolvedRoutes {
-  const resolvedRoutes = routes.map((route) => ({
-    as: `/${route.slug.current}`,
-    route: '/[page]',
-    name: `${route.slug.current}`
-  }))
+function resolveRoutes(routes: BaseRoute[]): Array<AppRoute> {
+  const resolvedRoutes = common.staticRoutes.map((staticRoute) => staticRoute)
 
-  common.staticRoutes.map((staticRoute) => resolvedRoutes.push(staticRoute))
+  routes.map((route) =>
+    resolvedRoutes.push({
+      as: `/${route.slug.current}`,
+      route: '/[page]',
+      name: `${capitalizeString(route.slug.current)}`,
+      follow: route.disallowRobots,
+      index: route.includeInSitemap
+    })
+  )
 
   return resolvedRoutes
 }

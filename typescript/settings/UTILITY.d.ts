@@ -5,10 +5,26 @@ import { AppRoute } from 'settings/AppRoute'
 export declare namespace UTILITY {
   /** Common Settings used in many places throughout the codebase */
   export interface CommonSettings {
-    title: string
-    description: string
     staticRoutes: Array<AppRoute>
     language: string
+  }
+
+  export interface SEOSettings {
+    applicationName: string
+    title: string
+    description: string
+    url: string
+    ogTitle: string
+    ogDescription: string
+
+    author: {
+      firstName: string
+      lastName?: string
+      gender?: string
+      username?: string
+      twitterHandle: string
+      avatar?: string
+    }
   }
   /** UI Settings used throughout the codebase */
   export interface UISettings {

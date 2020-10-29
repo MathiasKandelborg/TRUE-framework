@@ -1,9 +1,9 @@
 import { ui } from '@util/settings'
-import UIModel from 'state/UIModel'
+import IUIModel from 'state/UIModel'
 
 const { DarkTheme, Fonts, MainColor, SecondaryColor } = ui
 
-const uiStore: UIModel = {
+const uiStore: IUIModel = {
   DarkTheme,
   Fonts,
   MainColor,

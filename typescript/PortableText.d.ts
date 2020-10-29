@@ -33,7 +33,7 @@ export interface SpanTextObject extends Pick<MetaText, '_type'> {
 export interface TextBlock extends MetaText {
   _type: 'block'
   style: string
-  children: Array<BaseTextObject | SpanTextObject>
+  children: Array<BaseTextObject> /*  | Array<SpanTextObject> */
   markDefs: Array<TextBlockMarkDefs>
   listItem?: string
   level?: string | number // Guessing: https://github.com/portabletext/portabletext#level

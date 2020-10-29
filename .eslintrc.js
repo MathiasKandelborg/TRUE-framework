@@ -1,8 +1,31 @@
+const typeNames = [
+  'AppProps',
+  'AppRoute',
+  'BaseAPIObject',
+  'BaseRoute',
+  'BaseTextObject',
+  'BlockContent',
+  'Category',
+  'MetaAPIObject',
+  'Page',
+  'PageContent',
+  'PageProps',
+  'Product',
+  'StaticRoute',
+  'SMRoute',
+  'SpanTextObject',
+  'TextBlock',
+  'TextBlockMarkDefs'
+]
+
+const typesToIgnore = typeNames.join('|')
+
 const rules = {
   'no-underscore-dangle': [
     'error',
     { allow: ['_id', '_type', '_rev', '_key', '_createdAt', '_updatedAt'] }
   ],
+  'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
   'react/jsx-props-no-spreading': [
     2,
     {
@@ -73,7 +96,8 @@ module.exports = {
     'plugin:jsdoc/recommended',
     'plugin:promise/recommended',
     'plugin:node/recommended-module',
-    'prettier',
+    'plugin:@next/next/recommended',
+    'plugin:prettier/recommended',
     'prettier/react'
   ],
 
@@ -82,7 +106,7 @@ module.exports = {
     'jsdoc',
     'prefer-arrow',
     'promise',
-    '@next/eslint-plugin-next',
+    '@next/next',
     'prettier'
   ],
 
@@ -103,13 +127,13 @@ module.exports = {
         'plugin:import/errors',
         'plugin:import/warnings',
         'plugin:import/typescript',
-        'airbnb',
-        'airbnb/hooks',
         'airbnb-typescript',
+        'airbnb/hooks',
         'plugin:jsdoc/recommended',
         'plugin:promise/recommended',
         'plugin:node/recommended-module',
-        'prettier',
+        'plugin:@next/next/recommended',
+        'plugin:prettier/recommended',
         'prettier/@typescript-eslint',
         'prettier/react'
       ],
@@ -119,8 +143,8 @@ module.exports = {
         '@typescript-eslint',
         'jsdoc',
         'prefer-arrow',
+        '@next/next',
         'promise',
-        '@next/eslint-plugin-next',
         'prettier'
       ],
       settings: {
@@ -148,7 +172,11 @@ module.exports = {
           {
             selector: 'interface',
             format: ['PascalCase'],
-            prefix: ['I', 'A']
+            prefix: ['I', 'A'],
+            filter: {
+              regex: `^(${typesToIgnore})$`,
+              match: false
+            }
           },
           {
             selector: 'typeParameter',

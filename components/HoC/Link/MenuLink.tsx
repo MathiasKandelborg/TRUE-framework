@@ -24,6 +24,7 @@ const MenuLink = (props: TLinkProps) => {
     className: classNameProps,
     innerRef,
     as,
+    locale,
     href,
     ...other
   } = props
@@ -31,10 +32,8 @@ const MenuLink = (props: TLinkProps) => {
   const router = useRouter()
 
   const className = clsx(classNameProps, {
-    [activeClassName]: router.asPath === href && activeClassName
+    [activeClassName]: router.asPath === as && activeClassName
   })
-
-  // console.log(`AFTER\nas: ${customAs}, href: ${customHref}`)
 
   return (
     <MUI.Link

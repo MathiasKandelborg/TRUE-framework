@@ -1,6 +1,9 @@
-import SingleProductPage from '@components/UI/Product/ProductPage'
+import PageSEO from '@components/HoC/SEO/Page'
+import SingleProductPage from '@components/UI/Pages/Product/ProductPage'
+import getSanityConfig from '@util/api/calls/getSanityConfig'
 import getSingleProductBySlug from '@util/api/calls/getSingleProductFromSlug'
 import generateProductParamsArr from '@util/generateProductParamsArr'
+import generateRawTextFromTextBlock from '@util/generateRawTextFromTextBlock'
 import { Product } from 'cms/Product'
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
@@ -21,17 +24,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<Omit<
-  PageProps,
+  ICategoriesPageProps,
   'config' | 'allRoutes'
 >> = async (ctx) => {
   const { preview, params } = ctx
 
   const slug = params?.product as string
 
+  const config = await getSanityConfig()
+
   const product = await getSingleProductBySlug(slug)
+
+  if (!product) return { notFound: true }
 
   return {
     props: {
+      ...config,
       preview: Boolean(preview),
       product: product || null,
       ...ctx
@@ -40,14 +48,19 @@ export const getStaticProps: GetStaticProps<Omit<
   }
 }
 
-interface ICategoryPageStaticProps
-  extends ICategoriesPageProps,
-    InferGetStaticPropsType<typeof getStaticProps> {}
-
-const ProductPage: React.FC<ICategoryPageStaticProps> = (props) => {
+const ProductPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
+  props
+) => {
   const { product } = props
 
-  return <SingleProductPage product={product} />
+  const rawTextDesc = generateRawTextFromTextBlock(product?.description)
+
+  return (
+    <>
+      <PageSEO title={product?.title} description={rawTextDesc} />
+      <SingleProductPage product={product} />
+    </>
+  )
 }
 
 export default ProductPage

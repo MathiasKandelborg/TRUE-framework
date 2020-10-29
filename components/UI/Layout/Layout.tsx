@@ -6,8 +6,8 @@ import Footer from './Footer/Footer'
 import layoutStyles from './Layout.styles'
 
 interface ILayoutProps {
-  MenuItems: JSX.Element[]
-  preview: boolean
+  MenuItems: JSX.Element
+  preview?: boolean
 }
 
 const Layout: React.FC<ILayoutProps> = (props) => {
@@ -22,16 +22,21 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         appBarClassName={classes.appBar}
         iconButtonClassName={classes.menuButton}
       />
+
       <nav>
         <AppDrawer drawerPaperClassName={classes.drawerPaper}>
           <DrawerMenu routes={MenuItems} />
         </AppDrawer>
       </nav>
 
-      <MUI.Container maxWidth="lg" className={classes.content} component="main">
-        <div className={classes.toolbar} />
-        {/* Wrap page components in a 'Root MUI.Grid' (https://material-ui.com/components/MUI.Grid/) */}
-        <MUI.Grid container direction="column">
+      <div className={classes.toolbar} />
+      <MUI.Container maxWidth="lg" className={classes.content}>
+        {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/Grid/) */}
+        <MUI.Grid
+          container
+          direction="column"
+          component="main"
+          className={classes.main}>
           <>{children}</>
         </MUI.Grid>
         <div className={classes.mainSpacer} />

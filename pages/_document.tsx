@@ -1,5 +1,5 @@
 import * as MUI from '@material-ui/core'
-import { common, ui } from '@util/settings'
+import { seo, ui } from '@util/settings'
 import Document, {
   DocumentContext,
   Head,
@@ -65,18 +65,18 @@ export default class MyDocument extends Document {
   }
 
   render(): JSX.Element {
-    const { language, title, description } = common
+    const { title, applicationName } = seo
 
     return (
-      <Html lang={language}>
-        {/* DO NOT POPULATE THIS HEAD COMPONENT WITH UNCOMMON TAGS
+      <Html>
+        {/* DO NOT POPULATE THIS HEAD COMPONENT WITH COMMON TAGS
          * I.E DO NOT PUT `title` or `description` or social media tags here
          *
          * Use the dedicated SEO components in `components/SEO` */}
         <Head>
           <link rel="manifest" href="/manifest.json" />
-          <meta name="application-name" content={title} />
-          <meta name="description" content={description} />
+          <meta name="application-name" content={applicationName} />
+
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -88,14 +88,14 @@ export default class MyDocument extends Document {
           <link
             rel="icon"
             type="image/png"
-            sizes="32x32"
+            sizes="16x16"
             href="/images/TRUE-logo/TRUE-logo-16.svg"
           />
           <link
             rel="icon"
             type="image/png"
-            sizes="16x16"
-            href="/images/TRUE-logo/TRUE-logo-16.svg"
+            sizes="32x32"
+            href="/images/TRUE-logo/TRUE-logo-32.svg"
           />
 
           <link

@@ -11,6 +11,6 @@ export default function Redirect(to: string): void {
   const router = useRouter()
 
   useEffect(() => {
-    router.push(to).catch((e) => console.log(e))
+    router.push(to).catch((e) => console.error(e))
   })
 }

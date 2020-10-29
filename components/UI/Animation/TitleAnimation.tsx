@@ -1,5 +1,5 @@
 import { titleVariants } from '@util/animations/variants'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 /**
  * Animates the page entering and on un-mount leaving again
@@ -9,17 +9,14 @@ import { AnimatePresence, motion } from 'framer-motion'
  * @returns {JSX.Element} Title animation div
  */
 const TitleAnimation: React.FC = ({ children }) => (
-  <AnimatePresence exitBeforeEnter presenceAffectsLayout>
-    <motion.div
-      layoutId="page-title"
-      variants={titleVariants}
-      initial="exit"
-      animate="enter"
-      exit="exit"
-      layout>
-      {children}
-    </motion.div>
-  </AnimatePresence>
+  <motion.div
+    variants={titleVariants}
+    initial="exit"
+    animate="enter"
+    exit="exit"
+    layout>
+    {children}
+  </motion.div>
 )
 
 export default TitleAnimation

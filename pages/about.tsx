@@ -1,22 +1,24 @@
-import TitleWithDivider from '@components/HoC/TitleWithDivider'
-import { PageAnimation } from '@components/UI'
-import * as MUI from '@material-ui/core'
+import PageSEO from '@components/HoC/SEO/Page'
+import AboutPage from '@components/UI/Pages/About/AboutPage'
+import getSanityConfig from '@util/api/calls/getSanityConfig'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticProps: GetStaticProps = async (ctx) => ({
-  props: { ...ctx },
+export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
+  const config = await getSanityConfig()
 
-  revalidate: 3600
-})
+  return {
+    props: { ...ctx, ...config },
+    revalidate: 3600
+  }
+}
 
-interface IAboutPageProps
-  extends PageProps,
-    InferGetStaticPropsType<typeof getStaticProps> {}
+const About: React.FunctionComponent<InferGetStaticPropsType<
+  typeof getStaticProps
+>> = (props) => {
+  const { preview, locale } = props
 
-const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
-  const { preview } = props
+  console.info(`Loading ${locale || ''} strings`)
 
   if (preview) {
     return <h1>Implement me!</h1>
@@ -24,17 +26,13 @@ const AboutPage: React.FunctionComponent<IAboutPageProps> = (props) => {
 
   return (
     <>
-      <TitleWithDivider variant="h1" text="About" />
-
-      <PageAnimation layoutID="page">
-        <MUI.Grid component={MUI.Paper}>
-          <MUI.Typography>Placeholder</MUI.Typography>
-        </MUI.Grid>
-      </PageAnimation>
+      <PageSEO title="About" description="A description of TRUE" />
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <AboutPage {...props} />
     </>
   )
 }
 
-AboutPage.displayName = 'About Page'
+About.displayName = 'About Page'
 
-export default AboutPage
+export default About

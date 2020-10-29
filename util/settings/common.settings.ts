@@ -1,25 +1,28 @@
 import { UTILITY } from 'settings/UTILITY'
 
 const common: UTILITY.CommonSettings = {
-  title: process.env.NEXT_PUBLIC_PROJECT_TITLE || 'NO TITLE IN `.env`',
-  description:
-    process.env.NEXT_PUBLIC_PROJECT_DESCRIPTION || 'NO DESCRIPTION IN `.env``',
   language: 'en-US',
   staticRoutes: [
     {
       name: 'Home',
       route: '/',
-      as: '/'
+      as: '/',
+      follow: true,
+      index: true
     },
     {
       name: 'About',
       route: '/about',
-      as: '/about'
+      as: '/about',
+      follow: true,
+      index: true
     },
     {
       name: 'Categories',
       route: '/categories',
-      as: '/categories'
+      as: '/categories',
+      follow: true,
+      index: true
     }
   ]
 }

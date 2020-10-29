@@ -34,7 +34,7 @@ declare module '@sanity/block-content-to-react' {
     }
   }
 
-  const BlockContent: React.FC<BlockContent> = (props) => {}
+  const BlockContent: React.FC<BlockContent> = () => {}
 
   export default BlockContent
 }
