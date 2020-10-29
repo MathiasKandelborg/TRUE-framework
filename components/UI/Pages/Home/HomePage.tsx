@@ -27,10 +27,11 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
           <Grid component={MUI.Paper} className={classes.root}>
             <Image
               className={classes.headerImg}
-              sizes="30vw"
+              sizes="60vw"
+              priority
+              quality={100}
               width={960}
               height={480}
-              // /images/TRUE-logo/TRUE-logo-social-large-blue.png 2x"
               src="/images/TRUE-logo/TRUE-logo-social-large-blue.png"
               alt="TRUE Framework Logo Header"
             />
