@@ -3,7 +3,7 @@
   "author": "Mathias Kandelborg",
   "name": "true-framework",
   "description": "TRUE Framework === The Really Unique & Exciting Framework (for the web)",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "homepage": "https://github.com/MathiasKandelborg/TRUE-framework#readme",
   "repository": {
@@ -42,8 +42,8 @@
     "@sanity/client": "2.0.1",
     "@sanity/image-url": "0.140.19",
     "@types/express": "4.17.8",
-    "@types/node": "14.14.5",
-    "@types/react": "16.9.54",
+    "@types/node": "14.14.6",
+    "@types/react": "16.9.55",
     "@types/react-dom": "16.9.9",
     "@types/webpack-env": "1.15.3",
     "clsx": "1.1.1",
@@ -54,12 +54,12 @@
     "mdi-material-ui": "6.20.0",
     "next": "10",
     "next-pwa": "3.1.5",
-    "next-seo": "4.14.0",
+    "next-seo": "4.14.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-final-form": "6.5.2",
     "sitemap": "6.3.2",
-    "swr": "0.3.6",
+    "swr": "0.3.7",
     "ua-parser-js": "0.7.22"
   },
   "devDependencies": {
@@ -92,6 +92,6 @@
     "prettier": "2.1.2",
     "semantic-release": "17.2.1",
     "typescript": "4.0.5",
-    "webpack": "5.3.0"
+    "webpack": "5.3.2"
   }
 }
