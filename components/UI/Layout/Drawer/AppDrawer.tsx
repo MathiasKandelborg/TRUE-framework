@@ -1,11 +1,6 @@
 import * as MUI from '@material-ui/core'
 import iOS from '@util/isIOS'
 import { useStoreActions, useStoreState } from '@util/tsEasyPeasyHooks'
-import { FC } from 'react'
-
-interface IDrawerProps {
-  drawerPaperClassName: string
-}
 
 interface IDrawerProps {
   toggleDrawerClose: () => void
@@ -13,7 +8,7 @@ interface IDrawerProps {
   drawerPaperClassName: string
   drawerOpen: boolean
 }
-const DefaultDrawer: FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
+const DefaultDrawer: React.FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
   props
 ) => {
   const { drawerPaperClassName, children } = props
@@ -32,7 +27,7 @@ const DefaultDrawer: FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
   )
 }
 
-const MobileDrawer: FC<IDrawerProps> = (props) => {
+const MobileDrawer: React.FC<IDrawerProps> = (props) => {
   const {
     toggleDrawerClose,
     toggleDrawerOpen,
@@ -60,7 +55,9 @@ const MobileDrawer: FC<IDrawerProps> = (props) => {
   )
 }
 
-const AppDrawer: FC<IDrawerProps> = (props) => {
+const AppDrawer: React.FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
+  props
+) => {
   const { children, drawerPaperClassName } = props
   const drawerOpen = useStoreState((s) => s.drawerOpen)
   const drawerToggled = useStoreActions((a) => a.toggleDrawer)
