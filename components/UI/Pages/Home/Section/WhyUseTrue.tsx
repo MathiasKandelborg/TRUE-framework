@@ -8,7 +8,13 @@ const SectionWhyUseTrue: React.FC = () => {
   const classes = homePageStyles()
 
   return (
-    <Grid item xs={12} container direction="row" component="section">
+    <Grid
+      className={classes.sectionWhyUseTrue}
+      item
+      xs={12}
+      container
+      direction="row"
+      component="section">
       <Grid
         item
         xs={12}
