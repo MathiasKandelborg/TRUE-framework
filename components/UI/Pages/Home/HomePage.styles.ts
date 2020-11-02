@@ -16,6 +16,21 @@ const homePageStyles = MUI.makeStyles((theme: MUI.Theme) =>
       height: '480px',
       borderTopLeftRadius: 4,
       borderTopRightRadius: 4
+    },
+    sectionLearnMore: {
+      marginBottom: theme.spacing(4)
+    },
+    sectionWhyUseTrue: {
+      marginBottom: theme.spacing(4)
+    },
+    sectionWhatIsTrue: {
+      marginBottom: theme.spacing(2)
+    },
+    sectionBasedOnThisTech: {
+      marginBottom: theme.spacing(2)
+    },
+    sectionBasedOnPractices: {
+      marginBottom: theme.spacing(2)
     }
   })
 )

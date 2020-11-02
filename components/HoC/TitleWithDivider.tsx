@@ -6,15 +6,15 @@ interface ITitleDividerProps extends MUI.TypographyProps {
 }
 
 const TitleWithDivider: React.FC<ITitleDividerProps> = (props) => {
-  const { text, variant, gutterBottom } = props
+  const { text, color, ...rest } = props
 
   return (
     <MUI.Grid item xs={12}>
       <TitleAnimation>
         <MUI.Typography
-          color="primary"
-          variant={variant}
-          gutterBottom={gutterBottom}>
+          color={color || 'primary'}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...rest}>
           {text}
         </MUI.Typography>
       </TitleAnimation>

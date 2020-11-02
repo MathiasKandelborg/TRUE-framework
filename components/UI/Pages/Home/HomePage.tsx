@@ -13,6 +13,23 @@ type IHomePageProps = PageProps
 
 const { Grid } = MUI
 
+const HeaderImage: React.FC<{ imgClassName: string }> = (props) => {
+  const { imgClassName } = props
+
+  return (
+    <Image
+      className={imgClassName}
+      sizes="60vw"
+      priority
+      quality={100}
+      width={960}
+      height={480}
+      src="/images/TRUE-logo/TRUE-logo-social-large-blue.png"
+      alt="TRUE Framework Logo Header"
+    />
+  )
+}
+
 const HomePage: React.FC<IHomePageProps> = (props) => {
   const { config, translation } = props
 
@@ -25,26 +42,9 @@ const HomePage: React.FC<IHomePageProps> = (props) => {
 
         <PageAnimation key="home-page">
           <Grid component={MUI.Paper} className={classes.root}>
-            <Image
-              className={classes.headerImg}
-              sizes="60vw"
-              priority
-              quality={100}
-              width={960}
-              height={480}
-              src="/images/TRUE-logo/TRUE-logo-social-large-blue.png"
-              alt="TRUE Framework Logo Header"
-            />
+            <HeaderImage imgClassName={classes.headerImg} />
             <h1>{translation![0].title}</h1>
-            <br />
-            <br />
             <SectionWhyUseTrue />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <SectionBasedOnPracticesIdeas />
             <SectionBasedOnThisTech />
           </Grid>

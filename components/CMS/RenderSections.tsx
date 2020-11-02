@@ -1,6 +1,5 @@
 import capStr from '@util/capitalizeString'
 import { Page, PageContent } from 'cms/Page'
-import { FC } from 'react'
 import * as SectionComponents from './sections'
 
 /*
@@ -15,14 +14,14 @@ import * as SectionComponents from './sections'
  */
 /**
  * @param {PageContent} section The section the resolve
- * @returns {FC | null} A section
+ * @returns {React.FC | null} A section
  */
-function resolveSections(section?: PageContent): FC | null {
+function resolveSections(section?: PageContent): React.FC | null {
   /**
    * // TODO: Section should be typed with possible Section components
    */
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const Section: FC =
+  const Section: React.FC =
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     SectionComponents[capStr(section._type)]

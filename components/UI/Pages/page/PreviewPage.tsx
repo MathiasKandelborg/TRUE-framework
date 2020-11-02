@@ -5,13 +5,13 @@ import { getClient } from '@util/api'
 import { APIRoute } from 'cms/APIRoute'
 import groq from 'groq'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface ICustomPagePreviewProps {
   currentRoute: APIRoute
 }
 
-const CustomPagePreview: FC<ICustomPagePreviewProps> = (props) => {
+const CustomPagePreview: React.FC<ICustomPagePreviewProps> = (props) => {
   const { currentRoute } = props
 
   const router = useRouter()
