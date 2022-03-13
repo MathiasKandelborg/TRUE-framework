@@ -1,7 +1,7 @@
 import groq from 'groq'
 
-const siteConfig = groq`
-  *[_id == "global-config"] {
+const siteConfig = (lang: string): string => groq`
+  *[_id match "global-config**" && __i18n_lang == "${lang}"] {
     ...,
     logo {asset->{extension, url}},
     mainNavigation[] -> {

@@ -3,10 +3,11 @@ import { getClient } from '..'
 import allCategories from '../queries/allCategories'
 
 /**
+ * @param {string} locale The locale to fetch
  * @returns {Promise<Category[]>} All categories
  */
-async function getAllCategories(): Promise<Category[]> {
-  const data: Category[] = await getClient(false).fetch(allCategories)
+async function getAllCategories(locale?: string): Promise<Category[]> {
+  const data: Category[] = await getClient(false).fetch(allCategories(locale))
 
   return data
 }

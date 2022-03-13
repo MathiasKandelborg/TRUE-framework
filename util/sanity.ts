@@ -4,6 +4,7 @@ import sanityImage from '@sanity/image-url'
 const options: ClientConfig = {
   // Find your project ID and dataset in `sanity.json` in your studio project
   dataset: 'production',
+  apiVersion: '2021-09-09',
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   useCdn: process.env.NODE_ENV === 'production'
