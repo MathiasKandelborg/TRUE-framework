@@ -46,6 +46,7 @@ const SectionBasedOnPracticesIdeas: React.FC = () => (
       </ul>
     </Grid>
     <Grid item xs={12} md={6}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/illustrations/new_ideas.svg"
         width="100%"

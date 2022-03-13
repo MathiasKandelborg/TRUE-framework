@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading, jsx-a11y/anchor-has-content */
 
-import * as MUI from '@material-ui/core'
-import clsx from 'clsx'
-import { useRouter } from 'next/router'
+import * as MUI from '@mui/material'
 import * as React from 'react'
 import NextComposed, { NextComposedProps } from './NextComposed'
 
@@ -20,8 +18,8 @@ export type TLinkProps = ILinkPropsBase &
 // https://nextjs.org/docs/#with-link
 const MenuLink = (props: TLinkProps) => {
   const {
-    activeClassName = 'active',
-    className: classNameProps,
+    //    activeClassName = 'active',
+    //  className: classNameProps,
     innerRef,
     as,
     locale,
@@ -29,16 +27,16 @@ const MenuLink = (props: TLinkProps) => {
     ...other
   } = props
 
-  const router = useRouter()
+  // const router = useRouter()
 
-  const className = clsx(classNameProps, {
+  /*   const className = clsx(classNameProps, {
     [activeClassName]: router.asPath === as && activeClassName
-  })
+  }) */
 
   return (
     <MUI.Link
       component={NextComposed}
-      className={className}
+      //      className={className}
       ref={innerRef}
       {...other}
       href={href as string}

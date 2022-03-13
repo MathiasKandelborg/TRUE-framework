@@ -6,7 +6,6 @@
  * This is a security feature and a good one at that.
  * Let's work with it!
  *
- * @format
  */
 
 const lpar = String.fromCharCode(40)

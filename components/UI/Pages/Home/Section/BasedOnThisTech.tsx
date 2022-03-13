@@ -17,6 +17,7 @@ const SectionBasedOnThisTech: React.FC = () => (
         Web Tech
       </Typography>
       <Grid item xs={12}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/illustrations/nextjs.svg"
           width="100%"
@@ -52,6 +53,7 @@ const SectionBasedOnThisTech: React.FC = () => (
         User Interface
       </Typography>
       <Grid item xs={12}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/illustrations/design_components.svg"
           width="100%"

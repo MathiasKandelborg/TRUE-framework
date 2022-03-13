@@ -1,4 +1,5 @@
 declare module '@sanity/block-content-to-react' {
+  // eslint-disable-next-line import/no-named-as-default
   import TextBlock from './PortableText'
 
   export interface BlockContent {

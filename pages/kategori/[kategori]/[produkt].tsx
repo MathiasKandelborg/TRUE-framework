@@ -7,8 +7,6 @@ import ProductPage, {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paramsArr = await generateProductParamsArr('da')
 
-
-
   return {
     paths: !paramsArr[0]
       ? [{ params: { kategori: 'REDIRECT', produkt: 'REDIRECT' } }]

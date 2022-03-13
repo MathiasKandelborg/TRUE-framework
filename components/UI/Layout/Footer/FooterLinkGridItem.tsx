@@ -11,6 +11,7 @@ const FooterLinkGridItem: React.FC<IFooterLinkGridItem> = (props) => {
   return (
     <MUILink
       variant="subtitle1"
+      underline="hover"
       align="center"
       href={href}
       sx={{

@@ -17,7 +17,7 @@ const { DarkTheme, MainColor, SecondaryColor, Fonts } = ui
 const fonts = Fonts.join(',')
 
 const MainTheme = MUI.responsiveFontSizes(
-  MUI.unstable_createMuiStrictModeTheme({
+  MUI.createTheme({
     unstable_strictMode: true,
     palette: {
       mode: (DarkTheme && 'dark') || 'light',
@@ -59,14 +59,15 @@ const MainTheme = MUI.responsiveFontSizes(
         }
       },
       MuiListItemButton: {
-        variants: [
-        {
-          props: { variant: 'active' },
-            style: {
-              pl: 3
+        styleOverrides: {
+          root: {
+            '&.Mui-selected': {
+              //  paddingLeft: 5,
+              fontWeight: 'fontWeightBold',
+              color: 'palette.primary.light'
             }
           }
-        ]
+        }
       }
     }
   })

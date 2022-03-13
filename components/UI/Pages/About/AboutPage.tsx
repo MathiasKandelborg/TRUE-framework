@@ -15,6 +15,7 @@ const AboutPage: React.FC<IAboutPageProps> = () => (
       <PageAnimation key="about-page" layoutID="page">
         <Grid component={MUI.Paper} sx={{ p: 2 }}>
           <Grid item xs={12} container component="section">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/illustrations/questions.svg"
               width="100%"

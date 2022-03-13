@@ -1,10 +1,10 @@
 import SimpleBlockContent from '@components/CMS/PortableText/SimpleBlockContent'
-import { NakedLink } from '@components/HoC'
 import * as MUI from '@mui/material'
 import { Category } from 'cms/Category'
 import Link from 'next/link'
 
 const SingleCategory: React.FC<Category> = (props) => {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const { title, description, url, __i18n_lang } = props
 
   const localeRoute = () => {
@@ -25,7 +25,10 @@ const SingleCategory: React.FC<Category> = (props) => {
 
   return (
     <MUI.Card>
-      <Link as={`${localeRoute()[0]}/${url.current}`} href={localeRoute()[1]}>
+      <Link
+        passHref
+        as={`${localeRoute()[0]}/${url.current}`}
+        href={localeRoute()[1]}>
         <MUI.CardActionArea>
           <MUI.CardHeader title={title} />
           <MUI.CardContent>

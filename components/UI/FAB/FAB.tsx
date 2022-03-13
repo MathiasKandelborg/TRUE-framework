@@ -9,7 +9,6 @@ const FAB: React.FC = () => {
   const [modalIsOpen, setModalOpen] = useState(false)
 
   return (
-    
     <>
       <MUI.Fab
         color="primary"

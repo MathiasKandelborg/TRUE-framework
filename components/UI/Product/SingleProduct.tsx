@@ -1,5 +1,4 @@
 import SimpleBlockContent from '@components/CMS/PortableText/SimpleBlockContent'
-import { NakedLink } from '@components/HoC'
 import * as MUI from '@mui/material'
 import { Product } from 'cms/Product'
 import Link from 'next/link'
@@ -11,6 +10,7 @@ interface ISingleProductProps {
 
 const SingleProduct: React.FC<ISingleProductProps> = (props) => {
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     product: { title, description, url, __i18n_lang },
     categorySlug
   } = props
@@ -37,8 +37,6 @@ const SingleProduct: React.FC<ISingleProductProps> = (props) => {
 
     //  return ['']
   }
-
-  console.dir(localeRoute())
 
   return (
     <MUI.Card>

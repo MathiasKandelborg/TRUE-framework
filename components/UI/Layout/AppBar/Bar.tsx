@@ -15,7 +15,7 @@ const AppBar: React.FC<IAppBarProps> = (props) => {
   return (
     <MUI.AppBar
       sx={{
-        width: { sm: `calc(100% - ${ui.CONSTANTS.DRAWER_WIDTH}px)` },
+        zIndex: (theme) => theme.zIndex.drawer + 1,
         ml: { sm: `${ui.CONSTANTS.DRAWER_WIDTH}px` }
       }}
       position="fixed">

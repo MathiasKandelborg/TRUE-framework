@@ -1,11 +1,11 @@
 import { CONSTANTS, seo } from '@util/settings'
 import { NextSeo } from 'next-seo'
-import { OpenGraphImages, OpenGraphProfile, Twitter } from 'next-seo/lib/types'
+import { OpenGraphMedia, OpenGraphProfile, Twitter } from 'next-seo/lib/types'
 
 interface IPageSEOProps {
   title?: string
   description?: string
-  images?: OpenGraphImages[]
+  images?: OpenGraphMedia[]
   defaultImageHeight?: number
   defaultImageWidth?: number
   ogUrl?: string

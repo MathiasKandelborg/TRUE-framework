@@ -31,18 +31,22 @@ const Layout: React.FC<ILayoutProps> = (props) => {
       <MUI.Toolbar />
       <MUI.Container
         maxWidth="lg"
-        sx={{
-          overflowX: 'hidden',
+        sx={(theme) => ({
+          overflow: 'hidden',
           pt: 3,
           pb: 3,
-          width: { md: `calc(100% - ${ui.CONSTANTS.DRAWER_WIDTH}px)` }
-        }}>
+          pl: {
+            sm: `calc(${theme.spacing(3)} + ${ui.CONSTANTS.DRAWER_WIDTH}px)`
+          }
+        })}>
         {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/Grid/) */}
         <MUI.Grid
           container
           direction="column"
           component="main"
-          sx={{ overflow: 'hidden' }}>
+          sx={{
+            overflow: 'hidden'
+          }}>
           <>{children}</>
         </MUI.Grid>
         <MUI.Box sx={{ height: 20 }} />

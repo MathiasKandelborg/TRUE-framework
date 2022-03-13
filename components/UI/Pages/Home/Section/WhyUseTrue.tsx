@@ -1,6 +1,7 @@
 import ButtonLink from '@components/HoC/Link/ButtonLink'
-import * as MUI from '@mui/material'
 import PageSection from '@components/HoC/PageSection'
+import * as MUI from '@mui/material'
+
 const { Grid, Typography } = MUI
 
 const SectionWhyUseTrue: React.FC = () => (

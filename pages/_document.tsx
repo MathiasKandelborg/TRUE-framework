@@ -1,7 +1,7 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
 import createEmotionServer from '@emotion/server/create-instance'
-import { seo, ui } from '@util/settings'
 import createEmotionCache from '@util/createEmotionCache'
+import { seo, ui } from '@util/settings'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
   render(): JSX.Element {
@@ -51,6 +51,7 @@ export default class MyDocument extends Document {
           <meta name="msapplication-TileColor" content={ui.MainColor[700]} />
           <meta name="theme-color" content={ui.MainColor[700]} />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
+          {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any */}
           {(this.props as any).emotionStyleTags}
         </Head>
         <body>
@@ -93,14 +94,13 @@ MyDocument.getInitialProps = async (ctx) => {
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
   const cache = createEmotionCache()
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { extractCriticalToChunks } = createEmotionServer(cache)
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App: any) =>
-        function EnhanceApp(props) {
-          return <App emotionCache={cache} {...props} />
-        }
+      enhanceApp: (App: any) => (props) =>
+        <App emotionCache={cache} {...props} />
     })
 
   const initialProps = await Document.getInitialProps(ctx)

@@ -37,6 +37,7 @@ const HeroSection: React.FC<IHeroSectionProps> = (props) => {
   return (
     <section>
       <MUI.Grid>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={style?.backgroundImage}
           alt={generateRawTextFromTextBlock(Array(tagline))}

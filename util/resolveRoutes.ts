@@ -5,6 +5,7 @@ import { common } from './settings'
 
 /**
  * Take an array of routes and combine them with `setting.common.staticRoutes`
+ *
  * @param {string} locale Current locale
  * @param {BaseRoute[]} routes API routes
  * @returns {Array<ILocalizedAppRoute>} Routes combined with static routes

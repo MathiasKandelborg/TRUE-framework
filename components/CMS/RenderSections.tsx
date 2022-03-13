@@ -1,3 +1,4 @@
+import React from 'react'
 import capStr from '@util/capitalizeString'
 import { Page, PageContent } from 'cms/Page'
 import * as SectionComponents from './sections'
@@ -24,6 +25,7 @@ function resolveSections(section?: PageContent): React.FC | null {
   const Section: React.FC =
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // eslint-disable-next-line import/namespace
     SectionComponents[capStr(section._type)]
 
   if (Section) {
