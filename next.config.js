@@ -2,6 +2,7 @@ const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
 const conf = {
+  swcminify: true,
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     register: true,
@@ -14,19 +15,13 @@ const conf = {
     deviceSizes: [600, 960, 1280, 1920]
   },
   i18n: {
-    locales: ['en-US', 'da-DK', 'da', 'en'],
-    defaultLocale: 'en-US',
-    locale: 'en-US'
+    locales: ['da', 'en'],
+    defaultLocale: 'en',
+    locale: 'en'
   },
   reactStrictMode: true,
   trailingSlash: false,
   poweredByHeader: false,
-  target: 'serverless',
-  webpack: (
-    config /* ,{ buildId, dev, isServer, defaultLoaders, webpack } */
-  ) =>
-    /* This is a placeholder if one ever needs to edit the webpack config */
-    config,
   rewrites: async () => [
     { source: '/sitemap', destination: '/api/sitemap' },
     { source: '/sitemap.xml', destination: '/api/sitemap' },
