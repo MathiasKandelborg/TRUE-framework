@@ -97,8 +97,7 @@ module.exports = {
     'plugin:promise/recommended',
     'plugin:node/recommended-module',
     'plugin:@next/next/recommended',
-    'plugin:prettier/recommended',
-    'prettier/react'
+    'plugin:prettier/recommended'
   ],
 
   plugins: [
@@ -133,9 +132,7 @@ module.exports = {
         'plugin:promise/recommended',
         'plugin:node/recommended-module',
         'plugin:@next/next/recommended',
-        'plugin:prettier/recommended',
-        'prettier/@typescript-eslint',
-        'prettier/react'
+        'plugin:prettier/recommended'
       ],
 
       plugins: [

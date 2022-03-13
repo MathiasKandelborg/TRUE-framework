@@ -20,7 +20,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
@@ -39,7 +38,8 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
   "exclude": [
     "node_modules",
@@ -53,6 +53,7 @@
   "include": [
     "sanity/**.js",
     ".eslintrc.js",
+    "next-i18next.config.js",
     "next.config.js",
     "exportSiteMap.js",
     "next-env.d.ts",
