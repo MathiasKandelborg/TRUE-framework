@@ -1,10 +1,10 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { UTILITY } from 'settings/UTILITY'
 
 const ui: UTILITY.UISettings = {
   DarkTheme: true,
   MainColor: MUI.colors.cyan,
-  SecondaryColor: MUI.colors.yellow,
+  SecondaryColor: MUI.colors.blueGrey,
   Fonts: [
     'Lato',
     '-apple-system',
