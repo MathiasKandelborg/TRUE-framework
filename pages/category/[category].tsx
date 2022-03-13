@@ -18,13 +18,15 @@ interface ICategoriesPageProps extends PageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await getAllCategories()
+  const categories = await getAllCategories('en')
 
-  const categoriesArr: { params: { category: string } }[] = []
+  const categoriesArr: { params: { category: string }; locale: string }[] = []
 
   categories.forEach((category) => {
     categoriesArr.push({
-      params: { category: category?.url?.current || 'UNDEFINED' }
+      params: { category: category?.url?.current || 'UNDEFINED' },
+      // eslint-disable-next-line no-underscore-dangle
+      locale: category?.__i18n_lang
     })
   })
 
@@ -36,17 +38,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<Omit<
-  ICategoriesPageProps,
-  'config' | 'allRoutes'
->> = async (ctx) => {
-  const { preview, params } = ctx
+export const getStaticProps: GetStaticProps<
+  Omit<ICategoriesPageProps, 'config' | 'allRoutes'>
+> = async (ctx) => {
+  const { preview, params, locale, locales } = ctx
 
-  const slug = params?.category as string
+  const generateSlug = () => {
+    let slug = ''
 
-  const config = await getSanityConfig()
+    if (locales && params) {
+      if (params.kategori) slug = params.kategori as string
 
-  const category = await getCategoryBySlug(slug)
+      if (params.category) slug = params.category as string
+    }
+
+    return slug
+  }
+
+  const config = await getSanityConfig(locale || 'Next i18n not enabled')
+
+  const category = await getCategoryBySlug(generateSlug())
 
   const products = await getProductsByCategory(category._id)
 
@@ -54,6 +65,7 @@ export const getStaticProps: GetStaticProps<Omit<
 
   return {
     props: {
+      locale: 'en',
       ...config,
       preview: Boolean(preview),
       category: category || null,

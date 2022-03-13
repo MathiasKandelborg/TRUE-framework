@@ -13,7 +13,7 @@ interface ICategoriesPageProps extends PageProps {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paramsArr = await generateProductParamsArr()
+  const paramsArr = await generateProductParamsArr('en')
 
   return {
     paths: !paramsArr[0]
@@ -23,15 +23,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<Omit<
-  ICategoriesPageProps,
-  'config' | 'allRoutes'
->> = async (ctx) => {
-  const { preview, params } = ctx
+export const getStaticProps: GetStaticProps<
+  Omit<ICategoriesPageProps, 'config' | 'allRoutes'>
+> = async (ctx) => {
+  const { preview, params, locale } = ctx
 
-  const slug = params?.product as string
+  const x = () => {
+    if (params) {
+      if (params.product) return params.product as string
+      if (params.produkt) return params.produkt as string
+    }
 
-  const config = await getSanityConfig()
+    return 'Something is going wrong in [product].tsx'
+  }
+
+  const slug = x()
+
+  const config = await getSanityConfig(locale || 'Next i18n not enabled')
 
   const product = await getSingleProductBySlug(slug)
 

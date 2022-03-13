@@ -5,4 +5,5 @@ export interface Category extends MetaAPIObject {
   description: TextBlock[]
   title: string
   url: APISlug
+  __i18n_lang: string
 }

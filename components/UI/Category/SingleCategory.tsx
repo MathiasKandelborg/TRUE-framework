@@ -1,22 +1,38 @@
 import SimpleBlockContent from '@components/CMS/PortableText/SimpleBlockContent'
 import { NakedLink } from '@components/HoC'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { Category } from 'cms/Category'
+import Link from 'next/link'
 
 const SingleCategory: React.FC<Category> = (props) => {
-  const { title, description, url } = props
+  const { title, description, url, __i18n_lang } = props
+
+  const localeRoute = () => {
+    let routeName = 'category'
+    switch (__i18n_lang) {
+      case 'da':
+        routeName = 'kategori'
+        break
+      case 'en':
+        routeName = 'category'
+        break
+      default:
+        console.error('Next i18n not enabled')
+    }
+
+    return [`/${routeName}`, `/${routeName}/[${routeName}]`]
+  }
 
   return (
     <MUI.Card>
-      <MUI.CardActionArea
-        component={NakedLink}
-        as={`/category/${url.current}`}
-        href="/category/[category]">
-        <MUI.CardHeader title={title} />
-        <MUI.CardContent>
-          <SimpleBlockContent blocks={description} />
-        </MUI.CardContent>
-      </MUI.CardActionArea>
+      <Link as={`${localeRoute()[0]}/${url.current}`} href={localeRoute()[1]}>
+        <MUI.CardActionArea>
+          <MUI.CardHeader title={title} />
+          <MUI.CardContent>
+            <SimpleBlockContent blocks={description} />
+          </MUI.CardContent>
+        </MUI.CardActionArea>
+      </Link>
     </MUI.Card>
   )
 }

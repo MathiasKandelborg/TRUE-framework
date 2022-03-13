@@ -10,19 +10,19 @@ interface ICategoriesPageProps extends PageProps {
   categories: Category[]
 }
 
-export const getStaticProps: GetStaticProps<Omit<
-  PageProps,
-  'config' | 'allRoutes'
->> = async (ctx) => {
+export const getStaticProps: GetStaticProps<
+  Omit<PageProps, 'config' | 'allRoutes'>
+> = async (ctx) => {
   const { preview } = ctx
 
-  const config = await getSanityConfig()
+  const config = await getSanityConfig(ctx.locale || 'i18n not enabled')
 
   const categories = await getAllCategories()
 
   return {
     props: {
       ...config,
+      locale: ctx.locale,
       preview: Boolean(preview),
       categories: categories || null,
       ...ctx
@@ -36,7 +36,7 @@ interface ICategoriesPageStaticProps
     InferGetStaticPropsType<typeof getStaticProps> {}
 
 const CategoriesPage: React.FC<ICategoriesPageStaticProps> = (props) => {
-  const { categories } = props
+  const { categories, locale } = props
 
   return (
     <>
@@ -44,7 +44,10 @@ const CategoriesPage: React.FC<ICategoriesPageStaticProps> = (props) => {
         title="Categories"
         description="Showcase of integrating categories & products in TRUE Framework"
       />
-      <CategoriesListPage categories={categories} />
+      <CategoriesListPage
+        locale={locale || 'Next i18n not enabled'}
+        categories={categories}
+      />
     </>
   )
 }

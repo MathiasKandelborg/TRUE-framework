@@ -1,19 +1,24 @@
 import { BaseRoute } from 'cms/APIRoute'
-import { AppRoute } from 'settings/AppRoute'
+import { ILocalizedAppRoute } from 'settings/AppRoute'
 import capitalizeString from './capitalizeString'
 import { common } from './settings'
 
 /**
  * Take an array of routes and combine them with `setting.common.staticRoutes`
- *
+ * @param {string} locale Current locale
  * @param {BaseRoute[]} routes API routes
- * @returns {Array<AppRoute>} Routes combined with static routes
+ * @returns {Array<ILocalizedAppRoute>} Routes combined with static routes
  */
-function resolveRoutes(routes: BaseRoute[]): Array<AppRoute> {
-  const resolvedRoutes = common.staticRoutes.map((staticRoute) => staticRoute)
+function resolveRoutes(
+  routes: BaseRoute[],
+  locale: string
+): Array<ILocalizedAppRoute> {
+  const localizedRoutes = common.staticRoutes.map(
+    (staticRoute) => staticRoute[`${locale}`]
+  )
 
-  routes.map((route) =>
-    resolvedRoutes.push({
+  routes?.map((route) =>
+    localizedRoutes.push({
       as: `/${route.slug.current}`,
       route: '/[page]',
       name: `${capitalizeString(route.slug.current)}`,
@@ -22,7 +27,7 @@ function resolveRoutes(routes: BaseRoute[]): Array<AppRoute> {
     })
   )
 
-  return resolvedRoutes
+  return localizedRoutes
 }
 
 export default resolveRoutes

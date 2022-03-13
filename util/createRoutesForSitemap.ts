@@ -28,17 +28,18 @@ interface ISitemapStaticRoutes {
   [key: string]: StaticRoute
 }
 
+// FIXME: make sitemap with localized static routes.
 const createStaticRoutesForSitemap = (
   routes: UTILITY.CommonSettings['staticRoutes']
 ) => {
   const staticRoutes: Array<ISitemapStaticRoutes> = routes.map((route) => ({
-    [`${route.route}`]: {
+    [`${route.en.route}`]: {
       page: {
         _ref: ''
       },
       slug: {
         _type: 'slug',
-        current: route.route
+        current: route.en.route
       },
       _updatedAt: new Date().toUTCString(),
       _createdAt: new Date().toUTCString(),

@@ -5,8 +5,8 @@ import * as SectionComponents from './sections'
 /*
  * It's incredible how resolveSections does its thing.
  * I, however, haven't tried doing something of the likes before.
- * It is probably quite straight forward 🤣
- * - Mathias Wøbbe 14/08
+ * It is probably quite straight forward
+ * - Mathias Wøbbe 14/08 🤣
  */
 
 /*

@@ -1,7 +1,8 @@
 import SimpleBlockContent from '@components/CMS/PortableText/SimpleBlockContent'
 import { NakedLink } from '@components/HoC'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { Product } from 'cms/Product'
+import Link from 'next/link'
 
 interface ISingleProductProps {
   product: Product
@@ -10,21 +11,50 @@ interface ISingleProductProps {
 
 const SingleProduct: React.FC<ISingleProductProps> = (props) => {
   const {
-    product: { title, description, url },
+    product: { title, description, url, __i18n_lang },
     categorySlug
   } = props
 
+  const localeRoute = () => {
+    let routeName = 'category'
+    let subRouteName = 'product'
+    switch (__i18n_lang) {
+      case 'da':
+        routeName = 'kategori'
+        subRouteName = 'produkt'
+        break
+      case 'en':
+        routeName = 'category'
+        subRouteName = 'product'
+        break
+      default:
+        console.error('Next i18n not enabled')
+    }
+
+    return [`/${routeName}`, `/${routeName}/[${routeName}]/[${subRouteName}]`]
+
+    //    console.error('Something weird is happening for SingleProduct.tsx')
+
+    //  return ['']
+  }
+
+  console.dir(localeRoute())
+
   return (
     <MUI.Card>
-      <MUI.CardActionArea
-        component={NakedLink}
-        as={`/category/${categorySlug}/${url.current}`}
-        href="/category/[category]/[product]">
-        <MUI.CardHeader title={title} />
-        <MUI.CardContent>
-          <SimpleBlockContent blocks={description} />
-        </MUI.CardContent>
-      </MUI.CardActionArea>
+      <Link
+        as={`${localeRoute()[0]}/${categorySlug}/${url.current}`}
+        href={localeRoute()[1]}
+        passHref>
+        <MUI.CardActionArea component="a">
+          <MUI.CardHeader title={title} />
+          <MUI.CardContent>
+            <MUI.Typography component="div">
+              <SimpleBlockContent blocks={description} />
+            </MUI.Typography>
+          </MUI.CardContent>
+        </MUI.CardActionArea>
+      </Link>
     </MUI.Card>
   )
 }

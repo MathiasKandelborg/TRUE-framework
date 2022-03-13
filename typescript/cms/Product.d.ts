@@ -7,4 +7,5 @@ export interface Product extends MetaAPIObject {
   description: TextBlock[]
   url: APISlug
   categories: Category[]
+  __i18n_lang: string
 }

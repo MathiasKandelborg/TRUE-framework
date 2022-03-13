@@ -15,14 +15,18 @@ type TParamsArray = {
  * - Push params to paramsArr
  *
  *
+ * @param {string} locale
  * @returns {TParamsArray} Params arr
  */
-async function generateProductParamsArr(): Promise<TParamsArray> {
-  const paramsArr: { params: { category: string; product: string } }[] = []
+async function generateProductParamsArr(locale: string): Promise<TParamsArray> {
+  const paramsArr: {
+    params: { category: string; product: string }
+    locale: string
+  }[] = []
 
-  const categories = await getAllCategories()
+  const categories = await getAllCategories(locale)
 
-  const products = await getAllProducts()
+  const products = await getAllProducts(locale)
 
   products.forEach((prod) => {
     let productInCategory = false
@@ -40,7 +44,9 @@ async function generateProductParamsArr(): Promise<TParamsArray> {
           params: {
             category: cat.url?.current,
             product: prod.url?.current
-          }
+          },
+          // eslint-disable-next-line no-underscore-dangle
+          locale: prod.__i18n_lang
         })
     })
   })

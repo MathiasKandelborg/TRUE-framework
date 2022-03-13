@@ -1,30 +1,24 @@
 import PageSEO from '@components/HoC/SEO/Page'
 import HomePage from '@components/UI/Pages/Home/HomePage'
 import getSanityConfig from '@util/api/calls/getSanityConfig'
-import resolveTranslationFiles from '@util/i18n/resolveTranslationFiles'
-import { TSupportedLanguages } from 'i18n/Languages'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import nextI18NextConfig from 'next-i18next.config'
 
 export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
-  const config = await getSanityConfig()
-
-  const error = 'I18n is not enabled in `next.config.js`'
-
-  /**
-   * Get translation files based on current locale
-   *
-   * `translation` is handled like an export default js module
-   * To access keys in the file, use object notation
-   */
-  const translation = resolveTranslationFiles({
-    locale: (ctx.locale as TSupportedLanguages) || error,
-    locales: (ctx.locales as TSupportedLanguages[]) || [error],
-    namespaces: ['homePage', 'test']
-  })
+  const config = await getSanityConfig(ctx.locale || 'Next i18n not enabled')
 
   return {
-    props: { ...ctx, ...config, translation },
+    props: {
+      ...ctx,
+      ...config,
+      ...(await serverSideTranslations(
+        ctx.locale || `I18n not enabled`,
+        ['common'],
+        nextI18NextConfig
+      ))
+    },
     revalidate: 3600
   }
 }
@@ -33,10 +27,7 @@ const Home: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = (
   props
 ) => (
   <>
-    <PageSEO
-      title="Home Page"
-      description="The homepage for the TRUE framework showcase of itself"
-    />
+    <PageSEO title="Home Page" description="Homepage for the TRUE framework" />
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <HomePage {...props} />
   </>

@@ -5,7 +5,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { PageProps } from 'PageProps'
 
 export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
-  const config = await getSanityConfig()
+  const config = await getSanityConfig(ctx.locale || 'Next i18n not enabled')
 
   return {
     props: { ...ctx, ...config },
@@ -13,9 +13,9 @@ export const getStaticProps: GetStaticProps<PageProps> = async (ctx) => {
   }
 }
 
-const About: React.FunctionComponent<InferGetStaticPropsType<
-  typeof getStaticProps
->> = (props) => {
+const About: React.FunctionComponent<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = (props) => {
   const { preview, locale } = props
 
   console.info(`Loading ${locale || ''} strings`)

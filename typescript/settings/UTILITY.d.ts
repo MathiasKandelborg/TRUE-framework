@@ -1,11 +1,13 @@
 import * as MUI from '@mui/material'
+import { IAppRoute } from 'settings/AppRoute'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export declare namespace UTILITY {
   /** Common Settings used in many places throughout the codebase */
   export interface CommonSettings {
-    staticRoutes: Array<AppRoute>
+    staticRoutes: Array<IAppRoute>
     language: string
+    availableLangs: { language: string; code: string }[]
   }
 
   export interface SEOSettings {

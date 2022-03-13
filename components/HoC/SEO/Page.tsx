@@ -1,4 +1,4 @@
-import { common, CONSTANTS, seo } from '@util/settings'
+import { CONSTANTS, seo } from '@util/settings'
 import { NextSeo } from 'next-seo'
 import { OpenGraphImages, OpenGraphProfile, Twitter } from 'next-seo/lib/types'
 
@@ -20,7 +20,6 @@ interface IPageSEOProps {
 
 const PageSEO: React.FC<IPageSEOProps> = (props) => {
   const seoImgUrl = CONSTANTS.DEV ? 'http://localhost:3000' : seo.url
-
   const {
     title = seo.title,
     description = seo.description,
@@ -37,7 +36,7 @@ const PageSEO: React.FC<IPageSEOProps> = (props) => {
     ogDescription = seo.ogDescription,
     ogSiteName = seo.title,
     ogUrl = seo.url,
-    ogLocale = common.language,
+    ogLocale,
     ogProfile = {
       firstName: seo.author.firstName,
       lastName: seo.author.lastName,

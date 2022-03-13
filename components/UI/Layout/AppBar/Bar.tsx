@@ -2,6 +2,7 @@ import PreviewModeAlert from '@components/UI/PreviewModeAlert'
 import * as MUI from '@mui/material'
 import { ui } from '@util/settings'
 import AppHeader from './Header'
+import LangChanger from './LangChanger'
 import MenuIconSvg from './MenuIcon'
 
 interface IAppBarProps {
@@ -23,6 +24,7 @@ const AppBar: React.FC<IAppBarProps> = (props) => {
         <div style={{ flexGrow: 1 }} />
         {preview ? <PreviewModeAlert /> : <AppHeader />}
         <div style={{ flexGrow: 1 }} />
+        <LangChanger />
       </MUI.Toolbar>
     </MUI.AppBar>
   )

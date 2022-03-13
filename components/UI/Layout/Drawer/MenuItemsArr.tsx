@@ -1,8 +1,8 @@
-import { AppRoute } from 'settings/AppRoute'
+import { ILocalizedAppRoute } from 'settings/AppRoute'
 import MenuItem from './MenuItem'
 
 interface IListMenuItemsProps {
-  allRoutes?: AppRoute[]
+  allRoutes?: ILocalizedAppRoute[]
 }
 
 const ListMenuItems: React.FC<IListMenuItemsProps> = (props) => {

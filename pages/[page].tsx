@@ -19,15 +19,18 @@ interface ICustomPageProps extends PageProps, GetStaticPropsContext {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const sanityRoutes: Array<{ slug: { current: string } }> = await getClient(
-    false
-  ).fetch(routes)
+  const sanityRoutes: Array<{
+    slug: { current: string }
+    __i18n_lang: string
+  }> = await getClient(false).fetch(routes())
 
-  const routeParams: { params: { page: string } }[] = []
+  const routeParams: { params: { page: string }; locale: string }[] = []
 
   sanityRoutes.forEach((route) =>
     routeParams.push({
-      params: { page: `${route.slug.current}` }
+      params: { page: `${route.slug.current}` },
+      // eslint-disable-next-line no-underscore-dangle
+      locale: route.__i18n_lang
     })
   )
 
@@ -39,7 +42,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<ICustomPageProps> = async (ctx) => {
   const { preview, params } = ctx
-  const config = await getSanityConfig()
+  const config = await getSanityConfig(ctx.locale || 'Next i18n not enabled')
 
   const page = params && typeof params.page === 'string' ? params.page : ''
 

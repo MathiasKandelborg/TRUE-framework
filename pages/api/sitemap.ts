@@ -13,7 +13,8 @@ export default async function sitemapFunc(
 ): Promise<void> {
   res.setHeader('Content-Type', 'text/xml')
   try {
-    const createdRoutesForSitemap = await createRoutesForSitemap() // call the backend and fetch all stories
+    // TODO: Include categories and products with this
+    const createdRoutesForSitemap = await createRoutesForSitemap() // call the backend and fetch all routes
 
     const smStream = new SitemapStream({
       hostname: `https://${req?.headers?.host || 'not found'}`
