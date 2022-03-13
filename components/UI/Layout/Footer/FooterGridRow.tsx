@@ -1,5 +1,4 @@
-import * as MUI from '@material-ui/core'
-import footerStyles from './Footer.styles'
+import * as MUI from '@mui/material'
 
 interface IFooterGridRowProps {
   placeholder: string
@@ -7,8 +6,6 @@ interface IFooterGridRowProps {
 
 const FooterGridRow: React.FC<IFooterGridRowProps> = (props) => {
   const { children } = props
-
-  const classes = footerStyles()
 
   return (
     <MUI.Grid
@@ -19,7 +16,7 @@ const FooterGridRow: React.FC<IFooterGridRowProps> = (props) => {
       container
       alignContent="center"
       direction="column"
-      className={classes.footerLinkItem}>
+      sx={{ p: 1 }}>
       {children}
     </MUI.Grid>
   )

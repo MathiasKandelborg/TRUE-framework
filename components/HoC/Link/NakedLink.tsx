@@ -1,4 +1,4 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import ifPathnameIsIndex from '@util/ifPathnameIsIndex'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'

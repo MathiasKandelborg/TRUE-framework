@@ -1,25 +1,27 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import iOS from '@util/isIOS'
+import { ui } from '@util/settings'
 import { useStoreActions, useStoreState } from '@util/tsEasyPeasyHooks'
 
 interface IDrawerProps {
   toggleDrawerClose: () => void
   toggleDrawerOpen: () => void
-  drawerPaperClassName: string
   drawerOpen: boolean
 }
-const DefaultDrawer: React.FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
-  props
-) => {
-  const { drawerPaperClassName, children } = props
+const DefaultDrawer: React.FC = (props) => {
+  const { children } = props
 
   return (
     <MUI.Hidden smDown implementation="js">
       <MUI.Drawer
         variant="permanent"
         open
-        classes={{
-          paper: drawerPaperClassName
+        sx={{
+          'display': { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: ui.CONSTANTS.DRAWER_WIDTH
+          }
         }}>
         {children}
       </MUI.Drawer>
@@ -28,37 +30,31 @@ const DefaultDrawer: React.FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
 }
 
 const MobileDrawer: React.FC<IDrawerProps> = (props) => {
-  const {
-    toggleDrawerClose,
-    toggleDrawerOpen,
-    drawerPaperClassName,
-    drawerOpen,
-    children
-  } = props
+  const { toggleDrawerClose, toggleDrawerOpen, drawerOpen, children } = props
 
   return (
-    <MUI.Hidden mdUp implementation="js">
-      <MUI.SwipeableDrawer
-        variant="temporary"
-        onClose={toggleDrawerClose}
-        onOpen={toggleDrawerOpen}
-        open={drawerOpen}
-        classes={{
-          paper: drawerPaperClassName
-        }}
-        ModalProps={{ keepMounted: true }}
-        disableBackdropTransition={!iOS}
-        disableDiscovery={iOS}>
-        {children}
-      </MUI.SwipeableDrawer>
-    </MUI.Hidden>
+    <MUI.SwipeableDrawer
+      variant="temporary"
+      onClose={toggleDrawerClose}
+      onOpen={toggleDrawerOpen}
+      open={drawerOpen}
+      sx={{
+        'display': { xs: 'block', sm: 'none' },
+        '& .MuiDrawer-paper': {
+          boxSizing: 'border-box',
+          width: ui.CONSTANTS.DRAWER_WIDTH
+        }
+      }}
+      ModalProps={{ keepMounted: true }}
+      disableBackdropTransition={!iOS}
+      disableDiscovery={iOS}>
+      {children}
+    </MUI.SwipeableDrawer>
   )
 }
 
-const AppDrawer: React.FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
-  props
-) => {
-  const { children, drawerPaperClassName } = props
+const AppDrawer: React.FC = (props) => {
+  const { children } = props
   const drawerOpen = useStoreState((s) => s.drawerOpen)
   const drawerToggled = useStoreActions((a) => a.toggleDrawer)
 
@@ -68,11 +64,8 @@ const AppDrawer: React.FC<Pick<IDrawerProps, 'drawerPaperClassName'>> = (
 
   return (
     <>
-      <DefaultDrawer drawerPaperClassName={drawerPaperClassName}>
-        {children}
-      </DefaultDrawer>
+      <DefaultDrawer>{children}</DefaultDrawer>
       <MobileDrawer
-        drawerPaperClassName={drawerPaperClassName}
         toggleDrawerClose={toggleDrawerClose}
         toggleDrawerOpen={toggleDrawerOpen}
         drawerOpen={drawerOpen}>

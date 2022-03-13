@@ -1,6 +1,5 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { useState } from 'react'
-import makeFABStyles from './FAB.styles'
 
 /* interface IFABProps {
   placeholder: string
@@ -9,14 +8,17 @@ import makeFABStyles from './FAB.styles'
 const FAB: React.FC = () => {
   const [modalIsOpen, setModalOpen] = useState(false)
 
-  const classes = makeFABStyles()
-
   return (
+    
     <>
       <MUI.Fab
         color="primary"
         aria-label="contact"
-        className={classes.fab}
+        sx={{
+          right: 2,
+          bottom: 2,
+          position: 'fixed'
+        }}
         onClick={() => setModalOpen(true)}>
         <p>X</p>
       </MUI.Fab>

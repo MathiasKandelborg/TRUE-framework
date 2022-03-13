@@ -1,9 +1,9 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
+import { ui } from '@util/settings'
 import FAB from '../FAB/FAB'
 import { AppBar } from './AppBar'
 import { AppDrawer, DrawerMenu } from './Drawer'
 import Footer from './Footer/Footer'
-import layoutStyles from './Layout.styles'
 
 interface ILayoutProps {
   MenuItems: JSX.Element
@@ -13,33 +13,39 @@ interface ILayoutProps {
 const Layout: React.FC<ILayoutProps> = (props) => {
   const { children, MenuItems, preview } = props
 
-  const classes = layoutStyles()
-
   return (
     <>
-      <AppBar
-        preview={preview}
-        appBarClassName={classes.appBar}
-        iconButtonClassName={classes.menuButton}
-      />
+      <AppBar preview={preview} />
 
-      <nav>
-        <AppDrawer drawerPaperClassName={classes.drawerPaper}>
+      <MUI.Box
+        component="nav"
+        sx={{
+          width: { sm: ui.CONSTANTS.DRAWER_WIDTH },
+          flexShrink: { sm: 0 }
+        }}>
+        <AppDrawer>
           <DrawerMenu routes={MenuItems} />
         </AppDrawer>
-      </nav>
+      </MUI.Box>
 
-      <div className={classes.toolbar} />
-      <MUI.Container maxWidth="lg" className={classes.content}>
+      <MUI.Toolbar />
+      <MUI.Container
+        maxWidth="lg"
+        sx={{
+          overflowX: 'hidden',
+          pt: 3,
+          pb: 3,
+          width: { md: `calc(100% - ${ui.CONSTANTS.DRAWER_WIDTH}px)` }
+        }}>
         {/* Wrap page components in a 'Root Grid' (https://material-ui.com/components/Grid/) */}
         <MUI.Grid
           container
           direction="column"
           component="main"
-          className={classes.main}>
+          sx={{ overflow: 'hidden' }}>
           <>{children}</>
         </MUI.Grid>
-        <div className={classes.mainSpacer} />
+        <MUI.Box sx={{ height: 20 }} />
         <Footer />
       </MUI.Container>
       <FAB />

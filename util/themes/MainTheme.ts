@@ -1,4 +1,4 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import generateFontFaces from '@util/generateFontFaces'
 import { ui } from '@util/settings'
 
@@ -20,7 +20,7 @@ const MainTheme = MUI.responsiveFontSizes(
   MUI.unstable_createMuiStrictModeTheme({
     unstable_strictMode: true,
     palette: {
-      type: (DarkTheme && 'dark') || 'light',
+      mode: (DarkTheme && 'dark') || 'light',
       background:
         (DarkTheme && {
           default: '#202020',
@@ -45,16 +45,28 @@ const MainTheme = MUI.responsiveFontSizes(
       fontFamily: fonts
     },
 
-    overrides: {
+    components: {
       MuiCssBaseline: {
-        '@global': {
-          '@font-face': MyWonderFullFontFaces
+        styleOverrides: {
+          '@global': {
+            '@font-face': MyWonderFullFontFaces
+          }
         }
       },
       MuiTypography: {
-        colorPrimary: {
-          color: MainColor[500]
+        defaultProps: {
+          //          color: MainColor[500]
         }
+      },
+      MuiListItemButton: {
+        variants: [
+        {
+          props: { variant: 'active' },
+            style: {
+              pl: 3
+            }
+          }
+        ]
       }
     }
   })

@@ -1,6 +1,6 @@
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { lpar } from '@util/characters'
 import { PageProps } from 'PageProps'
 

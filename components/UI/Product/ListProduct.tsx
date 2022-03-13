@@ -1,4 +1,4 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { Product } from 'cms/Product'
 import SingleProduct from './SingleProduct'
 

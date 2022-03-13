@@ -2,7 +2,8 @@ import DefaultSEO from '@components/HoC/SEO/Default'
 import LogoSEO from '@components/HoC/SEO/Logo'
 import { Layout } from '@components/UI'
 import ListMenuItems from '@components/UI/Layout/Drawer/MenuItemsArr'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
+import { CacheProvider, EmotionCache } from '@emotion/react'
 import canonicalRoute from '@util/canonicalRoute'
 import store from '@util/shared/createStore'
 import MainTheme from '@util/themes/MainTheme'
@@ -10,9 +11,13 @@ import { StoreProvider } from 'easy-peasy'
 import { AnimateSharedLayout } from 'framer-motion'
 import { AppProps } from 'next/app'
 import { PageProps } from 'PageProps'
-import { useEffect } from 'react'
+import { appWithTranslation } from 'next-i18next'
+import createEmotionCache from '@util/createEmotionCache'
+
+const clientSideEmotionCache = createEmotionCache()
 
 export interface IAppProps extends AppProps {
+  emotionCache?: EmotionCache
   pageProps: PageProps
 }
 
@@ -23,38 +28,37 @@ export interface IAppProps extends AppProps {
  * @returns {JSX.Element} The App
  */
 function MyApp(props: IAppProps): JSX.Element {
-  const { Component, pageProps, router } = props
+  const {
+    Component,
+    pageProps,
+    router,
+    emotionCache = clientSideEmotionCache
+  } = props
   const { preview, allRoutes } = pageProps
-
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles)
-    }
-  }, [])
 
   const currentRoute = canonicalRoute(router)
 
   return (
     <>
-      <DefaultSEO canonicalRoute={currentRoute} />
-      <LogoSEO canonicalRoute={currentRoute} />
-
       <StoreProvider store={store}>
-        <MUI.ThemeProvider theme={MainTheme}>
-          <MUI.CssBaseline />
-          <AnimateSharedLayout type="crossfade">
-            <Layout
-              preview={preview}
-              MenuItems={<ListMenuItems allRoutes={allRoutes} />}>
-              <Component key={currentRoute} {...pageProps} />
-            </Layout>
-          </AnimateSharedLayout>
-        </MUI.ThemeProvider>
+        <CacheProvider value={emotionCache}>
+          <DefaultSEO canonicalRoute={currentRoute} />
+          <LogoSEO canonicalRoute={currentRoute} />
+
+          <MUI.ThemeProvider theme={MainTheme}>
+            <MUI.CssBaseline />
+            <AnimateSharedLayout type="crossfade">
+              <Layout
+                preview={preview}
+                MenuItems={<ListMenuItems allRoutes={allRoutes} />}>
+                <Component key={currentRoute} {...pageProps} />
+              </Layout>
+            </AnimateSharedLayout>
+          </MUI.ThemeProvider>
+        </CacheProvider>
       </StoreProvider>
     </>
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

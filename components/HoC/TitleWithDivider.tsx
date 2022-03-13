@@ -1,5 +1,5 @@
 import TitleAnimation from '@components/UI/Animation/TitleAnimation'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 
 interface ITitleDividerProps extends MUI.TypographyProps {
   text: string

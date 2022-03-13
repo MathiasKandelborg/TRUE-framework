@@ -2,29 +2,27 @@ import CustomAnimatePresence from '@components/HoC/Animation/CustomAnimatePresen
 import TitleWithDivider from '@components/HoC/TitleWithDivider'
 import { PageAnimation } from '@components/UI'
 import ListCategory from '@components/UI/Category/ListCategory'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { Category } from 'cms/Category'
-import categoriesPageListStyles from './CategoriesListPage.styles'
 
 interface ICategoriesPageProps {
   categories: Category[]
+  locale: string
 }
 
 const CategoriesListPage: React.FC<ICategoriesPageProps> = (props) => {
   const { categories } = props
 
-  const classes = categoriesPageListStyles()
-
   return (
     <CustomAnimatePresence layoutShift>
-      <TitleWithDivider key="title" variant="h1" text="Categories" />
+      <TitleWithDivider key="title" variant="h1" text="categories" />
 
       <PageAnimation key="page">
         <MUI.Grid
           container
-          justify="space-around"
+          justifyContent="space-around"
           component={MUI.Paper}
-          className={classes.paper}>
+          sx={{ p: 2 }}>
           <ListCategory categories={categories} />
         </MUI.Grid>
       </PageAnimation>

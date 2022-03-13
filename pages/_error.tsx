@@ -1,5 +1,5 @@
 import { PageAnimation } from '@components/UI'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import getSanityConfig from '@util/api/calls/getSanityConfig'
 import { AnimatePresence } from 'framer-motion'
 import { NextPage } from 'next'
@@ -26,7 +26,7 @@ const Error: NextPage<IErrorProps> = (props) => {
 }
 
 Error.getInitialProps = async (ctx) => {
-  const config = await getSanityConfig()
+  const config = await getSanityConfig(ctx.locale || '')
   // console.log(ctx)
 
   return {

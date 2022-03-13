@@ -1,7 +1,8 @@
 import MenuLink from '@components/HoC/Link/MenuLink'
-import * as MUI from '@material-ui/core'
+import { useRouter } from 'next/router'
+import * as MUI from '@mui/material'
 import { useStoreActions } from '@util/tsEasyPeasyHooks'
-import menuItemStyles from './MenuItem.styles'
+import Link from 'next/link'
 
 interface IMenuItemProps {
   text: string
@@ -13,23 +14,35 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
   const { text, route, as } = props
 
   const drawerToggle = useStoreActions((a) => a.toggleDrawer)
-
-  const classes = menuItemStyles()
+  const router = useRouter()
 
   return (
     <li>
-      <MUI.ListItem
-        alignItems="center"
-        button
-        onClick={() => drawerToggle(false)}
-        component={MenuLink}
-        scroll
-        href={route}
-        as={as}
-        className={classes.menuItem}
-        activeClassName={classes.menuItemActive}>
-        <MUI.ListItemText primary={text} inset />
-      </MUI.ListItem>
+      <Link passHref href={route} as={as}>
+        <MUI.Link>
+          <MUI.ListItemButton
+            alignItems="center"
+            onClick={() => drawerToggle(false)}
+            selected={router.asPath === as}
+            //  scroll
+            sx={{
+              'color': 'inherit',
+              'typography': 'subtitle1',
+              '&:hover': {
+                paddingLeft: 3,
+                fontWeight: 'fontWeightBold',
+                color: 'palette.primary.light'
+              },
+              '&:Mui-selected': {
+                pl: 3,
+                fontWeight: 'fontWeightBold',
+                color: 'palette.primary.light'
+              }
+            }}>
+            <MUI.ListItemText primary={text} inset />
+          </MUI.ListItemButton>
+        </MUI.Link>
+      </Link>
     </li>
   )
 }

@@ -1,5 +1,4 @@
-import * as MUI from '@material-ui/core'
-import appDrawerMenuStyles from './AppDrawerMenu.styles'
+import * as MUI from '@mui/material'
 
 interface IDrawerMenuProps {
   routes: JSX.Element
@@ -7,11 +6,10 @@ interface IDrawerMenuProps {
 
 const DrawerMenu: React.FC<IDrawerMenuProps> = (props) => {
   const { routes } = props
-  const styles = appDrawerMenuStyles()
 
   return (
     <>
-      <div className={styles.toolbar} />
+      <MUI.Toolbar />
       <MUI.List>{routes}</MUI.List>
     </>
   )

@@ -1,5 +1,5 @@
 import { MUILink } from '@components/HoC'
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 
 const PreviewModeAlert: React.FC = () => (
   <>

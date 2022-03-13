@@ -1,4 +1,5 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
+import { DistributiveOmit } from '@mui/types'
 import ifPathnameIsIndex from '@util/ifPathnameIsIndex'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -12,7 +13,7 @@ interface ILinkPropsBase {
 
 export type LinkProps = ILinkPropsBase &
   NextComposedProps &
-  Omit<MUI.LinkProps, 'href' | 'variant'>
+  DistributiveOmit<MUI.LinkProps, 'href' | 'variant'>
 
 const ButtonLink = (props: LinkProps) => {
   const {

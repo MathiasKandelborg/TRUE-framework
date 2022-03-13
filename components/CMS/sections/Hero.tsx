@@ -1,4 +1,4 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 import { BlockContent } from '@sanity/block-content-to-react'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from '@sanity/image-url/lib/types/types'

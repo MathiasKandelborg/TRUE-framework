@@ -1,17 +1,17 @@
-import * as MUI from '@material-ui/core'
+import * as MUI from '@mui/material'
 
 interface IPageSectionComponentProps {
   id: string
-  className: string
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse'
+  mb: 2 | 4
 }
 
 const PageSection: React.FC<IPageSectionComponentProps> = (props) => {
-  const { id, children, direction, className } = props
+  const { id, children, direction, mb } = props
 
   return (
     <MUI.Grid
-      className={className}
+      sx={{ mb }}
       container
       direction={direction}
       item

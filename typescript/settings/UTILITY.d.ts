@@ -1,5 +1,4 @@
-import * as MUI from '@material-ui/core'
-import { AppRoute } from 'settings/AppRoute'
+import * as MUI from '@mui/material'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export declare namespace UTILITY {
